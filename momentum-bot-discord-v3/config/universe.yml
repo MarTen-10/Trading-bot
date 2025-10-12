@@ -1,0 +1,10 @@
+universe:
+  stocks: [NVDA, TSLA, AMZN, META, SMCI, COIN, PLTR]
+  crypto: [BTCUSD, ETHUSD, SOLUSD, DOGEUSD, AVAXUSD, XRPUSD, LINKUSD, BNBUSD, DOTUSD, UNIUSD, MATICUSD, LTCUSD]
+  index_proxies: {SPY: stocks, VIX: vol}
+
+
+rotation:
+  keep_top: 12
+  min_dollar_vol_stock: 150000000
+  min_dollar_vol_crypto: 50000000

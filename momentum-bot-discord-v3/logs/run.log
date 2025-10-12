@@ -1,0 +1,1753 @@
+2025-10-11 00:54:38,076 ERROR 'Close'
+Traceback (most recent call last):
+  File "C:\Users\mmart\Documents\momentum-bot-discord-v3\.venv\Lib\site-packages\pandas\core\indexes\base.py", line 3812, in get_loc
+    return self._engine.get_loc(casted_key)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pandas/_libs/index.pyx", line 167, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/index.pyx", line 196, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7088, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7096, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'Close'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\mmart\Documents\momentum-bot-discord-v3\src\run.py", line 36, in main
+    spy_i = add_indicators(spy)
+            ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mmart\Documents\momentum-bot-discord-v3\src\indicators.py", line 6, in add_indicators
+    out['EMA_S'] = ta.trend.ema_indicator(out['Close'], window=ema_s, fillna=False)
+                                          ~~~^^^^^^^^^
+  File "C:\Users\mmart\Documents\momentum-bot-discord-v3\.venv\Lib\site-packages\pandas\core\frame.py", line 4113, in __getitem__
+    indexer = self.columns.get_loc(key)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mmart\Documents\momentum-bot-discord-v3\.venv\Lib\site-packages\pandas\core\indexes\base.py", line 3819, in get_loc
+    raise KeyError(key) from err
+KeyError: 'Close'
+2025-10-11 00:54:38,081 INFO ALERT: Bot error: 'Close'
+2025-10-11 00:59:28,245 ERROR negative dimensions are not allowed
+Traceback (most recent call last):
+  File "C:\Users\mmart\Documents\momentum-bot-discord-v3\src\run.py", line 36, in main
+    spy_i = add_indicators(spy)
+            ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mmart\Documents\momentum-bot-discord-v3\src\indicators.py", line 12, in add_indicators
+    out['ADX'] = ta.trend.adx(out['High'], out['Low'], out['Close'], window=14, fillna=False)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mmart\Documents\momentum-bot-discord-v3\.venv\Lib\site-packages\ta\trend.py", line 1291, in adx
+    return ADXIndicator(
+           ^^^^^^^^^^^^^
+  File "C:\Users\mmart\Documents\momentum-bot-discord-v3\.venv\Lib\site-packages\ta\trend.py", line 716, in __init__
+    self._run()
+  File "C:\Users\mmart\Documents\momentum-bot-discord-v3\.venv\Lib\site-packages\ta\trend.py", line 730, in _run
+    self._trs = np.zeros(len(self._close) - (self._window - 1))
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: negative dimensions are not allowed
+2025-10-11 00:59:28,245 INFO ALERT: Bot error: negative dimensions are not allowed
+2025-10-11 01:11:02,217 ERROR single positional indexer is out-of-bounds
+Traceback (most recent call last):
+  File "C:\Users\mmart\Documents\momentum-bot-discord-v3\src\run.py", line 38, in main
+    regime = classify(spy_i.iloc[-1], vix_i.iloc[-1], global_cfg["regime"]["bull_vix_lt"], global_cfg["regime"]["bear_vix_gt"])
+                      ~~~~~~~~~~^^^^
+  File "C:\Users\mmart\Documents\momentum-bot-discord-v3\.venv\Lib\site-packages\pandas\core\indexing.py", line 1192, in __getitem__
+    return self._getitem_axis(maybe_callable, axis=axis)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mmart\Documents\momentum-bot-discord-v3\.venv\Lib\site-packages\pandas\core\indexing.py", line 1753, in _getitem_axis
+    self._validate_integer(key, axis)
+  File "C:\Users\mmart\Documents\momentum-bot-discord-v3\.venv\Lib\site-packages\pandas\core\indexing.py", line 1686, in _validate_integer
+    raise IndexError("single positional indexer is out-of-bounds")
+IndexError: single positional indexer is out-of-bounds
+2025-10-11 01:11:02,217 INFO ALERT: Bot error: single positional indexer is out-of-bounds
+2025-10-11 01:12:02,571 ERROR single positional indexer is out-of-bounds
+Traceback (most recent call last):
+  File "C:\Users\mmart\Documents\momentum-bot-discord-v3\src\run.py", line 38, in main
+    regime = classify(spy_i.iloc[-1], vix_i.iloc[-1], global_cfg["regime"]["bull_vix_lt"], global_cfg["regime"]["bear_vix_gt"])
+                      ~~~~~~~~~~^^^^
+  File "C:\Users\mmart\Documents\momentum-bot-discord-v3\.venv\Lib\site-packages\pandas\core\indexing.py", line 1192, in __getitem__
+    return self._getitem_axis(maybe_callable, axis=axis)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mmart\Documents\momentum-bot-discord-v3\.venv\Lib\site-packages\pandas\core\indexing.py", line 1753, in _getitem_axis
+    self._validate_integer(key, axis)
+  File "C:\Users\mmart\Documents\momentum-bot-discord-v3\.venv\Lib\site-packages\pandas\core\indexing.py", line 1686, in _validate_integer
+    raise IndexError("single positional indexer is out-of-bounds")
+IndexError: single positional indexer is out-of-bounds
+2025-10-11 01:12:02,571 INFO ALERT: Bot error: single positional indexer is out-of-bounds
+2025-10-11 01:13:02,878 ERROR single positional indexer is out-of-bounds
+Traceback (most recent call last):
+  File "C:\Users\mmart\Documents\momentum-bot-discord-v3\src\run.py", line 38, in main
+    regime = classify(spy_i.iloc[-1], vix_i.iloc[-1], global_cfg["regime"]["bull_vix_lt"], global_cfg["regime"]["bear_vix_gt"])
+                      ~~~~~~~~~~^^^^
+  File "C:\Users\mmart\Documents\momentum-bot-discord-v3\.venv\Lib\site-packages\pandas\core\indexing.py", line 1192, in __getitem__
+    return self._getitem_axis(maybe_callable, axis=axis)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mmart\Documents\momentum-bot-discord-v3\.venv\Lib\site-packages\pandas\core\indexing.py", line 1753, in _getitem_axis
+    self._validate_integer(key, axis)
+  File "C:\Users\mmart\Documents\momentum-bot-discord-v3\.venv\Lib\site-packages\pandas\core\indexing.py", line 1686, in _validate_integer
+    raise IndexError("single positional indexer is out-of-bounds")
+IndexError: single positional indexer is out-of-bounds
+2025-10-11 01:13:02,878 INFO ALERT: Bot error: single positional indexer is out-of-bounds
+2025-10-11 01:14:03,139 ERROR single positional indexer is out-of-bounds
+Traceback (most recent call last):
+  File "C:\Users\mmart\Documents\momentum-bot-discord-v3\src\run.py", line 38, in main
+  File "C:\Users\mmart\Documents\momentum-bot-discord-v3\.venv\Lib\site-packages\pandas\core\indexing.py", line 1192, in __getitem__
+    return self._getitem_axis(maybe_callable, axis=axis)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mmart\Documents\momentum-bot-discord-v3\.venv\Lib\site-packages\pandas\core\indexing.py", line 1753, in _getitem_axis
+    self._validate_integer(key, axis)
+  File "C:\Users\mmart\Documents\momentum-bot-discord-v3\.venv\Lib\site-packages\pandas\core\indexing.py", line 1686, in _validate_integer
+    raise IndexError("single positional indexer is out-of-bounds")
+IndexError: single positional indexer is out-of-bounds
+2025-10-11 01:14:03,165 INFO ALERT: Bot error: single positional indexer is out-of-bounds
+2025-10-11 01:14:51,662 WARNING SPY or VIX data unavailable — skipping regime check
+2025-10-11 01:14:52,255 INFO ALERT: Heartbeat OK
+2025-10-11 01:15:52,548 WARNING SPY or VIX data unavailable — skipping regime check
+2025-10-11 01:15:53,001 INFO ALERT: Heartbeat OK
+2025-10-11 01:16:53,378 WARNING SPY or VIX data unavailable — skipping regime check
+2025-10-11 01:16:53,871 INFO ALERT: Heartbeat OK
+2025-10-11 01:17:54,100 WARNING SPY or VIX data unavailable — skipping regime check
+2025-10-11 01:17:54,542 INFO ALERT: Heartbeat OK
+2025-10-11 01:18:54,919 WARNING SPY or VIX data unavailable — skipping regime check
+2025-10-11 01:18:55,391 INFO ALERT: Heartbeat OK
+2025-10-11 01:19:55,690 WARNING SPY or VIX data unavailable — skipping regime check
+2025-10-11 01:19:56,176 INFO ALERT: Heartbeat OK
+2025-10-11 01:20:56,525 WARNING SPY or VIX data unavailable — skipping regime check
+2025-10-11 01:20:57,019 INFO ALERT: Heartbeat OK
+2025-10-11 01:21:57,272 WARNING SPY or VIX data unavailable — skipping regime check
+2025-10-11 01:21:57,736 INFO ALERT: Heartbeat OK
+2025-10-11 01:22:58,004 WARNING SPY or VIX data unavailable — skipping regime check
+2025-10-11 01:22:58,493 INFO ALERT: Heartbeat OK
+2025-10-11 01:23:58,734 WARNING SPY or VIX data unavailable — skipping regime check
+2025-10-11 01:23:59,241 INFO ALERT: Heartbeat OK
+2025-10-11 01:24:59,576 WARNING SPY or VIX data unavailable — skipping regime check
+2025-10-11 01:25:00,088 INFO ALERT: Heartbeat OK
+2025-10-11 01:26:00,354 WARNING SPY or VIX data unavailable — skipping regime check
+2025-10-11 01:26:00,847 INFO ALERT: Heartbeat OK
+2025-10-11 01:27:01,178 WARNING SPY or VIX data unavailable — skipping regime check
+2025-10-11 01:27:01,644 INFO ALERT: Heartbeat OK
+2025-10-11 01:28:01,948 WARNING SPY or VIX data unavailable — skipping regime check
+2025-10-11 01:28:02,419 INFO ALERT: Heartbeat OK
+2025-10-11 01:29:02,756 WARNING SPY or VIX data unavailable — skipping regime check
+2025-10-11 01:29:03,264 INFO ALERT: Heartbeat OK
+2025-10-11 01:41:54,464 WARNING SPY or VIX data unavailable — skipping regime check
+2025-10-11 01:41:55,025 INFO ALERT: Heartbeat OK
+2025-10-11 01:42:55,341 WARNING SPY or VIX data unavailable — skipping regime check
+2025-10-11 01:42:55,821 INFO ALERT: Heartbeat OK
+2025-10-11 01:43:56,188 WARNING SPY or VIX data unavailable — skipping regime check
+2025-10-11 01:43:56,691 INFO ALERT: Heartbeat OK
+2025-10-11 01:44:56,937 WARNING SPY or VIX data unavailable — skipping regime check
+2025-10-11 01:44:57,431 INFO ALERT: Heartbeat OK
+2025-10-11 03:22:54,300 WARNING SPY/VIX missing — skipping regime check
+2025-10-11 03:22:54,647 ERROR '1H'
+Traceback (most recent call last):
+  File "C:\Users\mmart\Documents\momentum-bot-discord-v3\src\run.py", line 88, in main
+    active_crypto = filter_by_dollar_volume(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mmart\Documents\momentum-bot-discord-v3\src\run.py", line 31, in filter_by_dollar_volume
+    df = feed.bars(s, timeframe=timeframe, limit=60)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mmart\Documents\momentum-bot-discord-v3\src\feed.py", line 16, in bars
+    tf = TF_MAP[timeframe]
+         ~~~~~~^^^^^^^^^^^
+KeyError: '1H'
+2025-10-11 03:22:54,649 INFO ALERT: \u274c Bot error: '1H'
+2025-10-11 03:24:55,055 WARNING SPY/VIX missing — skipping regime check
+2025-10-11 03:24:55,404 ERROR '1H'
+Traceback (most recent call last):
+  File "C:\Users\mmart\Documents\momentum-bot-discord-v3\src\run.py", line 88, in main
+    active_crypto = filter_by_dollar_volume(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mmart\Documents\momentum-bot-discord-v3\src\run.py", line 31, in filter_by_dollar_volume
+    df = feed.bars(s, timeframe=timeframe, limit=60)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mmart\Documents\momentum-bot-discord-v3\src\feed.py", line 16, in bars
+    tf = TF_MAP[timeframe]
+         ~~~~~~^^^^^^^^^^^
+KeyError: '1H'
+2025-10-11 03:24:55,406 INFO ALERT: \u274c Bot error: '1H'
+2025-10-11 03:26:40,177 WARNING SPY/VIX missing — skipping regime check
+2025-10-11 03:26:40,707 INFO ALERT: \u2705 Heartbeat OK
+2025-10-11 03:28:05,310 WARNING SPY/VIX missing — skipping regime check
+2025-10-11 03:28:06,176 INFO ALERT: \u2705 Heartbeat OK
+2025-10-11 03:30:06,563 WARNING SPY/VIX missing — skipping regime check
+2025-10-11 03:30:07,127 INFO ALERT: \u2705 Heartbeat OK
+2025-10-11 03:32:07,557 WARNING SPY/VIX missing — skipping regime check
+2025-10-11 03:32:08,122 INFO ALERT: \u2705 Heartbeat OK
+2025-10-11 03:34:08,532 WARNING SPY/VIX missing — skipping regime check
+2025-10-11 03:34:09,117 INFO ALERT: \u2705 Heartbeat OK
+2025-10-11 03:36:09,668 WARNING SPY/VIX missing — skipping regime check
+2025-10-11 03:36:10,277 INFO ALERT: \u2705 Heartbeat OK
+2025-10-11 03:38:10,696 WARNING SPY/VIX missing — skipping regime check
+2025-10-11 03:38:11,248 INFO ALERT: \u2705 Heartbeat OK
+2025-10-11 03:40:11,656 WARNING SPY/VIX missing — skipping regime check
+2025-10-11 03:40:12,244 INFO ALERT: \u2705 Heartbeat OK
+2025-10-11 03:42:12,668 WARNING SPY/VIX missing — skipping regime check
+2025-10-11 03:42:13,218 INFO ALERT: \u2705 Heartbeat OK
+2025-10-11 03:44:13,544 WARNING SPY/VIX missing — skipping regime check
+2025-10-11 03:44:14,079 INFO ALERT: \u2705 Heartbeat OK
+2025-10-11 03:46:14,463 WARNING SPY/VIX missing — skipping regime check
+2025-10-11 03:46:14,999 INFO ALERT: \u2705 Heartbeat OK
+2025-10-11 03:48:15,459 WARNING SPY/VIX missing — skipping regime check
+2025-10-11 03:48:15,973 INFO ALERT: \u2705 Heartbeat OK
+2025-10-11 03:50:10,160 INFO Backtesting NVDA (stock) ...
+2025-10-11 03:50:10,296 WARNING No data or trades for NVDA
+2025-10-11 03:50:10,296 INFO Backtesting TSLA (stock) ...
+2025-10-11 03:50:10,331 WARNING No data or trades for TSLA
+2025-10-11 03:50:10,331 INFO Backtesting AMZN (stock) ...
+2025-10-11 03:50:10,360 WARNING No data or trades for AMZN
+2025-10-11 03:50:10,368 INFO Backtesting META (stock) ...
+2025-10-11 03:50:10,401 WARNING No data or trades for META
+2025-10-11 03:50:10,401 INFO Backtesting SMCI (stock) ...
+2025-10-11 03:50:10,437 WARNING No data or trades for SMCI
+2025-10-11 03:50:10,437 INFO Backtesting COIN (stock) ...
+2025-10-11 03:50:10,468 WARNING No data or trades for COIN
+2025-10-11 03:50:10,468 INFO Backtesting PLTR (stock) ...
+2025-10-11 03:50:10,499 WARNING No data or trades for PLTR
+2025-10-11 03:50:10,499 INFO Backtesting BTCUSD (crypto) ...
+2025-10-11 03:50:10,544 WARNING No data or trades for BTCUSD
+2025-10-11 03:50:10,548 INFO Backtesting ETHUSD (crypto) ...
+2025-10-11 03:50:10,587 WARNING No data or trades for ETHUSD
+2025-10-11 03:50:10,587 INFO Backtesting SOLUSD (crypto) ...
+2025-10-11 03:50:10,621 WARNING No data or trades for SOLUSD
+2025-10-11 03:50:10,621 INFO Backtesting DOGEUSD (crypto) ...
+2025-10-11 03:50:10,653 WARNING No data or trades for DOGEUSD
+2025-10-11 03:50:10,653 INFO Backtesting AVAXUSD (crypto) ...
+2025-10-11 03:50:10,685 WARNING No data or trades for AVAXUSD
+2025-10-11 03:50:10,685 INFO Backtesting XRPUSD (crypto) ...
+2025-10-11 03:50:10,712 WARNING No data or trades for XRPUSD
+2025-10-11 03:50:10,712 INFO Backtesting LINKUSD (crypto) ...
+2025-10-11 03:50:10,741 WARNING No data or trades for LINKUSD
+2025-10-11 03:50:10,765 INFO \u2705 Backtest complete | 0 total trades | saved to logs/backtest_results.csv
+2025-10-11 04:22:21,356 INFO Backtesting NVDA (stock) ...
+2025-10-11 04:22:21,611 WARNING \u274c Binance fetch failed for NVDA: binanceus does not have market symbol NVDA
+2025-10-11 04:22:21,611 WARNING \u26a0\ufe0f No data found for NVDA
+2025-10-11 04:22:21,611 WARNING No data or trades for NVDA
+2025-10-11 04:22:21,611 INFO Backtesting TSLA (stock) ...
+2025-10-11 04:22:21,743 WARNING \u274c Binance fetch failed for TSLA: binanceus does not have market symbol TSLA
+2025-10-11 04:22:21,743 WARNING \u26a0\ufe0f No data found for TSLA
+2025-10-11 04:22:21,743 WARNING No data or trades for TSLA
+2025-10-11 04:22:21,743 INFO Backtesting AMZN (stock) ...
+2025-10-11 04:22:21,879 WARNING \u274c Binance fetch failed for AMZN: binanceus does not have market symbol AMZN
+2025-10-11 04:22:21,879 WARNING \u26a0\ufe0f No data found for AMZN
+2025-10-11 04:22:21,883 WARNING No data or trades for AMZN
+2025-10-11 04:22:21,883 INFO Backtesting META (stock) ...
+2025-10-11 04:22:22,007 WARNING \u274c Binance fetch failed for META: binanceus does not have market symbol META
+2025-10-11 04:22:22,014 WARNING \u26a0\ufe0f No data found for META
+2025-10-11 04:22:22,016 WARNING No data or trades for META
+2025-10-11 04:22:22,016 INFO Backtesting SMCI (stock) ...
+2025-10-11 04:22:22,147 WARNING \u274c Binance fetch failed for SMCI: binanceus does not have market symbol SMCI
+2025-10-11 04:22:22,148 WARNING \u26a0\ufe0f No data found for SMCI
+2025-10-11 04:22:22,148 WARNING No data or trades for SMCI
+2025-10-11 04:22:22,148 INFO Backtesting COIN (stock) ...
+2025-10-11 04:22:22,263 WARNING \u274c Binance fetch failed for COIN: binanceus does not have market symbol COIN
+2025-10-11 04:22:22,263 WARNING \u26a0\ufe0f No data found for COIN
+2025-10-11 04:22:22,263 WARNING No data or trades for COIN
+2025-10-11 04:22:22,263 INFO Backtesting PLTR (stock) ...
+2025-10-11 04:22:22,404 WARNING \u274c Binance fetch failed for PLTR: binanceus does not have market symbol PLTR
+2025-10-11 04:22:22,404 WARNING \u26a0\ufe0f No data found for PLTR
+2025-10-11 04:22:22,407 WARNING No data or trades for PLTR
+2025-10-11 04:22:22,408 INFO Backtesting BTCUSD (crypto) ...
+2025-10-11 04:22:22,643 INFO \U0001f4b0 Fetched BTCUSD (1h) from Binance
+2025-10-11 04:29:13,380 INFO Backtesting NVDA (stock) ...
+2025-10-11 04:29:13,590 WARNING \u274c Binance fetch failed for NVDA: binanceus does not have market symbol NVDA
+2025-10-11 04:29:13,590 WARNING \u26a0\ufe0f No data found for NVDA
+2025-10-11 04:29:13,590 WARNING No data or trades for NVDA
+2025-10-11 04:29:13,590 INFO Backtesting TSLA (stock) ...
+2025-10-11 04:29:13,773 WARNING \u274c Binance fetch failed for TSLA: binanceus does not have market symbol TSLA
+2025-10-11 04:29:13,775 WARNING \u26a0\ufe0f No data found for TSLA
+2025-10-11 04:29:13,775 WARNING No data or trades for TSLA
+2025-10-11 04:29:13,775 INFO Backtesting AMZN (stock) ...
+2025-10-11 04:29:13,928 WARNING \u274c Binance fetch failed for AMZN: binanceus does not have market symbol AMZN
+2025-10-11 04:29:13,928 WARNING \u26a0\ufe0f No data found for AMZN
+2025-10-11 04:29:13,931 WARNING No data or trades for AMZN
+2025-10-11 04:29:13,931 INFO Backtesting META (stock) ...
+2025-10-11 04:29:14,094 WARNING \u274c Binance fetch failed for META: binanceus does not have market symbol META
+2025-10-11 04:29:14,100 WARNING \u26a0\ufe0f No data found for META
+2025-10-11 04:29:14,102 WARNING No data or trades for META
+2025-10-11 04:29:14,102 INFO Backtesting SMCI (stock) ...
+2025-10-11 04:29:14,234 WARNING \u274c Binance fetch failed for SMCI: binanceus does not have market symbol SMCI
+2025-10-11 04:29:14,242 WARNING \u26a0\ufe0f No data found for SMCI
+2025-10-11 04:29:14,242 WARNING No data or trades for SMCI
+2025-10-11 04:29:14,242 INFO Backtesting COIN (stock) ...
+2025-10-11 04:29:14,383 WARNING \u274c Binance fetch failed for COIN: binanceus does not have market symbol COIN
+2025-10-11 04:29:14,388 WARNING \u26a0\ufe0f No data found for COIN
+2025-10-11 04:29:14,388 WARNING No data or trades for COIN
+2025-10-11 04:29:14,388 INFO Backtesting PLTR (stock) ...
+2025-10-11 04:29:14,540 WARNING \u274c Binance fetch failed for PLTR: binanceus does not have market symbol PLTR
+2025-10-11 04:29:14,540 WARNING \u26a0\ufe0f No data found for PLTR
+2025-10-11 04:29:14,542 WARNING No data or trades for PLTR
+2025-10-11 04:29:14,542 INFO Backtesting BTCUSD (crypto) ...
+2025-10-11 04:29:14,739 INFO \U0001f4b0 Fetched BTCUSD (1h) from Binance
+2025-10-11 04:29:14,954 INFO BTCUSD done | Trades=95 | Win%=48.4 | PnL=-4689.28
+2025-10-11 04:29:14,954 INFO Backtesting ETHUSD (crypto) ...
+2025-10-11 04:29:15,200 INFO \U0001f4b0 Fetched ETHUSD (1h) from Binance
+2025-10-11 04:29:15,395 INFO ETHUSD done | Trades=91 | Win%=39.6 | PnL=12527.15
+2025-10-11 04:29:15,395 INFO Backtesting SOLUSD (crypto) ...
+2025-10-11 04:29:15,589 INFO \U0001f4b0 Fetched SOLUSD (1h) from Binance
+2025-10-11 04:29:15,778 INFO SOLUSD done | Trades=117 | Win%=45.3 | PnL=-2164.36
+2025-10-11 04:29:15,780 INFO Backtesting DOGEUSD (crypto) ...
+2025-10-11 04:29:15,992 INFO \U0001f4b0 Fetched DOGEUSD (1h) from Binance
+2025-10-11 04:29:16,176 INFO DOGEUSD done | Trades=92 | Win%=45.7 | PnL=16036.33
+2025-10-11 04:29:16,178 INFO Backtesting AVAXUSD (crypto) ...
+2025-10-11 04:29:16,402 INFO \U0001f4b0 Fetched AVAXUSD (1h) from Binance
+2025-10-11 04:29:16,594 INFO AVAXUSD done | Trades=117 | Win%=48.7 | PnL=6369.66
+2025-10-11 04:29:16,594 INFO Backtesting XRPUSD (crypto) ...
+2025-10-11 04:29:16,809 INFO \U0001f4b0 Fetched XRPUSD (1h) from Binance
+2025-10-11 04:29:16,998 INFO XRPUSD done | Trades=102 | Win%=41.2 | PnL=13842.44
+2025-10-11 04:29:16,998 INFO Backtesting LINKUSD (crypto) ...
+2025-10-11 04:29:17,222 INFO \U0001f4b0 Fetched LINKUSD (1h) from Binance
+2025-10-11 04:29:17,404 INFO LINKUSD done | Trades=113 | Win%=38.1 | PnL=-16205.33
+2025-10-11 04:29:17,445 INFO \u2705 Backtest complete | 727 total trades | saved to logs/backtest_results.csv
+2025-10-11 04:40:42,989 INFO Backtesting NVDA (stock) ...
+2025-10-11 04:40:48,481 INFO \U0001f4b0 Fetched NVDA (1h) from Yahoo Finance
+2025-10-11 04:47:04,318 INFO Backtesting NVDA (stock) ...
+2025-10-11 04:47:04,697 INFO \U0001f4b0 Fetched NVDA (1h) from Yahoo Finance
+2025-10-11 04:47:04,706 WARNING No data or trades for NVDA
+2025-10-11 04:47:04,706 INFO Backtesting TSLA (stock) ...
+2025-10-11 04:47:04,942 INFO \U0001f4b0 Fetched TSLA (1h) from Yahoo Finance
+2025-10-11 04:47:04,950 WARNING No data or trades for TSLA
+2025-10-11 04:47:04,951 INFO Backtesting AMZN (stock) ...
+2025-10-11 04:47:05,195 INFO \U0001f4b0 Fetched AMZN (1h) from Yahoo Finance
+2025-10-11 04:47:05,203 WARNING No data or trades for AMZN
+2025-10-11 04:47:05,204 INFO Backtesting META (stock) ...
+2025-10-11 04:47:05,400 INFO \U0001f4b0 Fetched META (1h) from Yahoo Finance
+2025-10-11 04:47:05,408 WARNING No data or trades for META
+2025-10-11 04:47:05,409 INFO Backtesting SMCI (stock) ...
+2025-10-11 04:47:05,626 INFO \U0001f4b0 Fetched SMCI (1h) from Yahoo Finance
+2025-10-11 04:47:05,635 WARNING No data or trades for SMCI
+2025-10-11 04:47:05,635 INFO Backtesting COIN (stock) ...
+2025-10-11 04:47:05,850 INFO \U0001f4b0 Fetched COIN (1h) from Yahoo Finance
+2025-10-11 04:47:05,858 WARNING No data or trades for COIN
+2025-10-11 04:47:05,859 INFO Backtesting PLTR (stock) ...
+2025-10-11 04:47:06,075 INFO \U0001f4b0 Fetched PLTR (1h) from Yahoo Finance
+2025-10-11 04:47:06,086 WARNING No data or trades for PLTR
+2025-10-11 04:47:06,086 INFO Backtesting BTCUSD (crypto) ...
+2025-10-11 04:47:06,206 INFO \U0001f4b0 Fetched BTCUSD (1h) from Binance
+2025-10-11 04:47:06,405 INFO BTCUSD done | Trades=113 | Win%=54.9 | PnL=11730.03
+2025-10-11 04:47:06,405 INFO Backtesting ETHUSD (crypto) ...
+2025-10-11 04:47:06,474 INFO \U0001f4b0 Fetched ETHUSD (1h) from Binance
+2025-10-11 04:47:06,680 INFO ETHUSD done | Trades=86 | Win%=50.0 | PnL=12718.43
+2025-10-11 04:47:06,680 INFO Backtesting SOLUSD (crypto) ...
+2025-10-11 04:47:06,796 INFO \U0001f4b0 Fetched SOLUSD (1h) from Binance
+2025-10-11 04:47:06,979 INFO SOLUSD done | Trades=91 | Win%=49.5 | PnL=10091.09
+2025-10-11 04:47:06,980 INFO Backtesting DOGEUSD (crypto) ...
+2025-10-11 04:47:07,038 INFO \U0001f4b0 Fetched DOGEUSD (1h) from Binance
+2025-10-11 04:47:07,233 INFO DOGEUSD done | Trades=104 | Win%=45.2 | PnL=12210.47
+2025-10-11 04:47:07,234 INFO Backtesting AVAXUSD (crypto) ...
+2025-10-11 04:47:07,292 INFO \U0001f4b0 Fetched AVAXUSD (1h) from Binance
+2025-10-11 04:47:07,479 INFO AVAXUSD done | Trades=71 | Win%=47.9 | PnL=19007.76
+2025-10-11 04:47:07,480 INFO Backtesting XRPUSD (crypto) ...
+2025-10-11 04:47:07,536 INFO \U0001f4b0 Fetched XRPUSD (1h) from Binance
+2025-10-11 04:47:07,715 INFO XRPUSD done | Trades=90 | Win%=34.4 | PnL=-22623.82
+2025-10-11 04:47:07,715 INFO Backtesting LINKUSD (crypto) ...
+2025-10-11 04:47:07,775 INFO \U0001f4b0 Fetched LINKUSD (1h) from Binance
+2025-10-11 04:47:07,954 INFO LINKUSD done | Trades=82 | Win%=36.6 | PnL=-3195.70
+2025-10-11 04:47:07,971 INFO \u2705 Backtest complete | 637 total trades | saved to logs/backtest_results.csv
+2025-10-11 04:51:54,097 INFO Backtesting NVDA (stock) ...
+2025-10-11 04:51:54,468 INFO \U0001f4b0 Fetched NVDA (1h) from Yahoo Finance
+2025-10-11 04:51:54,497 WARNING No data or trades for NVDA
+2025-10-11 04:51:54,498 INFO Backtesting TSLA (stock) ...
+2025-10-11 04:51:54,652 INFO \U0001f4b0 Fetched TSLA (1h) from Yahoo Finance
+2025-10-11 04:51:54,672 WARNING No data or trades for TSLA
+2025-10-11 04:51:54,673 INFO Backtesting AMZN (stock) ...
+2025-10-11 04:51:54,810 INFO \U0001f4b0 Fetched AMZN (1h) from Yahoo Finance
+2025-10-11 04:51:54,831 WARNING No data or trades for AMZN
+2025-10-11 04:51:54,832 INFO Backtesting META (stock) ...
+2025-10-11 04:51:54,977 INFO \U0001f4b0 Fetched META (1h) from Yahoo Finance
+2025-10-11 04:51:55,006 WARNING No data or trades for META
+2025-10-11 04:51:55,006 INFO Backtesting SMCI (stock) ...
+2025-10-11 04:51:55,164 INFO \U0001f4b0 Fetched SMCI (1h) from Yahoo Finance
+2025-10-11 04:51:55,186 WARNING No data or trades for SMCI
+2025-10-11 04:51:55,187 INFO Backtesting COIN (stock) ...
+2025-10-11 04:51:55,344 INFO \U0001f4b0 Fetched COIN (1h) from Yahoo Finance
+2025-10-11 04:51:55,372 WARNING No data or trades for COIN
+2025-10-11 04:51:55,372 INFO Backtesting PLTR (stock) ...
+2025-10-11 04:51:55,506 INFO \U0001f4b0 Fetched PLTR (1h) from Yahoo Finance
+2025-10-11 04:51:55,527 WARNING No data or trades for PLTR
+2025-10-11 04:51:55,527 INFO Backtesting BTCUSD (crypto) ...
+2025-10-11 04:51:55,590 INFO \U0001f4b0 Fetched BTCUSD (1h) from Binance
+2025-10-11 04:51:55,798 INFO BTCUSD done | Trades=113 | Win%=54.9 | PnL=11730.03
+2025-10-11 04:51:55,799 INFO Backtesting ETHUSD (crypto) ...
+2025-10-11 04:51:55,855 INFO \U0001f4b0 Fetched ETHUSD (1h) from Binance
+2025-10-11 04:51:56,071 INFO ETHUSD done | Trades=86 | Win%=50.0 | PnL=12718.43
+2025-10-11 04:51:56,071 INFO Backtesting SOLUSD (crypto) ...
+2025-10-11 04:51:56,185 INFO \U0001f4b0 Fetched SOLUSD (1h) from Binance
+2025-10-11 04:51:56,376 INFO SOLUSD done | Trades=91 | Win%=49.5 | PnL=10091.09
+2025-10-11 04:51:56,377 INFO Backtesting DOGEUSD (crypto) ...
+2025-10-11 04:51:56,434 INFO \U0001f4b0 Fetched DOGEUSD (1h) from Binance
+2025-10-11 04:51:56,630 INFO DOGEUSD done | Trades=104 | Win%=45.2 | PnL=12210.47
+2025-10-11 04:51:56,630 INFO Backtesting AVAXUSD (crypto) ...
+2025-10-11 04:51:56,727 INFO \U0001f4b0 Fetched AVAXUSD (1h) from Binance
+2025-10-11 04:51:56,923 INFO AVAXUSD done | Trades=71 | Win%=47.9 | PnL=19007.76
+2025-10-11 04:51:56,924 INFO Backtesting XRPUSD (crypto) ...
+2025-10-11 04:51:56,979 INFO \U0001f4b0 Fetched XRPUSD (1h) from Binance
+2025-10-11 04:51:57,171 INFO XRPUSD done | Trades=90 | Win%=34.4 | PnL=-22623.82
+2025-10-11 04:51:57,173 INFO Backtesting LINKUSD (crypto) ...
+2025-10-11 04:51:57,230 INFO \U0001f4b0 Fetched LINKUSD (1h) from Binance
+2025-10-11 04:51:57,427 INFO LINKUSD done | Trades=82 | Win%=36.6 | PnL=-3195.70
+2025-10-11 04:51:57,445 INFO \u2705 Backtest complete | 637 total trades | saved to logs/backtest_results.csv
+2025-10-11 04:57:13,072 INFO Backtesting NVDA (stock) ...
+2025-10-11 04:57:13,454 INFO \U0001f4b0 Fetched NVDA (1h) from Yahoo Finance
+2025-10-11 04:57:13,473 WARNING No data or trades for NVDA
+2025-10-11 04:57:13,474 INFO Backtesting TSLA (stock) ...
+2025-10-11 04:57:13,616 INFO \U0001f4b0 Fetched TSLA (1h) from Yahoo Finance
+2025-10-11 04:57:13,637 WARNING No data or trades for TSLA
+2025-10-11 04:57:13,637 INFO Backtesting AMZN (stock) ...
+2025-10-11 04:57:13,812 INFO \U0001f4b0 Fetched AMZN (1h) from Yahoo Finance
+2025-10-11 04:57:13,826 WARNING No data or trades for AMZN
+2025-10-11 04:57:13,827 INFO Backtesting META (stock) ...
+2025-10-11 04:57:13,974 INFO \U0001f4b0 Fetched META (1h) from Yahoo Finance
+2025-10-11 04:57:13,988 WARNING No data or trades for META
+2025-10-11 04:57:13,989 INFO Backtesting SMCI (stock) ...
+2025-10-11 04:57:14,120 INFO \U0001f4b0 Fetched SMCI (1h) from Yahoo Finance
+2025-10-11 04:57:14,136 WARNING No data or trades for SMCI
+2025-10-11 04:57:14,136 INFO Backtesting COIN (stock) ...
+2025-10-11 04:57:14,281 INFO \U0001f4b0 Fetched COIN (1h) from Yahoo Finance
+2025-10-11 04:57:14,295 WARNING No data or trades for COIN
+2025-10-11 04:57:14,296 INFO Backtesting PLTR (stock) ...
+2025-10-11 04:57:14,429 INFO \U0001f4b0 Fetched PLTR (1h) from Yahoo Finance
+2025-10-11 04:57:14,445 WARNING No data or trades for PLTR
+2025-10-11 04:57:14,446 INFO Backtesting BTCUSD (crypto) ...
+2025-10-11 04:57:14,527 INFO \U0001f4b0 Fetched BTCUSD (1h) from Binance
+2025-10-11 04:57:14,727 INFO BTCUSD done | Trades=113 | Win%=54.9 | PnL=11730.03
+2025-10-11 04:57:14,728 INFO Backtesting ETHUSD (crypto) ...
+2025-10-11 04:57:14,798 INFO \U0001f4b0 Fetched ETHUSD (1h) from Binance
+2025-10-11 04:57:14,990 INFO ETHUSD done | Trades=86 | Win%=50.0 | PnL=12718.43
+2025-10-11 04:57:14,990 INFO Backtesting SOLUSD (crypto) ...
+2025-10-11 04:57:15,102 INFO \U0001f4b0 Fetched SOLUSD (1h) from Binance
+2025-10-11 04:57:15,302 INFO SOLUSD done | Trades=91 | Win%=49.5 | PnL=10091.09
+2025-10-11 04:57:15,304 INFO Backtesting DOGEUSD (crypto) ...
+2025-10-11 04:57:15,360 INFO \U0001f4b0 Fetched DOGEUSD (1h) from Binance
+2025-10-11 04:57:15,571 INFO DOGEUSD done | Trades=104 | Win%=45.2 | PnL=12210.47
+2025-10-11 04:57:15,571 INFO Backtesting AVAXUSD (crypto) ...
+2025-10-11 04:57:15,629 INFO \U0001f4b0 Fetched AVAXUSD (1h) from Binance
+2025-10-11 04:57:15,840 INFO AVAXUSD done | Trades=71 | Win%=47.9 | PnL=19007.76
+2025-10-11 04:57:15,840 INFO Backtesting XRPUSD (crypto) ...
+2025-10-11 04:57:15,905 INFO \U0001f4b0 Fetched XRPUSD (1h) from Binance
+2025-10-11 04:57:16,102 INFO XRPUSD done | Trades=90 | Win%=34.4 | PnL=-22623.82
+2025-10-11 04:57:16,103 INFO Backtesting LINKUSD (crypto) ...
+2025-10-11 04:57:16,159 INFO \U0001f4b0 Fetched LINKUSD (1h) from Binance
+2025-10-11 04:57:16,352 INFO LINKUSD done | Trades=82 | Win%=36.6 | PnL=-3195.70
+2025-10-11 04:57:16,368 INFO \u2705 Backtest complete | 637 total trades | saved to logs/backtest_results.csv
+2025-10-11 05:00:10,486 INFO Backtesting NVDA (stock) ...
+2025-10-11 05:00:10,893 INFO \U0001f4b0 Fetched NVDA (1h) from Yahoo Finance
+2025-10-11 05:00:10,911 WARNING No data or trades for NVDA
+2025-10-11 05:00:10,911 INFO Backtesting TSLA (stock) ...
+2025-10-11 05:00:11,056 INFO \U0001f4b0 Fetched TSLA (1h) from Yahoo Finance
+2025-10-11 05:00:11,070 WARNING No data or trades for TSLA
+2025-10-11 05:00:11,072 INFO Backtesting AMZN (stock) ...
+2025-10-11 05:00:11,206 INFO \U0001f4b0 Fetched AMZN (1h) from Yahoo Finance
+2025-10-11 05:00:11,220 WARNING No data or trades for AMZN
+2025-10-11 05:00:11,221 INFO Backtesting META (stock) ...
+2025-10-11 05:00:11,372 INFO \U0001f4b0 Fetched META (1h) from Yahoo Finance
+2025-10-11 05:00:11,387 WARNING No data or trades for META
+2025-10-11 05:00:11,387 INFO Backtesting SMCI (stock) ...
+2025-10-11 05:00:11,556 INFO \U0001f4b0 Fetched SMCI (1h) from Yahoo Finance
+2025-10-11 05:00:11,576 WARNING No data or trades for SMCI
+2025-10-11 05:00:11,577 INFO Backtesting COIN (stock) ...
+2025-10-11 05:00:11,738 INFO \U0001f4b0 Fetched COIN (1h) from Yahoo Finance
+2025-10-11 05:00:11,756 WARNING No data or trades for COIN
+2025-10-11 05:00:11,756 INFO Backtesting PLTR (stock) ...
+2025-10-11 05:00:11,904 INFO \U0001f4b0 Fetched PLTR (1h) from Yahoo Finance
+2025-10-11 05:00:11,918 WARNING No data or trades for PLTR
+2025-10-11 05:00:11,919 INFO Backtesting BTCUSD (crypto) ...
+2025-10-11 05:00:12,034 INFO \U0001f4b0 Fetched BTCUSD (1h) from Binance
+2025-10-11 05:00:12,276 INFO BTCUSD done | Trades=113 | Win%=54.9 | PnL=11730.03
+2025-10-11 05:00:12,277 INFO Backtesting ETHUSD (crypto) ...
+2025-10-11 05:00:12,347 INFO \U0001f4b0 Fetched ETHUSD (1h) from Binance
+2025-10-11 05:00:12,598 INFO ETHUSD done | Trades=86 | Win%=50.0 | PnL=12718.43
+2025-10-11 05:00:12,599 INFO Backtesting SOLUSD (crypto) ...
+2025-10-11 05:00:12,730 INFO \U0001f4b0 Fetched SOLUSD (1h) from Binance
+2025-10-11 05:00:12,929 INFO SOLUSD done | Trades=91 | Win%=49.5 | PnL=10091.71
+2025-10-11 05:00:12,930 INFO Backtesting DOGEUSD (crypto) ...
+2025-10-11 05:00:13,012 INFO \U0001f4b0 Fetched DOGEUSD (1h) from Binance
+2025-10-11 05:00:13,206 INFO DOGEUSD done | Trades=104 | Win%=45.2 | PnL=12210.47
+2025-10-11 05:00:13,206 INFO Backtesting AVAXUSD (crypto) ...
+2025-10-11 05:00:13,266 INFO \U0001f4b0 Fetched AVAXUSD (1h) from Binance
+2025-10-11 05:00:13,467 INFO AVAXUSD done | Trades=71 | Win%=47.9 | PnL=19007.76
+2025-10-11 05:00:13,468 INFO Backtesting XRPUSD (crypto) ...
+2025-10-11 05:00:13,526 INFO \U0001f4b0 Fetched XRPUSD (1h) from Binance
+2025-10-11 05:00:13,723 INFO XRPUSD done | Trades=90 | Win%=34.4 | PnL=-22623.82
+2025-10-11 05:00:13,723 INFO Backtesting LINKUSD (crypto) ...
+2025-10-11 05:00:13,783 INFO \U0001f4b0 Fetched LINKUSD (1h) from Binance
+2025-10-11 05:00:14,002 INFO LINKUSD done | Trades=82 | Win%=36.6 | PnL=-3195.65
+2025-10-11 05:00:14,022 INFO \u2705 Backtest complete | 637 total trades | saved to logs/backtest_results.csv
+2025-10-11 05:07:46,957 INFO Backtesting NVDA (stock) ...
+2025-10-11 05:07:46,957 WARNING \u274c Yahoo fetch failed for NVDA: cannot access local variable 'data' where it is not associated with a value
+2025-10-11 05:07:46,962 WARNING No data or trades for NVDA
+2025-10-11 05:07:46,962 INFO Backtesting TSLA (stock) ...
+2025-10-11 05:07:46,962 WARNING \u274c Yahoo fetch failed for TSLA: cannot access local variable 'data' where it is not associated with a value
+2025-10-11 05:07:46,963 WARNING No data or trades for TSLA
+2025-10-11 05:07:46,964 INFO Backtesting AMZN (stock) ...
+2025-10-11 05:07:46,964 WARNING \u274c Yahoo fetch failed for AMZN: cannot access local variable 'data' where it is not associated with a value
+2025-10-11 05:07:46,965 WARNING No data or trades for AMZN
+2025-10-11 05:07:46,965 INFO Backtesting META (stock) ...
+2025-10-11 05:07:46,966 WARNING \u274c Yahoo fetch failed for META: cannot access local variable 'data' where it is not associated with a value
+2025-10-11 05:07:46,967 WARNING No data or trades for META
+2025-10-11 05:07:46,967 INFO Backtesting SMCI (stock) ...
+2025-10-11 05:07:46,968 WARNING \u274c Yahoo fetch failed for SMCI: cannot access local variable 'data' where it is not associated with a value
+2025-10-11 05:07:46,968 WARNING No data or trades for SMCI
+2025-10-11 05:07:46,969 INFO Backtesting COIN (stock) ...
+2025-10-11 05:07:46,969 WARNING \u274c Yahoo fetch failed for COIN: cannot access local variable 'data' where it is not associated with a value
+2025-10-11 05:07:46,970 WARNING No data or trades for COIN
+2025-10-11 05:07:46,970 INFO Backtesting PLTR (stock) ...
+2025-10-11 05:07:46,970 WARNING \u274c Yahoo fetch failed for PLTR: cannot access local variable 'data' where it is not associated with a value
+2025-10-11 05:07:46,972 WARNING No data or trades for PLTR
+2025-10-11 05:07:46,973 INFO Backtesting BTCUSD (crypto) ...
+2025-10-11 05:07:47,042 INFO \U0001f4b0 Fetched BTCUSD (1h) from Binance
+2025-10-11 05:07:47,242 INFO BTCUSD done | Trades=113 | Win%=54.9 | PnL=11730.03
+2025-10-11 05:07:47,243 INFO Backtesting ETHUSD (crypto) ...
+2025-10-11 05:07:47,300 INFO \U0001f4b0 Fetched ETHUSD (1h) from Binance
+2025-10-11 05:07:47,489 INFO ETHUSD done | Trades=86 | Win%=50.0 | PnL=12718.43
+2025-10-11 05:07:47,491 INFO Backtesting SOLUSD (crypto) ...
+2025-10-11 05:07:47,547 INFO \U0001f4b0 Fetched SOLUSD (1h) from Binance
+2025-10-11 05:07:47,737 INFO SOLUSD done | Trades=91 | Win%=49.5 | PnL=10091.71
+2025-10-11 05:07:47,737 INFO Backtesting DOGEUSD (crypto) ...
+2025-10-11 05:07:47,792 INFO \U0001f4b0 Fetched DOGEUSD (1h) from Binance
+2025-10-11 05:07:47,989 INFO DOGEUSD done | Trades=104 | Win%=45.2 | PnL=12210.47
+2025-10-11 05:07:47,989 INFO Backtesting AVAXUSD (crypto) ...
+2025-10-11 05:07:48,091 INFO \U0001f4b0 Fetched AVAXUSD (1h) from Binance
+2025-10-11 05:07:48,278 INFO AVAXUSD done | Trades=71 | Win%=47.9 | PnL=19007.76
+2025-10-11 05:07:48,279 INFO Backtesting XRPUSD (crypto) ...
+2025-10-11 05:07:48,333 INFO \U0001f4b0 Fetched XRPUSD (1h) from Binance
+2025-10-11 05:07:48,528 INFO XRPUSD done | Trades=90 | Win%=34.4 | PnL=-22623.82
+2025-10-11 05:07:48,528 INFO Backtesting LINKUSD (crypto) ...
+2025-10-11 05:07:48,584 INFO \U0001f4b0 Fetched LINKUSD (1h) from Binance
+2025-10-11 05:07:48,773 INFO LINKUSD done | Trades=82 | Win%=36.6 | PnL=-3195.65
+2025-10-11 05:07:48,790 INFO \u2705 Backtest complete | 637 total trades | saved to logs/backtest_results.csv
+2025-10-11 05:13:00,048 INFO Backtesting NVDA (stock) ...
+2025-10-11 05:13:00,482 WARNING \u274c Yahoo fetch failed for NVDA: "['time'] not in index"
+2025-10-11 05:13:00,483 WARNING No data or trades for NVDA
+2025-10-11 05:13:00,484 INFO Backtesting TSLA (stock) ...
+2025-10-11 05:13:00,648 WARNING \u274c Yahoo fetch failed for TSLA: "['time'] not in index"
+2025-10-11 05:13:00,650 WARNING No data or trades for TSLA
+2025-10-11 05:13:00,650 INFO Backtesting AMZN (stock) ...
+2025-10-11 05:13:00,798 WARNING \u274c Yahoo fetch failed for AMZN: "['time'] not in index"
+2025-10-11 05:13:00,799 WARNING No data or trades for AMZN
+2025-10-11 05:13:00,799 INFO Backtesting META (stock) ...
+2025-10-11 05:13:00,968 WARNING \u274c Yahoo fetch failed for META: "['time'] not in index"
+2025-10-11 05:13:00,969 WARNING No data or trades for META
+2025-10-11 05:13:00,971 INFO Backtesting SMCI (stock) ...
+2025-10-11 05:13:01,107 WARNING \u274c Yahoo fetch failed for SMCI: "['time'] not in index"
+2025-10-11 05:13:01,108 WARNING No data or trades for SMCI
+2025-10-11 05:13:01,109 INFO Backtesting COIN (stock) ...
+2025-10-11 05:13:01,261 WARNING \u274c Yahoo fetch failed for COIN: "['time'] not in index"
+2025-10-11 05:13:01,261 WARNING No data or trades for COIN
+2025-10-11 05:13:01,262 INFO Backtesting PLTR (stock) ...
+2025-10-11 05:13:01,413 WARNING \u274c Yahoo fetch failed for PLTR: "['time'] not in index"
+2025-10-11 05:13:01,414 WARNING No data or trades for PLTR
+2025-10-11 05:13:01,415 INFO Backtesting BTCUSD (crypto) ...
+2025-10-11 05:13:01,474 INFO \U0001f4b0 Fetched BTCUSD (1h) from Binance
+2025-10-11 05:13:01,717 INFO BTCUSD done | Trades=113 | Win%=54.9 | PnL=11730.03
+2025-10-11 05:13:01,717 INFO Backtesting ETHUSD (crypto) ...
+2025-10-11 05:13:01,773 INFO \U0001f4b0 Fetched ETHUSD (1h) from Binance
+2025-10-11 05:13:01,974 INFO ETHUSD done | Trades=86 | Win%=50.0 | PnL=12718.43
+2025-10-11 05:13:01,974 INFO Backtesting SOLUSD (crypto) ...
+2025-10-11 05:13:02,073 INFO \U0001f4b0 Fetched SOLUSD (1h) from Binance
+2025-10-11 05:13:02,328 INFO SOLUSD done | Trades=91 | Win%=49.5 | PnL=10091.71
+2025-10-11 05:13:02,328 INFO Backtesting DOGEUSD (crypto) ...
+2025-10-11 05:13:02,407 INFO \U0001f4b0 Fetched DOGEUSD (1h) from Binance
+2025-10-11 05:13:02,620 INFO DOGEUSD done | Trades=104 | Win%=45.2 | PnL=12210.47
+2025-10-11 05:13:02,620 INFO Backtesting AVAXUSD (crypto) ...
+2025-10-11 05:13:02,675 INFO \U0001f4b0 Fetched AVAXUSD (1h) from Binance
+2025-10-11 05:13:02,881 INFO AVAXUSD done | Trades=71 | Win%=47.9 | PnL=19007.76
+2025-10-11 05:13:02,881 INFO Backtesting XRPUSD (crypto) ...
+2025-10-11 05:13:02,938 INFO \U0001f4b0 Fetched XRPUSD (1h) from Binance
+2025-10-11 05:13:03,135 INFO XRPUSD done | Trades=90 | Win%=34.4 | PnL=-22623.82
+2025-10-11 05:13:03,136 INFO Backtesting LINKUSD (crypto) ...
+2025-10-11 05:13:03,190 INFO \U0001f4b0 Fetched LINKUSD (1h) from Binance
+2025-10-11 05:13:03,381 INFO LINKUSD done | Trades=82 | Win%=36.6 | PnL=-3195.65
+2025-10-11 05:13:03,398 INFO \u2705 Backtest complete | 637 total trades | saved to logs/backtest_results.csv
+2025-10-11 05:17:47,616 INFO Backtesting NVDA (stock) ...
+2025-10-11 05:17:48,007 INFO \U0001f4b0 Fetched NVDA (1h) from Yahoo Finance
+2025-10-11 05:22:19,444 INFO Backtesting NVDA (stock) ...
+2025-10-11 05:22:19,874 INFO \U0001f4b0 Fetched NVDA (1h) from Yahoo Finance
+2025-10-11 05:22:19,984 INFO NVDA done | Trades=28 | Win%=39.3 | PnL=-4122.37
+2025-10-11 05:22:19,985 INFO Backtesting TSLA (stock) ...
+2025-10-11 05:22:20,139 INFO \U0001f4b0 Fetched TSLA (1h) from Yahoo Finance
+2025-10-11 05:22:20,247 INFO TSLA done | Trades=33 | Win%=51.5 | PnL=1253.19
+2025-10-11 05:22:20,248 INFO Backtesting AMZN (stock) ...
+2025-10-11 05:22:20,415 INFO \U0001f4b0 Fetched AMZN (1h) from Yahoo Finance
+2025-10-11 05:22:20,528 INFO AMZN done | Trades=18 | Win%=38.9 | PnL=-5219.87
+2025-10-11 05:22:20,528 INFO Backtesting META (stock) ...
+2025-10-11 05:22:20,653 INFO \U0001f4b0 Fetched META (1h) from Yahoo Finance
+2025-10-11 05:22:20,788 INFO META done | Trades=34 | Win%=29.4 | PnL=-1596.67
+2025-10-11 05:22:20,788 INFO Backtesting SMCI (stock) ...
+2025-10-11 05:22:20,936 INFO \U0001f4b0 Fetched SMCI (1h) from Yahoo Finance
+2025-10-11 05:22:21,044 INFO SMCI done | Trades=27 | Win%=55.6 | PnL=2966.18
+2025-10-11 05:22:21,044 INFO Backtesting COIN (stock) ...
+2025-10-11 05:22:21,192 INFO \U0001f4b0 Fetched COIN (1h) from Yahoo Finance
+2025-10-11 05:22:21,314 INFO COIN done | Trades=30 | Win%=43.3 | PnL=-4201.65
+2025-10-11 05:22:21,315 INFO Backtesting PLTR (stock) ...
+2025-10-11 05:22:21,455 INFO \U0001f4b0 Fetched PLTR (1h) from Yahoo Finance
+2025-10-11 05:22:21,561 INFO PLTR done | Trades=27 | Win%=44.4 | PnL=-5742.53
+2025-10-11 05:22:21,562 INFO Backtesting BTCUSD (crypto) ...
+2025-10-11 05:22:21,631 INFO \U0001f4b0 Fetched BTCUSD (1h) from Binance
+2025-10-11 05:22:21,826 INFO BTCUSD done | Trades=113 | Win%=54.9 | PnL=11730.03
+2025-10-11 05:22:21,828 INFO Backtesting ETHUSD (crypto) ...
+2025-10-11 05:22:21,939 INFO \U0001f4b0 Fetched ETHUSD (1h) from Binance
+2025-10-11 05:22:22,137 INFO ETHUSD done | Trades=86 | Win%=50.0 | PnL=12718.43
+2025-10-11 05:22:22,138 INFO Backtesting SOLUSD (crypto) ...
+2025-10-11 05:22:22,193 INFO \U0001f4b0 Fetched SOLUSD (1h) from Binance
+2025-10-11 05:22:22,391 INFO SOLUSD done | Trades=91 | Win%=49.5 | PnL=10091.71
+2025-10-11 05:22:22,392 INFO Backtesting DOGEUSD (crypto) ...
+2025-10-11 05:22:22,450 INFO \U0001f4b0 Fetched DOGEUSD (1h) from Binance
+2025-10-11 05:22:22,654 INFO DOGEUSD done | Trades=104 | Win%=45.2 | PnL=12210.47
+2025-10-11 05:22:22,654 INFO Backtesting AVAXUSD (crypto) ...
+2025-10-11 05:22:22,710 INFO \U0001f4b0 Fetched AVAXUSD (1h) from Binance
+2025-10-11 05:22:22,902 INFO AVAXUSD done | Trades=71 | Win%=47.9 | PnL=19007.76
+2025-10-11 05:22:22,902 INFO Backtesting XRPUSD (crypto) ...
+2025-10-11 05:22:22,960 INFO \U0001f4b0 Fetched XRPUSD (1h) from Binance
+2025-10-11 05:22:23,154 INFO XRPUSD done | Trades=90 | Win%=34.4 | PnL=-22623.82
+2025-10-11 05:22:23,155 INFO Backtesting LINKUSD (crypto) ...
+2025-10-11 05:22:23,206 INFO \U0001f4b0 Fetched LINKUSD (1h) from Binance
+2025-10-11 05:22:23,395 INFO LINKUSD done | Trades=82 | Win%=36.6 | PnL=-3195.65
+2025-10-11 05:22:23,416 INFO \u2705 Backtest complete | 834 total trades | saved to logs/backtest_results.csv
+2025-10-11 05:22:49,685 INFO Backtesting NVDA (stock) ...
+2025-10-11 05:22:50,080 INFO \U0001f4b0 Fetched NVDA (1h) from Yahoo Finance
+2025-10-11 05:22:50,226 INFO NVDA done | Trades=28 | Win%=39.3 | PnL=-4122.37
+2025-10-11 05:22:50,227 INFO Backtesting TSLA (stock) ...
+2025-10-11 05:22:50,390 INFO \U0001f4b0 Fetched TSLA (1h) from Yahoo Finance
+2025-10-11 05:22:50,520 INFO TSLA done | Trades=33 | Win%=51.5 | PnL=1253.19
+2025-10-11 05:22:50,521 INFO Backtesting AMZN (stock) ...
+2025-10-11 05:22:50,655 INFO \U0001f4b0 Fetched AMZN (1h) from Yahoo Finance
+2025-10-11 05:22:50,774 INFO AMZN done | Trades=18 | Win%=38.9 | PnL=-5219.87
+2025-10-11 05:22:50,775 INFO Backtesting META (stock) ...
+2025-10-11 05:22:50,952 INFO \U0001f4b0 Fetched META (1h) from Yahoo Finance
+2025-10-11 05:22:51,059 INFO META done | Trades=34 | Win%=29.4 | PnL=-1596.67
+2025-10-11 05:22:51,059 INFO Backtesting SMCI (stock) ...
+2025-10-11 05:22:51,198 INFO \U0001f4b0 Fetched SMCI (1h) from Yahoo Finance
+2025-10-11 05:22:51,298 INFO SMCI done | Trades=27 | Win%=55.6 | PnL=2966.18
+2025-10-11 05:22:51,298 INFO Backtesting COIN (stock) ...
+2025-10-11 05:22:51,457 INFO \U0001f4b0 Fetched COIN (1h) from Yahoo Finance
+2025-10-11 05:22:51,557 INFO COIN done | Trades=30 | Win%=43.3 | PnL=-4201.65
+2025-10-11 05:22:51,558 INFO Backtesting PLTR (stock) ...
+2025-10-11 05:22:51,704 INFO \U0001f4b0 Fetched PLTR (1h) from Yahoo Finance
+2025-10-11 05:22:51,812 INFO PLTR done | Trades=27 | Win%=44.4 | PnL=-5742.53
+2025-10-11 05:22:51,813 INFO Backtesting BTCUSD (crypto) ...
+2025-10-11 05:22:51,890 INFO \U0001f4b0 Fetched BTCUSD (1h) from Binance
+2025-10-11 05:22:52,093 INFO BTCUSD done | Trades=113 | Win%=54.9 | PnL=11730.03
+2025-10-11 05:22:52,094 INFO Backtesting ETHUSD (crypto) ...
+2025-10-11 05:22:52,207 INFO \U0001f4b0 Fetched ETHUSD (1h) from Binance
+2025-10-11 05:22:52,398 INFO ETHUSD done | Trades=86 | Win%=50.0 | PnL=12718.43
+2025-10-11 05:22:52,398 INFO Backtesting SOLUSD (crypto) ...
+2025-10-11 05:22:52,456 INFO \U0001f4b0 Fetched SOLUSD (1h) from Binance
+2025-10-11 05:22:52,662 INFO SOLUSD done | Trades=91 | Win%=49.5 | PnL=10091.71
+2025-10-11 05:22:52,663 INFO Backtesting DOGEUSD (crypto) ...
+2025-10-11 05:22:52,722 INFO \U0001f4b0 Fetched DOGEUSD (1h) from Binance
+2025-10-11 05:22:52,962 INFO DOGEUSD done | Trades=104 | Win%=45.2 | PnL=12210.47
+2025-10-11 05:22:52,963 INFO Backtesting AVAXUSD (crypto) ...
+2025-10-11 05:22:53,017 INFO \U0001f4b0 Fetched AVAXUSD (1h) from Binance
+2025-10-11 05:22:53,212 INFO AVAXUSD done | Trades=71 | Win%=47.9 | PnL=19007.76
+2025-10-11 05:22:53,213 INFO Backtesting XRPUSD (crypto) ...
+2025-10-11 05:22:53,270 INFO \U0001f4b0 Fetched XRPUSD (1h) from Binance
+2025-10-11 05:22:53,468 INFO XRPUSD done | Trades=90 | Win%=34.4 | PnL=-22623.82
+2025-10-11 05:22:53,468 INFO Backtesting LINKUSD (crypto) ...
+2025-10-11 05:22:53,527 INFO \U0001f4b0 Fetched LINKUSD (1h) from Binance
+2025-10-11 05:22:53,727 INFO LINKUSD done | Trades=82 | Win%=36.6 | PnL=-3195.65
+2025-10-11 05:22:53,757 INFO \u2705 Backtest complete | 834 total trades | saved to logs/backtest_results.csv
+2025-10-11 05:37:54,935 INFO Backtesting NVDA (stock) ...
+2025-10-11 05:37:55,313 INFO \U0001f4b0 Fetched NVDA (1h) from Yahoo Finance
+2025-10-11 05:37:55,422 INFO NVDA done | Trades=28 | Win%=39.3 | PnL=-4122.37
+2025-10-11 05:37:55,422 INFO Backtesting TSLA (stock) ...
+2025-10-11 05:37:55,563 INFO \U0001f4b0 Fetched TSLA (1h) from Yahoo Finance
+2025-10-11 05:37:55,663 INFO TSLA done | Trades=33 | Win%=51.5 | PnL=1253.19
+2025-10-11 05:37:55,663 INFO Backtesting AMZN (stock) ...
+2025-10-11 05:37:55,817 INFO \U0001f4b0 Fetched AMZN (1h) from Yahoo Finance
+2025-10-11 05:37:55,914 INFO AMZN done | Trades=18 | Win%=38.9 | PnL=-5219.87
+2025-10-11 05:37:55,914 INFO Backtesting META (stock) ...
+2025-10-11 05:37:56,080 INFO \U0001f4b0 Fetched META (1h) from Yahoo Finance
+2025-10-11 05:37:56,187 INFO META done | Trades=34 | Win%=29.4 | PnL=-1596.67
+2025-10-11 05:37:56,187 INFO Backtesting SMCI (stock) ...
+2025-10-11 05:37:56,348 INFO \U0001f4b0 Fetched SMCI (1h) from Yahoo Finance
+2025-10-11 05:37:56,455 INFO SMCI done | Trades=27 | Win%=55.6 | PnL=2966.18
+2025-10-11 05:37:56,455 INFO Backtesting COIN (stock) ...
+2025-10-11 05:37:56,607 INFO \U0001f4b0 Fetched COIN (1h) from Yahoo Finance
+2025-10-11 05:37:56,707 INFO COIN done | Trades=28 | Win%=46.4 | PnL=-3206.57
+2025-10-11 05:37:56,707 INFO Backtesting PLTR (stock) ...
+2025-10-11 05:37:56,857 INFO \U0001f4b0 Fetched PLTR (1h) from Yahoo Finance
+2025-10-11 05:37:56,957 INFO PLTR done | Trades=27 | Win%=44.4 | PnL=-5742.53
+2025-10-11 05:37:56,957 INFO Backtesting BTCUSD (crypto) ...
+2025-10-11 05:37:57,015 INFO \U0001f4b0 Fetched BTCUSD (1h) from Binance
+2025-10-11 05:37:57,222 INFO BTCUSD done | Trades=113 | Win%=54.9 | PnL=11730.03
+2025-10-11 05:37:57,222 INFO Backtesting ETHUSD (crypto) ...
+2025-10-11 05:37:57,346 INFO \U0001f4b0 Fetched ETHUSD (1h) from Binance
+2025-10-11 05:37:57,539 INFO ETHUSD done | Trades=86 | Win%=50.0 | PnL=12718.43
+2025-10-11 05:37:57,540 INFO Backtesting SOLUSD (crypto) ...
+2025-10-11 05:37:57,598 INFO \U0001f4b0 Fetched SOLUSD (1h) from Binance
+2025-10-11 05:37:57,790 INFO SOLUSD done | Trades=91 | Win%=49.5 | PnL=10091.71
+2025-10-11 05:37:57,798 INFO Backtesting DOGEUSD (crypto) ...
+2025-10-11 05:37:57,856 INFO \U0001f4b0 Fetched DOGEUSD (1h) from Binance
+2025-10-11 05:37:58,046 INFO DOGEUSD done | Trades=104 | Win%=45.2 | PnL=12210.47
+2025-10-11 05:37:58,054 INFO Backtesting AVAXUSD (crypto) ...
+2025-10-11 05:37:58,108 INFO \U0001f4b0 Fetched AVAXUSD (1h) from Binance
+2025-10-11 05:37:58,304 INFO AVAXUSD done | Trades=71 | Win%=47.9 | PnL=19007.76
+2025-10-11 05:37:58,312 INFO Backtesting XRPUSD (crypto) ...
+2025-10-11 05:37:58,361 INFO \U0001f4b0 Fetched XRPUSD (1h) from Binance
+2025-10-11 05:37:58,558 INFO XRPUSD done | Trades=90 | Win%=34.4 | PnL=-22623.82
+2025-10-11 05:37:58,558 INFO Backtesting LINKUSD (crypto) ...
+2025-10-11 05:37:58,624 INFO \U0001f4b0 Fetched LINKUSD (1h) from Binance
+2025-10-11 05:37:58,834 INFO LINKUSD done | Trades=82 | Win%=36.6 | PnL=-3195.65
+2025-10-11 05:37:58,857 INFO \u2705 Backtest complete | 832 total trades | saved to logs/backtest_results.csv
+2025-10-11 13:46:30,857 INFO Backtesting NVDA (stock) ...
+2025-10-11 13:46:36,980 INFO \U0001f4b0 Fetched NVDA (1h) from Yahoo Finance
+2025-10-11 13:46:37,110 INFO NVDA done | Trades=28 | Win%=39.3 | PnL=-4122.37
+2025-10-11 13:46:37,110 INFO Backtesting TSLA (stock) ...
+2025-10-11 13:46:37,470 INFO \U0001f4b0 Fetched TSLA (1h) from Yahoo Finance
+2025-10-11 13:46:37,585 INFO TSLA done | Trades=33 | Win%=51.5 | PnL=1253.19
+2025-10-11 13:46:37,585 INFO Backtesting AMZN (stock) ...
+2025-10-11 13:46:37,937 INFO \U0001f4b0 Fetched AMZN (1h) from Yahoo Finance
+2025-10-11 13:46:38,053 INFO AMZN done | Trades=18 | Win%=38.9 | PnL=-5219.87
+2025-10-11 13:46:38,053 INFO Backtesting META (stock) ...
+2025-10-11 13:46:38,401 INFO \U0001f4b0 Fetched META (1h) from Yahoo Finance
+2025-10-11 13:46:38,518 INFO META done | Trades=34 | Win%=29.4 | PnL=-1596.67
+2025-10-11 13:46:38,518 INFO Backtesting SMCI (stock) ...
+2025-10-11 13:46:38,870 INFO \U0001f4b0 Fetched SMCI (1h) from Yahoo Finance
+2025-10-11 13:46:38,995 INFO SMCI done | Trades=27 | Win%=55.6 | PnL=2966.18
+2025-10-11 13:46:38,995 INFO Backtesting COIN (stock) ...
+2025-10-11 13:46:39,441 INFO \U0001f4b0 Fetched COIN (1h) from Yahoo Finance
+2025-10-11 13:46:39,691 INFO COIN done | Trades=28 | Win%=46.4 | PnL=-3206.57
+2025-10-11 13:46:39,691 INFO Backtesting PLTR (stock) ...
+2025-10-11 13:46:40,042 INFO \U0001f4b0 Fetched PLTR (1h) from Yahoo Finance
+2025-10-11 13:46:40,159 INFO PLTR done | Trades=27 | Win%=44.4 | PnL=-5742.53
+2025-10-11 13:46:40,159 INFO Backtesting BTCUSD (crypto) ...
+2025-10-11 13:46:40,275 INFO \U0001f4b0 Fetched BTCUSD (1h) from Binance
+2025-10-11 13:46:40,473 INFO BTCUSD done | Trades=19 | Win%=52.6 | PnL=2910.22
+2025-10-11 13:46:40,473 INFO Backtesting ETHUSD (crypto) ...
+2025-10-11 13:46:40,538 INFO \U0001f4b0 Fetched ETHUSD (1h) from Binance
+2025-10-11 13:46:40,813 INFO ETHUSD done | Trades=77 | Win%=46.8 | PnL=-2058.25
+2025-10-11 13:46:40,813 INFO Backtesting SOLUSD (crypto) ...
+2025-10-11 13:46:40,872 INFO \U0001f4b0 Fetched SOLUSD (1h) from Binance
+2025-10-11 13:46:41,096 INFO SOLUSD done | Trades=84 | Win%=51.2 | PnL=7691.83
+2025-10-11 13:46:41,096 INFO Backtesting DOGEUSD (crypto) ...
+2025-10-11 13:46:41,155 INFO \U0001f4b0 Fetched DOGEUSD (1h) from Binance
+2025-10-11 13:46:41,385 INFO DOGEUSD done | Trades=91 | Win%=46.2 | PnL=6019.37
+2025-10-11 13:46:41,385 INFO Backtesting AVAXUSD (crypto) ...
+2025-10-11 13:46:41,444 INFO \U0001f4b0 Fetched AVAXUSD (1h) from Binance
+2025-10-11 13:46:41,668 INFO AVAXUSD done | Trades=64 | Win%=51.6 | PnL=31431.94
+2025-10-11 13:46:41,668 INFO Backtesting XRPUSD (crypto) ...
+2025-10-11 13:46:41,727 INFO \U0001f4b0 Fetched XRPUSD (1h) from Binance
+2025-10-11 13:46:41,950 INFO XRPUSD done | Trades=78 | Win%=37.2 | PnL=-12458.27
+2025-10-11 13:46:41,950 INFO Backtesting LINKUSD (crypto) ...
+2025-10-11 13:46:42,001 INFO \U0001f4b0 Fetched LINKUSD (1h) from Binance
+2025-10-11 13:46:42,215 INFO LINKUSD done | Trades=66 | Win%=37.9 | PnL=8881.58
+2025-10-11 13:46:42,248 INFO \u2705 Backtest complete | 674 total trades | saved to logs/backtest_results.csv
+2025-10-11 14:23:24,527 INFO Backtesting NVDA (stock) ...
+2025-10-11 14:23:25,337 INFO \U0001f4b0 Fetched NVDA (1h) from Yahoo Finance
+2025-10-11 14:23:25,479 INFO NVDA done | Trades=32 | Win%=40.6 | PnL=-3792.17
+2025-10-11 14:23:25,479 INFO Backtesting TSLA (stock) ...
+2025-10-11 14:23:25,847 INFO \U0001f4b0 Fetched TSLA (1h) from Yahoo Finance
+2025-10-11 14:23:25,963 INFO TSLA done | Trades=41 | Win%=48.8 | PnL=-976.80
+2025-10-11 14:23:25,963 INFO Backtesting AMZN (stock) ...
+2025-10-11 14:23:26,309 INFO \U0001f4b0 Fetched AMZN (1h) from Yahoo Finance
+2025-10-11 14:23:26,490 INFO AMZN done | Trades=22 | Win%=40.9 | PnL=-4085.90
+2025-10-11 14:23:26,490 INFO Backtesting META (stock) ...
+2025-10-11 14:23:26,860 INFO \U0001f4b0 Fetched META (1h) from Yahoo Finance
+2025-10-11 14:23:26,978 INFO META done | Trades=34 | Win%=29.4 | PnL=-1596.67
+2025-10-11 14:23:26,978 INFO Backtesting SMCI (stock) ...
+2025-10-11 14:23:27,345 INFO \U0001f4b0 Fetched SMCI (1h) from Yahoo Finance
+2025-10-11 14:23:27,461 INFO SMCI done | Trades=38 | Win%=50.0 | PnL=2467.44
+2025-10-11 14:23:27,461 INFO Backtesting COIN (stock) ...
+2025-10-11 14:23:27,850 INFO \U0001f4b0 Fetched COIN (1h) from Yahoo Finance
+2025-10-11 14:23:27,985 INFO COIN done | Trades=34 | Win%=52.9 | PnL=-3282.87
+2025-10-11 14:23:27,985 INFO Backtesting PLTR (stock) ...
+2025-10-11 14:23:28,413 INFO \U0001f4b0 Fetched PLTR (1h) from Yahoo Finance
+2025-10-11 14:23:28,534 INFO PLTR done | Trades=38 | Win%=50.0 | PnL=-5642.76
+2025-10-11 14:23:28,534 INFO Backtesting BTCUSD (crypto) ...
+2025-10-11 14:23:28,593 INFO \U0001f4b0 Fetched BTCUSD (1h) from Binance
+2025-10-11 14:23:28,848 INFO BTCUSD done | Trades=10 | Win%=40.0 | PnL=2429.84
+2025-10-11 14:23:28,856 INFO Backtesting ETHUSD (crypto) ...
+2025-10-11 14:23:28,906 INFO \U0001f4b0 Fetched ETHUSD (1h) from Binance
+2025-10-11 14:23:29,147 INFO ETHUSD done | Trades=102 | Win%=49.0 | PnL=125.74
+2025-10-11 14:23:29,147 INFO Backtesting SOLUSD (crypto) ...
+2025-10-11 14:23:29,205 INFO \U0001f4b0 Fetched SOLUSD (1h) from Binance
+2025-10-11 14:23:29,468 INFO SOLUSD done | Trades=136 | Win%=44.9 | PnL=1454.93
+2025-10-11 14:23:29,475 INFO Backtesting DOGEUSD (crypto) ...
+2025-10-11 14:23:29,532 INFO \U0001f4b0 Fetched DOGEUSD (1h) from Binance
+2025-10-11 14:23:29,773 INFO DOGEUSD done | Trades=113 | Win%=44.2 | PnL=4522.79
+2025-10-11 14:23:29,773 INFO Backtesting AVAXUSD (crypto) ...
+2025-10-11 14:23:29,839 INFO \U0001f4b0 Fetched AVAXUSD (1h) from Binance
+2025-10-11 14:23:30,079 INFO AVAXUSD done | Trades=85 | Win%=49.4 | PnL=26384.53
+2025-10-11 14:23:30,079 INFO Backtesting XRPUSD (crypto) ...
+2025-10-11 14:23:30,138 INFO \U0001f4b0 Fetched XRPUSD (1h) from Binance
+2025-10-11 14:23:30,370 INFO XRPUSD done | Trades=92 | Win%=39.1 | PnL=-11303.75
+2025-10-11 14:23:30,370 INFO Backtesting LINKUSD (crypto) ...
+2025-10-11 14:23:30,428 INFO \U0001f4b0 Fetched LINKUSD (1h) from Binance
+2025-10-11 14:23:30,659 INFO LINKUSD done | Trades=80 | Win%=38.8 | PnL=9557.58
+2025-10-11 14:23:30,676 INFO \u2705 Backtest complete | 857 total trades | saved to logs/backtest_results.csv
+2025-10-11 14:35:50,590 INFO Backtesting NVDA (stock) ...
+2025-10-11 14:35:51,378 INFO \U0001f4b0 Fetched NVDA (1h) from Yahoo Finance
+2025-10-11 14:35:51,517 INFO NVDA done | Trades=24 | Win%=37.5 | PnL=-6191.48
+2025-10-11 14:35:51,517 INFO Backtesting TSLA (stock) ...
+2025-10-11 14:35:51,887 INFO \U0001f4b0 Fetched TSLA (1h) from Yahoo Finance
+2025-10-11 14:35:52,005 INFO TSLA done | Trades=27 | Win%=37.0 | PnL=-3377.34
+2025-10-11 14:35:52,005 INFO Backtesting AMZN (stock) ...
+2025-10-11 14:35:52,355 INFO \U0001f4b0 Fetched AMZN (1h) from Yahoo Finance
+2025-10-11 14:35:52,472 INFO AMZN done | Trades=24 | Win%=58.3 | PnL=3821.95
+2025-10-11 14:35:52,472 INFO Backtesting META (stock) ...
+2025-10-11 14:35:52,846 INFO \U0001f4b0 Fetched META (1h) from Yahoo Finance
+2025-10-11 14:35:52,965 INFO META done | Trades=21 | Win%=23.8 | PnL=-5428.14
+2025-10-11 14:35:52,965 INFO Backtesting SMCI (stock) ...
+2025-10-11 14:35:53,310 INFO \U0001f4b0 Fetched SMCI (1h) from Yahoo Finance
+2025-10-11 14:35:53,431 INFO SMCI done | Trades=27 | Win%=55.6 | PnL=2885.92
+2025-10-11 14:35:53,431 INFO Backtesting COIN (stock) ...
+2025-10-11 14:35:53,794 INFO \U0001f4b0 Fetched COIN (1h) from Yahoo Finance
+2025-10-11 14:35:53,914 INFO COIN done | Trades=21 | Win%=52.4 | PnL=-3083.49
+2025-10-11 14:35:53,914 INFO Backtesting PLTR (stock) ...
+2025-10-11 14:35:54,275 INFO \U0001f4b0 Fetched PLTR (1h) from Yahoo Finance
+2025-10-11 14:35:54,389 INFO PLTR done | Trades=27 | Win%=40.7 | PnL=-4941.59
+2025-10-11 14:35:54,389 INFO Backtesting BTCUSD (crypto) ...
+2025-10-11 14:35:54,488 INFO \U0001f4b0 Fetched BTCUSD (1h) from Binance
+2025-10-11 14:35:54,781 INFO BTCUSD done | Trades=37 | Win%=54.1 | PnL=2601.62
+2025-10-11 14:35:54,781 INFO Backtesting ETHUSD (crypto) ...
+2025-10-11 14:35:54,840 INFO \U0001f4b0 Fetched ETHUSD (1h) from Binance
+2025-10-11 14:35:55,139 INFO ETHUSD done | Trades=76 | Win%=47.4 | PnL=2852.05
+2025-10-11 14:35:55,139 INFO Backtesting SOLUSD (crypto) ...
+2025-10-11 14:35:55,206 INFO \U0001f4b0 Fetched SOLUSD (1h) from Binance
+2025-10-11 14:35:55,445 INFO SOLUSD done | Trades=84 | Win%=46.4 | PnL=11542.05
+2025-10-11 14:35:55,445 INFO Backtesting DOGEUSD (crypto) ...
+2025-10-11 14:35:55,500 INFO \U0001f4b0 Fetched DOGEUSD (1h) from Binance
+2025-10-11 14:35:55,749 INFO DOGEUSD done | Trades=90 | Win%=43.3 | PnL=7406.27
+2025-10-11 14:35:55,749 INFO Backtesting AVAXUSD (crypto) ...
+2025-10-11 14:35:55,800 INFO \U0001f4b0 Fetched AVAXUSD (1h) from Binance
+2025-10-11 14:35:56,041 INFO AVAXUSD done | Trades=72 | Win%=50.0 | PnL=40277.88
+2025-10-11 14:35:56,041 INFO Backtesting XRPUSD (crypto) ...
+2025-10-11 14:35:56,099 INFO \U0001f4b0 Fetched XRPUSD (1h) from Binance
+2025-10-11 14:35:56,337 INFO XRPUSD done | Trades=64 | Win%=40.6 | PnL=-8135.83
+2025-10-11 14:35:56,337 INFO Backtesting LINKUSD (crypto) ...
+2025-10-11 14:35:56,400 INFO \U0001f4b0 Fetched LINKUSD (1h) from Binance
+2025-10-11 14:35:56,638 INFO LINKUSD done | Trades=60 | Win%=41.7 | PnL=6708.83
+2025-10-11 14:35:56,648 INFO \u2705 Backtest complete | 654 total trades | saved to logs/backtest_results.csv
+2025-10-11 16:43:39,404 INFO Backtesting NVDA (stock) ...
+2025-10-11 16:43:40,244 INFO \U0001f4b0 Fetched NVDA (1h) from Yahoo Finance
+2025-10-11 16:43:40,365 INFO NVDA done | Trades=2 | Win%=0.0 | PnL=-4120.56
+2025-10-11 16:43:40,365 INFO Backtesting TSLA (stock) ...
+2025-10-11 16:43:40,732 INFO \U0001f4b0 Fetched TSLA (1h) from Yahoo Finance
+2025-10-11 16:43:40,838 INFO TSLA done | Trades=3 | Win%=66.7 | PnL=3567.67
+2025-10-11 16:43:40,838 INFO Backtesting AMZN (stock) ...
+2025-10-11 16:43:41,195 INFO \U0001f4b0 Fetched AMZN (1h) from Yahoo Finance
+2025-10-11 16:43:41,297 INFO AMZN done | Trades=2 | Win%=0.0 | PnL=-4662.46
+2025-10-11 16:43:41,297 INFO Backtesting META (stock) ...
+2025-10-11 16:43:41,666 INFO \U0001f4b0 Fetched META (1h) from Yahoo Finance
+2025-10-11 16:43:41,769 INFO META done | Trades=3 | Win%=0.0 | PnL=-4833.05
+2025-10-11 16:43:41,769 INFO Backtesting SMCI (stock) ...
+2025-10-11 16:43:42,133 INFO \U0001f4b0 Fetched SMCI (1h) from Yahoo Finance
+2025-10-11 16:43:42,229 INFO SMCI done | Trades=6 | Win%=33.3 | PnL=379.00
+2025-10-11 16:43:42,229 INFO Backtesting COIN (stock) ...
+2025-10-11 16:43:42,611 INFO \U0001f4b0 Fetched COIN (1h) from Yahoo Finance
+2025-10-11 16:43:42,718 INFO COIN done | Trades=4 | Win%=25.0 | PnL=-3459.10
+2025-10-11 16:43:42,718 INFO Backtesting PLTR (stock) ...
+2025-10-11 16:43:43,073 INFO \U0001f4b0 Fetched PLTR (1h) from Yahoo Finance
+2025-10-11 16:43:43,177 INFO PLTR done | Trades=7 | Win%=14.3 | PnL=-6158.97
+2025-10-11 16:43:43,177 INFO Backtesting BTCUSD (crypto) ...
+2025-10-11 16:43:43,232 INFO \U0001f4b0 Fetched BTCUSD (1h) from Binance
+2025-10-11 16:43:43,471 INFO BTCUSD done | Trades=7 | Win%=42.9 | PnL=1265.76
+2025-10-11 16:43:43,471 INFO Backtesting ETHUSD (crypto) ...
+2025-10-11 16:43:43,581 INFO \U0001f4b0 Fetched ETHUSD (1h) from Binance
+2025-10-11 16:43:43,799 INFO ETHUSD done | Trades=10 | Win%=60.0 | PnL=16926.52
+2025-10-11 16:43:43,799 INFO Backtesting SOLUSD (crypto) ...
+2025-10-11 16:43:43,861 INFO \U0001f4b0 Fetched SOLUSD (1h) from Binance
+2025-10-11 16:43:44,092 INFO SOLUSD done | Trades=10 | Win%=50.0 | PnL=12997.40
+2025-10-11 16:43:44,092 INFO Backtesting DOGEUSD (crypto) ...
+2025-10-11 16:43:44,149 INFO \U0001f4b0 Fetched DOGEUSD (1h) from Binance
+2025-10-11 16:43:44,384 INFO DOGEUSD done | Trades=12 | Win%=41.7 | PnL=5454.22
+2025-10-11 16:43:44,384 INFO Backtesting AVAXUSD (crypto) ...
+2025-10-11 16:43:44,433 INFO \U0001f4b0 Fetched AVAXUSD (1h) from Binance
+2025-10-11 16:43:44,668 INFO AVAXUSD done | Trades=11 | Win%=36.4 | PnL=7975.66
+2025-10-11 16:43:44,668 INFO Backtesting XRPUSD (crypto) ...
+2025-10-11 16:43:44,726 INFO \U0001f4b0 Fetched XRPUSD (1h) from Binance
+2025-10-11 16:43:44,962 INFO XRPUSD done | Trades=5 | Win%=20.0 | PnL=223.86
+2025-10-11 16:43:44,962 INFO Backtesting LINKUSD (crypto) ...
+2025-10-11 16:43:45,003 INFO \U0001f4b0 Fetched LINKUSD (1h) from Binance
+2025-10-11 16:43:45,242 INFO LINKUSD done | Trades=6 | Win%=66.7 | PnL=14766.23
+2025-10-11 16:43:45,257 INFO \u2705 Backtest complete | 88 total trades | saved to logs/backtest_results.csv
+2025-10-11 16:57:33,605 INFO Backtesting NVDA (stock) ...
+2025-10-11 16:57:34,432 INFO \U0001f4b0 Fetched NVDA (1h) from Yahoo Finance
+2025-10-11 16:57:34,568 INFO NVDA done | Trades=2 | Win%=0.0 | PnL=-4120.56
+2025-10-11 16:57:34,568 INFO Backtesting TSLA (stock) ...
+2025-10-11 16:57:34,929 INFO \U0001f4b0 Fetched TSLA (1h) from Yahoo Finance
+2025-10-11 16:57:35,035 INFO TSLA done | Trades=3 | Win%=66.7 | PnL=3567.67
+2025-10-11 16:57:35,035 INFO Backtesting AMZN (stock) ...
+2025-10-11 16:57:35,404 INFO \U0001f4b0 Fetched AMZN (1h) from Yahoo Finance
+2025-10-11 16:57:35,511 INFO AMZN done | Trades=2 | Win%=0.0 | PnL=-4662.46
+2025-10-11 16:57:35,511 INFO Backtesting META (stock) ...
+2025-10-11 16:57:35,865 INFO \U0001f4b0 Fetched META (1h) from Yahoo Finance
+2025-10-11 16:57:36,058 INFO META done | Trades=3 | Win%=0.0 | PnL=-4833.05
+2025-10-11 16:57:36,058 INFO Backtesting SMCI (stock) ...
+2025-10-11 16:57:36,394 INFO \U0001f4b0 Fetched SMCI (1h) from Yahoo Finance
+2025-10-11 16:57:36,502 INFO SMCI done | Trades=5 | Win%=40.0 | PnL=1953.36
+2025-10-11 16:57:36,502 INFO Backtesting COIN (stock) ...
+2025-10-11 16:57:36,870 INFO \U0001f4b0 Fetched COIN (1h) from Yahoo Finance
+2025-10-11 16:57:36,984 INFO COIN done | Trades=3 | Win%=33.3 | PnL=-1102.89
+2025-10-11 16:57:36,984 INFO Backtesting PLTR (stock) ...
+2025-10-11 16:57:37,349 INFO \U0001f4b0 Fetched PLTR (1h) from Yahoo Finance
+2025-10-11 16:57:37,462 INFO PLTR done | Trades=6 | Win%=16.7 | PnL=-4024.38
+2025-10-11 16:57:37,462 INFO Backtesting BTCUSD (crypto) ...
+2025-10-11 16:57:37,530 INFO \U0001f4b0 Fetched BTCUSD (1h) from Binance
+2025-10-11 16:57:37,731 INFO BTCUSD done | Trades=4 | Win%=50.0 | PnL=848.28
+2025-10-11 16:57:37,731 INFO Backtesting ETHUSD (crypto) ...
+2025-10-11 16:57:37,909 INFO \U0001f4b0 Fetched ETHUSD (1h) from Binance
+2025-10-11 16:57:38,109 INFO ETHUSD done | Trades=8 | Win%=50.0 | PnL=13448.74
+2025-10-11 16:57:38,109 INFO Backtesting SOLUSD (crypto) ...
+2025-10-11 16:57:38,211 INFO \U0001f4b0 Fetched SOLUSD (1h) from Binance
+2025-10-11 16:57:38,431 INFO SOLUSD done | Trades=6 | Win%=50.0 | PnL=3853.55
+2025-10-11 16:57:38,432 INFO Backtesting DOGEUSD (crypto) ...
+2025-10-11 16:57:38,490 INFO \U0001f4b0 Fetched DOGEUSD (1h) from Binance
+2025-10-11 16:57:38,699 INFO DOGEUSD done | Trades=9 | Win%=55.6 | PnL=12513.55
+2025-10-11 16:57:38,699 INFO Backtesting AVAXUSD (crypto) ...
+2025-10-11 16:57:38,754 INFO \U0001f4b0 Fetched AVAXUSD (1h) from Binance
+2025-10-11 16:57:38,981 INFO AVAXUSD done | Trades=7 | Win%=28.6 | PnL=5199.77
+2025-10-11 16:57:38,981 INFO Backtesting XRPUSD (crypto) ...
+2025-10-11 16:57:39,046 INFO \U0001f4b0 Fetched XRPUSD (1h) from Binance
+2025-10-11 16:57:39,264 INFO XRPUSD done | Trades=5 | Win%=20.0 | PnL=442.08
+2025-10-11 16:57:39,264 INFO Backtesting LINKUSD (crypto) ...
+2025-10-11 16:57:39,329 INFO \U0001f4b0 Fetched LINKUSD (1h) from Binance
+2025-10-11 16:57:39,547 INFO LINKUSD done | Trades=6 | Win%=66.7 | PnL=14766.23
+2025-10-11 16:57:39,573 INFO \u2705 Backtest complete | 69 total trades | saved to logs/backtest_results.csv
+2025-10-11 18:53:57,029 INFO Backtesting NVDA (stock) ...
+2025-10-11 18:54:03,106 INFO \U0001f4b0 Fetched NVDA (1h) from Yahoo Finance
+2025-10-11 18:54:03,254 INFO NVDA done | Trades=2 | Win%=0.0 | PnL=-4120.56
+2025-10-11 18:54:03,254 INFO Backtesting TSLA (stock) ...
+2025-10-11 18:54:03,407 INFO \U0001f4b0 Fetched TSLA (1h) from Yahoo Finance
+2025-10-11 18:54:03,524 INFO TSLA done | Trades=3 | Win%=66.7 | PnL=3567.67
+2025-10-11 18:54:03,524 INFO Backtesting AMZN (stock) ...
+2025-10-11 18:54:03,700 INFO \U0001f4b0 Fetched AMZN (1h) from Yahoo Finance
+2025-10-11 18:54:03,823 INFO AMZN done | Trades=2 | Win%=0.0 | PnL=-4662.46
+2025-10-11 18:54:03,823 INFO Backtesting META (stock) ...
+2025-10-11 18:54:03,968 INFO \U0001f4b0 Fetched META (1h) from Yahoo Finance
+2025-10-11 18:54:04,089 INFO META done | Trades=3 | Win%=0.0 | PnL=-4833.05
+2025-10-11 18:54:04,089 INFO Backtesting SMCI (stock) ...
+2025-10-11 18:54:04,242 INFO \U0001f4b0 Fetched SMCI (1h) from Yahoo Finance
+2025-10-11 18:54:04,347 INFO SMCI done | Trades=5 | Win%=40.0 | PnL=1953.36
+2025-10-11 18:54:04,347 INFO Backtesting COIN (stock) ...
+2025-10-11 18:54:04,497 INFO \U0001f4b0 Fetched COIN (1h) from Yahoo Finance
+2025-10-11 18:54:04,609 INFO COIN done | Trades=3 | Win%=33.3 | PnL=-1102.89
+2025-10-11 18:54:04,609 INFO Backtesting PLTR (stock) ...
+2025-10-11 18:54:04,779 INFO \U0001f4b0 Fetched PLTR (1h) from Yahoo Finance
+2025-10-11 18:54:04,893 INFO PLTR done | Trades=6 | Win%=16.7 | PnL=-4024.38
+2025-10-11 18:54:04,893 INFO Backtesting BTCUSD (crypto) ...
+2025-10-11 18:54:04,967 INFO \U0001f4b0 Fetched BTCUSD (1h) from Binance
+2025-10-11 18:54:05,192 INFO BTCUSD done | Trades=4 | Win%=50.0 | PnL=848.28
+2025-10-11 18:54:05,192 INFO Backtesting ETHUSD (crypto) ...
+2025-10-11 18:54:05,313 INFO \U0001f4b0 Fetched ETHUSD (1h) from Binance
+2025-10-11 18:54:05,523 INFO ETHUSD done | Trades=8 | Win%=50.0 | PnL=12824.48
+2025-10-11 18:54:05,523 INFO Backtesting SOLUSD (crypto) ...
+2025-10-11 18:54:05,596 INFO \U0001f4b0 Fetched SOLUSD (1h) from Binance
+2025-10-11 18:54:05,831 INFO SOLUSD done | Trades=6 | Win%=50.0 | PnL=3989.76
+2025-10-11 18:54:05,831 INFO Backtesting DOGEUSD (crypto) ...
+2025-10-11 18:54:05,892 INFO \U0001f4b0 Fetched DOGEUSD (1h) from Binance
+2025-10-11 18:54:06,109 INFO DOGEUSD done | Trades=9 | Win%=55.6 | PnL=12513.55
+2025-10-11 18:54:06,109 INFO Backtesting AVAXUSD (crypto) ...
+2025-10-11 18:54:06,172 INFO \U0001f4b0 Fetched AVAXUSD (1h) from Binance
+2025-10-11 18:54:06,402 INFO AVAXUSD done | Trades=7 | Win%=28.6 | PnL=5199.77
+2025-10-11 18:54:06,402 INFO Backtesting XRPUSD (crypto) ...
+2025-10-11 18:54:06,472 INFO \U0001f4b0 Fetched XRPUSD (1h) from Binance
+2025-10-11 18:54:06,696 INFO XRPUSD done | Trades=5 | Win%=20.0 | PnL=442.08
+2025-10-11 18:54:06,696 INFO Backtesting LINKUSD (crypto) ...
+2025-10-11 18:54:06,760 INFO \U0001f4b0 Fetched LINKUSD (1h) from Binance
+2025-10-11 18:54:07,037 INFO LINKUSD done | Trades=6 | Win%=66.7 | PnL=15044.64
+2025-10-11 18:54:07,051 INFO \u2705 Backtest complete | 69 total trades | saved to logs/backtest_results.csv
+2025-10-11 18:57:11,567 INFO Backtesting NVDA (stock) ...
+2025-10-11 18:57:12,042 INFO \U0001f4b0 Fetched NVDA (1h) from Yahoo Finance
+2025-10-11 18:57:12,216 WARNING No data or trades for NVDA
+2025-10-11 18:57:12,216 INFO Backtesting TSLA (stock) ...
+2025-10-11 18:57:12,370 INFO \U0001f4b0 Fetched TSLA (1h) from Yahoo Finance
+2025-10-11 18:57:12,499 WARNING No data or trades for TSLA
+2025-10-11 18:57:12,499 INFO Backtesting AMZN (stock) ...
+2025-10-11 18:57:12,648 INFO \U0001f4b0 Fetched AMZN (1h) from Yahoo Finance
+2025-10-11 18:57:12,799 WARNING No data or trades for AMZN
+2025-10-11 18:57:12,799 INFO Backtesting META (stock) ...
+2025-10-11 18:57:12,967 INFO \U0001f4b0 Fetched META (1h) from Yahoo Finance
+2025-10-11 18:57:13,112 WARNING No data or trades for META
+2025-10-11 18:57:13,112 INFO Backtesting SMCI (stock) ...
+2025-10-11 18:57:13,291 INFO \U0001f4b0 Fetched SMCI (1h) from Yahoo Finance
+2025-10-11 18:57:13,449 WARNING No data or trades for SMCI
+2025-10-11 18:57:13,449 INFO Backtesting COIN (stock) ...
+2025-10-11 18:57:13,612 INFO \U0001f4b0 Fetched COIN (1h) from Yahoo Finance
+2025-10-11 18:57:13,789 WARNING No data or trades for COIN
+2025-10-11 18:57:13,789 INFO Backtesting PLTR (stock) ...
+2025-10-11 18:57:13,960 INFO \U0001f4b0 Fetched PLTR (1h) from Yahoo Finance
+2025-10-11 18:57:14,101 WARNING No data or trades for PLTR
+2025-10-11 18:57:14,108 INFO Backtesting BTCUSD (crypto) ...
+2025-10-11 18:57:14,179 INFO \U0001f4b0 Fetched BTCUSD (1h) from Binance
+2025-10-11 18:57:14,458 INFO BTCUSD done | Trades=4 | Win%=50.0 | PnL=848.28
+2025-10-11 18:57:14,458 INFO Backtesting ETHUSD (crypto) ...
+2025-10-11 18:57:14,591 INFO \U0001f4b0 Fetched ETHUSD (1h) from Binance
+2025-10-11 18:57:14,852 INFO ETHUSD done | Trades=8 | Win%=50.0 | PnL=12824.48
+2025-10-11 18:57:14,853 INFO Backtesting SOLUSD (crypto) ...
+2025-10-11 18:57:14,908 INFO \U0001f4b0 Fetched SOLUSD (1h) from Binance
+2025-10-11 18:57:15,167 INFO SOLUSD done | Trades=6 | Win%=50.0 | PnL=3989.76
+2025-10-11 18:57:15,167 INFO Backtesting DOGEUSD (crypto) ...
+2025-10-11 18:57:15,265 INFO \U0001f4b0 Fetched DOGEUSD (1h) from Binance
+2025-10-11 18:57:15,524 INFO DOGEUSD done | Trades=9 | Win%=55.6 | PnL=12513.55
+2025-10-11 18:57:15,524 INFO Backtesting AVAXUSD (crypto) ...
+2025-10-11 18:57:15,583 INFO \U0001f4b0 Fetched AVAXUSD (1h) from Binance
+2025-10-11 18:57:15,833 INFO AVAXUSD done | Trades=7 | Win%=28.6 | PnL=5199.77
+2025-10-11 18:57:15,833 INFO Backtesting XRPUSD (crypto) ...
+2025-10-11 18:57:15,891 INFO \U0001f4b0 Fetched XRPUSD (1h) from Binance
+2025-10-11 18:57:16,124 INFO XRPUSD done | Trades=5 | Win%=20.0 | PnL=442.08
+2025-10-11 18:57:16,124 INFO Backtesting LINKUSD (crypto) ...
+2025-10-11 18:57:16,185 INFO \U0001f4b0 Fetched LINKUSD (1h) from Binance
+2025-10-11 18:57:16,425 INFO LINKUSD done | Trades=6 | Win%=66.7 | PnL=15044.64
+2025-10-11 18:57:16,441 INFO \u2705 Backtest complete | 45 total trades | saved to logs/backtest_results.csv
+2025-10-11 19:00:58,877 INFO Backtesting NVDA (stock) ...
+2025-10-11 19:00:59,328 INFO \U0001f4b0 Fetched NVDA (1h) from Yahoo Finance
+2025-10-11 19:00:59,489 WARNING No data or trades for NVDA
+2025-10-11 19:00:59,489 INFO Backtesting TSLA (stock) ...
+2025-10-11 19:00:59,686 INFO \U0001f4b0 Fetched TSLA (1h) from Yahoo Finance
+2025-10-11 19:00:59,852 WARNING No data or trades for TSLA
+2025-10-11 19:00:59,852 INFO Backtesting AMZN (stock) ...
+2025-10-11 19:01:00,012 INFO \U0001f4b0 Fetched AMZN (1h) from Yahoo Finance
+2025-10-11 19:01:00,178 WARNING No data or trades for AMZN
+2025-10-11 19:01:00,178 INFO Backtesting META (stock) ...
+2025-10-11 19:01:00,411 INFO \U0001f4b0 Fetched META (1h) from Yahoo Finance
+2025-10-11 19:01:00,560 WARNING No data or trades for META
+2025-10-11 19:01:00,562 INFO Backtesting SMCI (stock) ...
+2025-10-11 19:01:00,707 INFO \U0001f4b0 Fetched SMCI (1h) from Yahoo Finance
+2025-10-11 19:01:00,880 WARNING No data or trades for SMCI
+2025-10-11 19:01:00,880 INFO Backtesting COIN (stock) ...
+2025-10-11 19:01:01,052 INFO \U0001f4b0 Fetched COIN (1h) from Yahoo Finance
+2025-10-11 19:01:01,186 WARNING No data or trades for COIN
+2025-10-11 19:01:01,186 INFO Backtesting PLTR (stock) ...
+2025-10-11 19:01:01,383 INFO \U0001f4b0 Fetched PLTR (1h) from Yahoo Finance
+2025-10-11 19:01:01,526 WARNING No data or trades for PLTR
+2025-10-11 19:01:01,526 INFO Backtesting BTCUSD (crypto) ...
+2025-10-11 19:01:01,596 INFO \U0001f4b0 Fetched BTCUSD (1h) from Binance
+2025-10-11 19:01:01,863 INFO BTCUSD done | Trades=4 | Win%=50.0 | PnL=848.28
+2025-10-11 19:01:01,863 INFO Backtesting ETHUSD (crypto) ...
+2025-10-11 19:01:01,986 INFO \U0001f4b0 Fetched ETHUSD (1h) from Binance
+2025-10-11 19:01:02,240 INFO ETHUSD done | Trades=8 | Win%=62.5 | PnL=14219.16
+2025-10-11 19:01:02,240 INFO Backtesting SOLUSD (crypto) ...
+2025-10-11 19:01:02,368 INFO \U0001f4b0 Fetched SOLUSD (1h) from Binance
+2025-10-11 19:01:02,628 INFO SOLUSD done | Trades=6 | Win%=50.0 | PnL=5082.01
+2025-10-11 19:01:02,628 INFO Backtesting DOGEUSD (crypto) ...
+2025-10-11 19:01:02,680 INFO \U0001f4b0 Fetched DOGEUSD (1h) from Binance
+2025-10-11 19:01:02,946 INFO DOGEUSD done | Trades=9 | Win%=55.6 | PnL=12513.55
+2025-10-11 19:01:02,946 INFO Backtesting AVAXUSD (crypto) ...
+2025-10-11 19:01:03,003 INFO \U0001f4b0 Fetched AVAXUSD (1h) from Binance
+2025-10-11 19:01:03,241 INFO AVAXUSD done | Trades=7 | Win%=28.6 | PnL=5199.77
+2025-10-11 19:01:03,241 INFO Backtesting XRPUSD (crypto) ...
+2025-10-11 19:01:03,314 INFO \U0001f4b0 Fetched XRPUSD (1h) from Binance
+2025-10-11 19:01:03,566 INFO XRPUSD done | Trades=5 | Win%=20.0 | PnL=442.08
+2025-10-11 19:01:03,566 INFO Backtesting LINKUSD (crypto) ...
+2025-10-11 19:01:03,616 INFO \U0001f4b0 Fetched LINKUSD (1h) from Binance
+2025-10-11 19:01:03,868 INFO LINKUSD done | Trades=6 | Win%=66.7 | PnL=16107.66
+2025-10-11 19:01:03,880 INFO \u2705 Backtest complete | 45 total trades | saved to logs/backtest_results.csv
+2025-10-11 19:12:50,254 INFO Backtesting NVDA (stock) ...
+2025-10-11 19:12:50,665 INFO \U0001f4b0 Fetched NVDA (1h) from Yahoo Finance
+2025-10-11 19:12:50,817 WARNING No data or trades for NVDA
+2025-10-11 19:12:50,817 INFO Backtesting TSLA (stock) ...
+2025-10-11 19:12:50,965 INFO \U0001f4b0 Fetched TSLA (1h) from Yahoo Finance
+2025-10-11 19:12:51,094 WARNING No data or trades for TSLA
+2025-10-11 19:12:51,094 INFO Backtesting AMZN (stock) ...
+2025-10-11 19:12:51,224 INFO \U0001f4b0 Fetched AMZN (1h) from Yahoo Finance
+2025-10-11 19:12:51,362 WARNING No data or trades for AMZN
+2025-10-11 19:12:51,363 INFO Backtesting META (stock) ...
+2025-10-11 19:12:51,537 INFO \U0001f4b0 Fetched META (1h) from Yahoo Finance
+2025-10-11 19:12:51,666 WARNING No data or trades for META
+2025-10-11 19:12:51,667 INFO Backtesting SMCI (stock) ...
+2025-10-11 19:12:51,816 INFO \U0001f4b0 Fetched SMCI (1h) from Yahoo Finance
+2025-10-11 19:12:51,954 WARNING No data or trades for SMCI
+2025-10-11 19:12:51,955 INFO Backtesting COIN (stock) ...
+2025-10-11 19:12:52,098 INFO \U0001f4b0 Fetched COIN (1h) from Yahoo Finance
+2025-10-11 19:12:52,243 WARNING No data or trades for COIN
+2025-10-11 19:12:52,243 INFO Backtesting PLTR (stock) ...
+2025-10-11 19:12:52,427 INFO \U0001f4b0 Fetched PLTR (1h) from Yahoo Finance
+2025-10-11 19:12:52,567 WARNING No data or trades for PLTR
+2025-10-11 19:12:52,568 INFO Backtesting BTCUSD (crypto) ...
+2025-10-11 19:12:52,625 INFO \U0001f4b0 Fetched BTCUSD (15m) from Binance
+2025-10-11 19:12:52,859 INFO BTCUSD done | Trades=1 | Win%=0.0 | PnL=-1926.28
+2025-10-11 19:12:52,859 INFO Backtesting ETHUSD (crypto) ...
+2025-10-11 19:12:52,971 INFO \U0001f4b0 Fetched ETHUSD (15m) from Binance
+2025-10-11 19:12:53,191 INFO ETHUSD done | Trades=5 | Win%=0.0 | PnL=-11279.38
+2025-10-11 19:12:53,191 INFO Backtesting SOLUSD (crypto) ...
+2025-10-11 19:12:53,243 INFO \U0001f4b0 Fetched SOLUSD (15m) from Binance
+2025-10-11 19:12:53,486 INFO SOLUSD done | Trades=2 | Win%=50.0 | PnL=2276.59
+2025-10-11 19:12:53,486 INFO Backtesting DOGEUSD (crypto) ...
+2025-10-11 19:12:53,543 INFO \U0001f4b0 Fetched DOGEUSD (15m) from Binance
+2025-10-11 19:12:53,767 INFO DOGEUSD done | Trades=8 | Win%=25.0 | PnL=-2794.83
+2025-10-11 19:12:53,768 INFO Backtesting AVAXUSD (crypto) ...
+2025-10-11 19:12:53,826 INFO \U0001f4b0 Fetched AVAXUSD (15m) from Binance
+2025-10-11 19:12:54,035 INFO AVAXUSD done | Trades=8 | Win%=37.5 | PnL=3685.11
+2025-10-11 19:12:54,035 INFO Backtesting XRPUSD (crypto) ...
+2025-10-11 19:12:54,095 INFO \U0001f4b0 Fetched XRPUSD (15m) from Binance
+2025-10-11 19:12:54,402 INFO XRPUSD done | Trades=4 | Win%=25.0 | PnL=-4816.91
+2025-10-11 19:12:54,402 INFO Backtesting LINKUSD (crypto) ...
+2025-10-11 19:12:54,445 INFO \U0001f4b0 Fetched LINKUSD (15m) from Binance
+2025-10-11 19:12:54,675 INFO LINKUSD done | Trades=8 | Win%=25.0 | PnL=-264.54
+2025-10-11 19:12:54,676 INFO Backtesting BNBUSD (crypto) ...
+2025-10-11 19:12:54,725 INFO \U0001f4b0 Fetched BNBUSD (15m) from Binance
+2025-10-11 19:12:54,967 INFO BNBUSD done | Trades=4 | Win%=0.0 | PnL=-8164.99
+2025-10-11 19:12:54,968 INFO Backtesting DOTUSD (crypto) ...
+2025-10-11 19:12:55,015 INFO \U0001f4b0 Fetched DOTUSD (15m) from Binance
+2025-10-11 19:12:55,222 INFO DOTUSD done | Trades=5 | Win%=40.0 | PnL=12562.14
+2025-10-11 19:12:55,222 INFO Backtesting UNIUSD (crypto) ...
+2025-10-11 19:12:55,275 INFO \U0001f4b0 Fetched UNIUSD (15m) from Binance
+2025-10-11 19:12:55,472 INFO UNIUSD done | Trades=3 | Win%=66.7 | PnL=10977.21
+2025-10-11 19:12:55,472 INFO Backtesting MATICUSD (crypto) ...
+2025-10-11 19:12:55,543 INFO \U0001f4b0 Fetched MATICUSD (15m) from Binance
+2025-10-11 19:12:55,786 INFO MATICUSD done | Trades=1 | Win%=0.0 | PnL=-1797.05
+2025-10-11 19:12:55,798 INFO Backtesting LTCUSD (crypto) ...
+2025-10-11 19:12:55,853 INFO \U0001f4b0 Fetched LTCUSD (15m) from Binance
+2025-10-11 19:12:56,096 INFO LTCUSD done | Trades=6 | Win%=66.7 | PnL=26975.23
+2025-10-11 19:12:56,117 INFO \u2705 Backtest complete | 55 total trades | saved to logs/backtest_results.csv
+2025-10-11 19:17:38,239 INFO Backtesting NVDA (stock) ...
+2025-10-11 19:17:38,644 INFO \U0001f4b0 Fetched NVDA (1h) from Yahoo Finance
+2025-10-11 19:17:38,791 WARNING No data or trades for NVDA
+2025-10-11 19:17:38,791 INFO Backtesting TSLA (stock) ...
+2025-10-11 19:17:38,951 INFO \U0001f4b0 Fetched TSLA (1h) from Yahoo Finance
+2025-10-11 19:17:39,099 WARNING No data or trades for TSLA
+2025-10-11 19:17:39,100 INFO Backtesting AMZN (stock) ...
+2025-10-11 19:17:39,255 INFO \U0001f4b0 Fetched AMZN (1h) from Yahoo Finance
+2025-10-11 19:17:39,418 WARNING No data or trades for AMZN
+2025-10-11 19:17:39,419 INFO Backtesting META (stock) ...
+2025-10-11 19:17:39,591 INFO \U0001f4b0 Fetched META (1h) from Yahoo Finance
+2025-10-11 19:17:39,719 WARNING No data or trades for META
+2025-10-11 19:17:39,719 INFO Backtesting SMCI (stock) ...
+2025-10-11 19:17:39,865 INFO \U0001f4b0 Fetched SMCI (1h) from Yahoo Finance
+2025-10-11 19:17:39,999 WARNING No data or trades for SMCI
+2025-10-11 19:17:40,000 INFO Backtesting COIN (stock) ...
+2025-10-11 19:17:40,148 INFO \U0001f4b0 Fetched COIN (1h) from Yahoo Finance
+2025-10-11 19:17:40,272 WARNING No data or trades for COIN
+2025-10-11 19:17:40,272 INFO Backtesting PLTR (stock) ...
+2025-10-11 19:17:40,438 INFO \U0001f4b0 Fetched PLTR (1h) from Yahoo Finance
+2025-10-11 19:17:40,574 WARNING No data or trades for PLTR
+2025-10-11 19:17:40,575 INFO Backtesting BTCUSD (crypto) ...
+2025-10-11 19:17:40,668 INFO \U0001f4b0 Fetched BTCUSD (15m) from Binance
+2025-10-11 19:17:40,893 INFO BTCUSD done | Trades=1 | Win%=100.0 | PnL=6734.28
+2025-10-11 19:17:40,893 INFO Backtesting ETHUSD (crypto) ...
+2025-10-11 19:17:41,004 INFO \U0001f4b0 Fetched ETHUSD (15m) from Binance
+2025-10-11 19:17:41,223 INFO ETHUSD done | Trades=6 | Win%=33.3 | PnL=-1329.18
+2025-10-11 19:17:41,223 INFO Backtesting SOLUSD (crypto) ...
+2025-10-11 19:17:41,291 INFO \U0001f4b0 Fetched SOLUSD (15m) from Binance
+2025-10-11 19:17:41,536 INFO SOLUSD done | Trades=2 | Win%=50.0 | PnL=2276.59
+2025-10-11 19:17:41,537 INFO Backtesting DOGEUSD (crypto) ...
+2025-10-11 19:17:41,590 INFO \U0001f4b0 Fetched DOGEUSD (15m) from Binance
+2025-10-11 19:17:41,824 INFO DOGEUSD done | Trades=10 | Win%=40.0 | PnL=6182.98
+2025-10-11 19:17:41,824 INFO Backtesting AVAXUSD (crypto) ...
+2025-10-11 19:17:41,876 INFO \U0001f4b0 Fetched AVAXUSD (15m) from Binance
+2025-10-11 19:17:42,095 INFO AVAXUSD done | Trades=10 | Win%=30.0 | PnL=-2133.47
+2025-10-11 19:17:42,096 INFO Backtesting XRPUSD (crypto) ...
+2025-10-11 19:17:42,142 INFO \U0001f4b0 Fetched XRPUSD (15m) from Binance
+2025-10-11 19:17:42,425 INFO XRPUSD done | Trades=4 | Win%=25.0 | PnL=-4816.91
+2025-10-11 19:17:42,441 INFO Backtesting LINKUSD (crypto) ...
+2025-10-11 19:17:42,491 INFO \U0001f4b0 Fetched LINKUSD (15m) from Binance
+2025-10-11 19:17:42,707 INFO LINKUSD done | Trades=11 | Win%=27.3 | PnL=-54.59
+2025-10-11 19:17:42,707 INFO Backtesting BNBUSD (crypto) ...
+2025-10-11 19:17:42,774 INFO \U0001f4b0 Fetched BNBUSD (15m) from Binance
+2025-10-11 19:17:43,003 INFO BNBUSD done | Trades=5 | Win%=0.0 | PnL=-10049.27
+2025-10-11 19:17:43,003 INFO Backtesting DOTUSD (crypto) ...
+2025-10-11 19:17:43,061 INFO \U0001f4b0 Fetched DOTUSD (15m) from Binance
+2025-10-11 19:17:43,269 INFO DOTUSD done | Trades=5 | Win%=40.0 | PnL=12562.14
+2025-10-11 19:17:43,269 INFO Backtesting UNIUSD (crypto) ...
+2025-10-11 19:17:43,326 INFO \U0001f4b0 Fetched UNIUSD (15m) from Binance
+2025-10-11 19:17:43,504 INFO UNIUSD done | Trades=3 | Win%=66.7 | PnL=10977.21
+2025-10-11 19:17:43,504 INFO Backtesting MATICUSD (crypto) ...
+2025-10-11 19:17:43,561 INFO \U0001f4b0 Fetched MATICUSD (15m) from Binance
+2025-10-11 19:17:43,800 INFO MATICUSD done | Trades=2 | Win%=0.0 | PnL=-3794.14
+2025-10-11 19:17:43,800 INFO Backtesting LTCUSD (crypto) ...
+2025-10-11 19:17:43,849 INFO \U0001f4b0 Fetched LTCUSD (15m) from Binance
+2025-10-11 19:17:44,066 INFO LTCUSD done | Trades=7 | Win%=57.1 | PnL=24715.04
+2025-10-11 19:17:44,082 INFO \u2705 Backtest complete | 66 total trades | saved to logs/backtest_results.csv
+2025-10-11 19:21:52,005 INFO Backtesting NVDA (stock) ...
+2025-10-11 19:21:52,430 INFO \U0001f4b0 Fetched NVDA (1h) from Yahoo Finance
+2025-10-11 19:21:52,592 WARNING No data or trades for NVDA
+2025-10-11 19:21:52,592 INFO Backtesting TSLA (stock) ...
+2025-10-11 19:21:52,737 INFO \U0001f4b0 Fetched TSLA (1h) from Yahoo Finance
+2025-10-11 19:21:52,870 WARNING No data or trades for TSLA
+2025-10-11 19:21:52,872 INFO Backtesting AMZN (stock) ...
+2025-10-11 19:21:53,035 INFO \U0001f4b0 Fetched AMZN (1h) from Yahoo Finance
+2025-10-11 19:21:53,154 WARNING No data or trades for AMZN
+2025-10-11 19:21:53,154 INFO Backtesting META (stock) ...
+2025-10-11 19:21:53,322 INFO \U0001f4b0 Fetched META (1h) from Yahoo Finance
+2025-10-11 19:21:53,449 WARNING No data or trades for META
+2025-10-11 19:21:53,450 INFO Backtesting SMCI (stock) ...
+2025-10-11 19:21:53,601 INFO \U0001f4b0 Fetched SMCI (1h) from Yahoo Finance
+2025-10-11 19:21:53,729 WARNING No data or trades for SMCI
+2025-10-11 19:21:53,729 INFO Backtesting COIN (stock) ...
+2025-10-11 19:21:53,977 INFO \U0001f4b0 Fetched COIN (1h) from Yahoo Finance
+2025-10-11 19:21:54,112 WARNING No data or trades for COIN
+2025-10-11 19:21:54,113 INFO Backtesting PLTR (stock) ...
+2025-10-11 19:21:54,264 INFO \U0001f4b0 Fetched PLTR (1h) from Yahoo Finance
+2025-10-11 19:21:54,387 WARNING No data or trades for PLTR
+2025-10-11 19:21:54,387 INFO Backtesting BTCUSD (crypto) ...
+2025-10-11 19:21:54,456 INFO \U0001f4b0 Fetched BTCUSD (5m) from Binance
+2025-10-11 19:21:54,682 INFO BTCUSD done | Trades=1 | Win%=100.0 | PnL=4248.18
+2025-10-11 19:21:54,682 INFO Backtesting ETHUSD (crypto) ...
+2025-10-11 19:21:54,787 INFO \U0001f4b0 Fetched ETHUSD (5m) from Binance
+2025-10-11 19:21:55,004 INFO ETHUSD done | Trades=6 | Win%=33.3 | PnL=7954.62
+2025-10-11 19:21:55,020 INFO Backtesting SOLUSD (crypto) ...
+2025-10-11 19:21:55,089 INFO \U0001f4b0 Fetched SOLUSD (5m) from Binance
+2025-10-11 19:21:55,300 INFO SOLUSD done | Trades=6 | Win%=50.0 | PnL=6123.50
+2025-10-11 19:21:55,300 INFO Backtesting DOGEUSD (crypto) ...
+2025-10-11 19:21:55,359 INFO \U0001f4b0 Fetched DOGEUSD (5m) from Binance
+2025-10-11 19:21:55,566 INFO DOGEUSD done | Trades=8 | Win%=37.5 | PnL=7191.92
+2025-10-11 19:21:55,582 INFO Backtesting AVAXUSD (crypto) ...
+2025-10-11 19:21:55,628 INFO \U0001f4b0 Fetched AVAXUSD (5m) from Binance
+2025-10-11 19:21:55,810 INFO AVAXUSD done | Trades=5 | Win%=40.0 | PnL=-11496.60
+2025-10-11 19:21:55,811 INFO Backtesting XRPUSD (crypto) ...
+2025-10-11 19:21:55,870 INFO \U0001f4b0 Fetched XRPUSD (5m) from Binance
+2025-10-11 19:21:56,066 INFO XRPUSD done | Trades=4 | Win%=50.0 | PnL=826.94
+2025-10-11 19:21:56,066 INFO Backtesting LINKUSD (crypto) ...
+2025-10-11 19:21:56,121 INFO \U0001f4b0 Fetched LINKUSD (5m) from Binance
+2025-10-11 19:21:56,333 INFO LINKUSD done | Trades=6 | Win%=33.3 | PnL=9156.55
+2025-10-11 19:21:56,334 INFO Backtesting BNBUSD (crypto) ...
+2025-10-11 19:21:56,401 INFO \U0001f4b0 Fetched BNBUSD (5m) from Binance
+2025-10-11 19:21:56,643 INFO BNBUSD done | Trades=6 | Win%=33.3 | PnL=643.66
+2025-10-11 19:21:56,643 INFO Backtesting DOTUSD (crypto) ...
+2025-10-11 19:21:56,703 INFO \U0001f4b0 Fetched DOTUSD (5m) from Binance
+2025-10-11 19:21:56,883 INFO DOTUSD done | Trades=4 | Win%=50.0 | PnL=442.72
+2025-10-11 19:21:56,884 INFO Backtesting UNIUSD (crypto) ...
+2025-10-11 19:21:56,922 INFO \U0001f4b0 Fetched UNIUSD (5m) from Binance
+2025-10-11 19:21:57,064 INFO UNIUSD done | Trades=4 | Win%=50.0 | PnL=-465.49
+2025-10-11 19:21:57,065 INFO Backtesting MATICUSD (crypto) ...
+2025-10-11 19:21:57,138 INFO \U0001f4b0 Fetched MATICUSD (5m) from Binance
+2025-10-11 19:21:57,361 INFO MATICUSD done | Trades=1 | Win%=100.0 | PnL=4363.58
+2025-10-11 19:21:57,362 INFO Backtesting LTCUSD (crypto) ...
+2025-10-11 19:21:57,407 INFO \U0001f4b0 Fetched LTCUSD (5m) from Binance
+2025-10-11 19:21:57,600 INFO LTCUSD done | Trades=6 | Win%=50.0 | PnL=23534.67
+2025-10-11 19:21:57,605 INFO \u2705 Backtest complete | 57 total trades | saved to logs/backtest_results.csv
+2025-10-11 19:27:30,560 INFO Backtesting NVDA (stock) ...
+2025-10-11 19:27:31,004 INFO \U0001f4b0 Fetched NVDA (1h) from Yahoo Finance
+2025-10-11 19:27:31,122 WARNING No data or trades for NVDA
+2025-10-11 19:27:31,122 INFO Backtesting TSLA (stock) ...
+2025-10-11 19:27:31,288 INFO \U0001f4b0 Fetched TSLA (1h) from Yahoo Finance
+2025-10-11 19:27:31,409 WARNING No data or trades for TSLA
+2025-10-11 19:27:31,409 INFO Backtesting AMZN (stock) ...
+2025-10-11 19:27:31,573 INFO \U0001f4b0 Fetched AMZN (1h) from Yahoo Finance
+2025-10-11 19:27:31,693 WARNING No data or trades for AMZN
+2025-10-11 19:27:31,694 INFO Backtesting META (stock) ...
+2025-10-11 19:27:31,840 INFO \U0001f4b0 Fetched META (1h) from Yahoo Finance
+2025-10-11 19:27:31,954 WARNING No data or trades for META
+2025-10-11 19:27:31,954 INFO Backtesting SMCI (stock) ...
+2025-10-11 19:27:32,111 INFO \U0001f4b0 Fetched SMCI (1h) from Yahoo Finance
+2025-10-11 19:27:32,220 WARNING No data or trades for SMCI
+2025-10-11 19:27:32,220 INFO Backtesting COIN (stock) ...
+2025-10-11 19:27:32,373 INFO \U0001f4b0 Fetched COIN (1h) from Yahoo Finance
+2025-10-11 19:27:32,493 WARNING No data or trades for COIN
+2025-10-11 19:27:32,494 INFO Backtesting PLTR (stock) ...
+2025-10-11 19:27:32,659 INFO \U0001f4b0 Fetched PLTR (1h) from Yahoo Finance
+2025-10-11 19:27:32,771 WARNING No data or trades for PLTR
+2025-10-11 19:27:32,771 INFO Backtesting BTCUSD (crypto) ...
+2025-10-11 19:27:32,835 INFO \U0001f4b0 Fetched BTCUSD (5m) from Binance
+2025-10-11 19:27:33,037 INFO BTCUSD done | Trades=1 | Win%=100.0 | PnL=4248.18
+2025-10-11 19:27:33,037 INFO Backtesting ETHUSD (crypto) ...
+2025-10-11 19:27:33,090 INFO \U0001f4b0 Fetched ETHUSD (5m) from Binance
+2025-10-11 19:27:33,363 INFO ETHUSD done | Trades=6 | Win%=33.3 | PnL=7954.62
+2025-10-11 19:27:33,364 INFO Backtesting SOLUSD (crypto) ...
+2025-10-11 19:27:33,441 INFO \U0001f4b0 Fetched SOLUSD (5m) from Binance
+2025-10-11 19:27:33,645 INFO SOLUSD done | Trades=6 | Win%=50.0 | PnL=6123.50
+2025-10-11 19:27:33,645 INFO Backtesting DOGEUSD (crypto) ...
+2025-10-11 19:27:33,711 INFO \U0001f4b0 Fetched DOGEUSD (5m) from Binance
+2025-10-11 19:27:33,909 INFO DOGEUSD done | Trades=8 | Win%=37.5 | PnL=7191.92
+2025-10-11 19:27:33,909 INFO Backtesting AVAXUSD (crypto) ...
+2025-10-11 19:27:33,957 INFO \U0001f4b0 Fetched AVAXUSD (5m) from Binance
+2025-10-11 19:27:34,128 INFO AVAXUSD done | Trades=5 | Win%=40.0 | PnL=-11496.60
+2025-10-11 19:27:34,128 INFO Backtesting XRPUSD (crypto) ...
+2025-10-11 19:27:34,173 INFO \U0001f4b0 Fetched XRPUSD (5m) from Binance
+2025-10-11 19:27:34,379 INFO XRPUSD done | Trades=4 | Win%=50.0 | PnL=826.94
+2025-10-11 19:27:34,379 INFO Backtesting LINKUSD (crypto) ...
+2025-10-11 19:27:34,429 INFO \U0001f4b0 Fetched LINKUSD (5m) from Binance
+2025-10-11 19:27:34,613 INFO LINKUSD done | Trades=6 | Win%=33.3 | PnL=9156.55
+2025-10-11 19:27:34,613 INFO Backtesting BNBUSD (crypto) ...
+2025-10-11 19:27:34,656 INFO \U0001f4b0 Fetched BNBUSD (5m) from Binance
+2025-10-11 19:27:34,863 INFO BNBUSD done | Trades=6 | Win%=33.3 | PnL=643.66
+2025-10-11 19:27:34,863 INFO Backtesting DOTUSD (crypto) ...
+2025-10-11 19:27:34,909 INFO \U0001f4b0 Fetched DOTUSD (5m) from Binance
+2025-10-11 19:27:35,068 INFO DOTUSD done | Trades=4 | Win%=50.0 | PnL=442.72
+2025-10-11 19:27:35,068 INFO Backtesting UNIUSD (crypto) ...
+2025-10-11 19:27:35,123 INFO \U0001f4b0 Fetched UNIUSD (5m) from Binance
+2025-10-11 19:27:35,222 INFO UNIUSD done | Trades=4 | Win%=50.0 | PnL=-465.49
+2025-10-11 19:27:35,222 INFO Backtesting MATICUSD (crypto) ...
+2025-10-11 19:27:35,292 INFO \U0001f4b0 Fetched MATICUSD (5m) from Binance
+2025-10-11 19:27:35,507 INFO MATICUSD done | Trades=1 | Win%=100.0 | PnL=4363.58
+2025-10-11 19:27:35,507 INFO Backtesting LTCUSD (crypto) ...
+2025-10-11 19:27:35,563 INFO \U0001f4b0 Fetched LTCUSD (5m) from Binance
+2025-10-11 19:27:35,719 INFO LTCUSD done | Trades=6 | Win%=50.0 | PnL=23534.67
+2025-10-11 19:27:35,735 INFO \u2705 Backtest complete | 57 total trades | saved to logs/backtest_results.csv
+2025-10-11 19:35:17,012 INFO Backtesting NVDA (stock) ...
+2025-10-11 19:35:17,442 INFO \U0001f4b0 Fetched NVDA (1h) from Yahoo Finance
+2025-10-11 19:35:17,612 INFO \U0001f4b0 Fetched NVDA (1h) from Yahoo Finance
+2025-10-11 19:35:17,733 WARNING No data or trades for NVDA
+2025-10-11 19:35:17,734 INFO Backtesting TSLA (stock) ...
+2025-10-11 19:35:17,925 INFO \U0001f4b0 Fetched TSLA (1h) from Yahoo Finance
+2025-10-11 19:35:18,048 INFO \U0001f4b0 Fetched TSLA (1h) from Yahoo Finance
+2025-10-11 19:35:18,191 WARNING No data or trades for TSLA
+2025-10-11 19:35:18,191 INFO Backtesting AMZN (stock) ...
+2025-10-11 19:35:18,346 INFO \U0001f4b0 Fetched AMZN (1h) from Yahoo Finance
+2025-10-11 19:35:18,497 INFO \U0001f4b0 Fetched AMZN (1h) from Yahoo Finance
+2025-10-11 19:35:18,581 WARNING No data or trades for AMZN
+2025-10-11 19:35:18,597 INFO Backtesting META (stock) ...
+2025-10-11 19:35:18,749 INFO \U0001f4b0 Fetched META (1h) from Yahoo Finance
+2025-10-11 19:35:18,902 INFO \U0001f4b0 Fetched META (1h) from Yahoo Finance
+2025-10-11 19:35:18,996 WARNING No data or trades for META
+2025-10-11 19:35:18,996 INFO Backtesting SMCI (stock) ...
+2025-10-11 19:35:19,147 INFO \U0001f4b0 Fetched SMCI (1h) from Yahoo Finance
+2025-10-11 19:35:19,310 INFO \U0001f4b0 Fetched SMCI (1h) from Yahoo Finance
+2025-10-11 19:35:19,413 WARNING No data or trades for SMCI
+2025-10-11 19:35:19,414 INFO Backtesting COIN (stock) ...
+2025-10-11 19:35:19,546 INFO \U0001f4b0 Fetched COIN (1h) from Yahoo Finance
+2025-10-11 19:35:19,715 INFO \U0001f4b0 Fetched COIN (1h) from Yahoo Finance
+2025-10-11 19:35:19,812 WARNING No data or trades for COIN
+2025-10-11 19:35:19,812 INFO Backtesting PLTR (stock) ...
+2025-10-11 19:35:19,978 INFO \U0001f4b0 Fetched PLTR (1h) from Yahoo Finance
+2025-10-11 19:35:20,170 INFO \U0001f4b0 Fetched PLTR (1h) from Yahoo Finance
+2025-10-11 19:35:20,263 WARNING No data or trades for PLTR
+2025-10-11 19:35:20,263 INFO Backtesting BTCUSD (crypto) ...
+2025-10-11 19:35:20,331 INFO \U0001f4b0 Fetched BTCUSD (5m) from Binance
+2025-10-11 19:35:20,382 INFO \U0001f4b0 Fetched BTCUSD (1h) from Binance
+2025-10-11 19:36:59,425 INFO Backtesting NVDA (stock) ...
+2025-10-11 19:36:59,838 INFO \U0001f4b0 Fetched NVDA (1h) from Yahoo Finance
+2025-10-11 19:36:59,990 INFO \U0001f4b0 Fetched NVDA (1h) from Yahoo Finance
+2025-10-11 19:37:00,102 WARNING No data or trades for NVDA
+2025-10-11 19:37:00,102 INFO Backtesting TSLA (stock) ...
+2025-10-11 19:37:00,249 INFO \U0001f4b0 Fetched TSLA (1h) from Yahoo Finance
+2025-10-11 19:37:00,405 INFO \U0001f4b0 Fetched TSLA (1h) from Yahoo Finance
+2025-10-11 19:37:00,502 WARNING No data or trades for TSLA
+2025-10-11 19:37:00,502 INFO Backtesting AMZN (stock) ...
+2025-10-11 19:37:00,705 INFO \U0001f4b0 Fetched AMZN (1h) from Yahoo Finance
+2025-10-11 19:37:00,863 INFO \U0001f4b0 Fetched AMZN (1h) from Yahoo Finance
+2025-10-11 19:37:00,952 WARNING No data or trades for AMZN
+2025-10-11 19:37:00,968 INFO Backtesting META (stock) ...
+2025-10-11 19:37:01,224 INFO \U0001f4b0 Fetched META (1h) from Yahoo Finance
+2025-10-11 19:37:01,379 INFO \U0001f4b0 Fetched META (1h) from Yahoo Finance
+2025-10-11 19:37:01,479 WARNING No data or trades for META
+2025-10-11 19:37:01,479 INFO Backtesting SMCI (stock) ...
+2025-10-11 19:37:01,655 INFO \U0001f4b0 Fetched SMCI (1h) from Yahoo Finance
+2025-10-11 19:37:01,808 INFO \U0001f4b0 Fetched SMCI (1h) from Yahoo Finance
+2025-10-11 19:37:01,902 WARNING No data or trades for SMCI
+2025-10-11 19:37:01,902 INFO Backtesting COIN (stock) ...
+2025-10-11 19:37:02,054 INFO \U0001f4b0 Fetched COIN (1h) from Yahoo Finance
+2025-10-11 19:37:02,192 INFO \U0001f4b0 Fetched COIN (1h) from Yahoo Finance
+2025-10-11 19:37:02,286 WARNING No data or trades for COIN
+2025-10-11 19:37:02,302 INFO Backtesting PLTR (stock) ...
+2025-10-11 19:37:02,440 INFO \U0001f4b0 Fetched PLTR (1h) from Yahoo Finance
+2025-10-11 19:37:02,590 INFO \U0001f4b0 Fetched PLTR (1h) from Yahoo Finance
+2025-10-11 19:37:02,700 WARNING No data or trades for PLTR
+2025-10-11 19:37:02,700 INFO Backtesting BTCUSD (crypto) ...
+2025-10-11 19:37:02,801 INFO \U0001f4b0 Fetched BTCUSD (5m) from Binance
+2025-10-11 19:37:02,862 INFO \U0001f4b0 Fetched BTCUSD (1h) from Binance
+2025-10-11 19:37:03,116 INFO BTCUSD done | Trades=1 | Win%=100.0 | PnL=4248.18
+2025-10-11 19:37:03,116 INFO Backtesting ETHUSD (crypto) ...
+2025-10-11 19:37:03,160 INFO \U0001f4b0 Fetched ETHUSD (5m) from Binance
+2025-10-11 19:37:03,226 INFO \U0001f4b0 Fetched ETHUSD (1h) from Binance
+2025-10-11 19:37:03,410 INFO ETHUSD done | Trades=17 | Win%=47.1 | PnL=15482.53
+2025-10-11 19:37:03,410 INFO Backtesting SOLUSD (crypto) ...
+2025-10-11 19:37:03,477 INFO \U0001f4b0 Fetched SOLUSD (5m) from Binance
+2025-10-11 19:37:03,540 INFO \U0001f4b0 Fetched SOLUSD (1h) from Binance
+2025-10-11 19:37:03,735 INFO SOLUSD done | Trades=12 | Win%=41.7 | PnL=7648.68
+2025-10-11 19:37:03,735 INFO Backtesting DOGEUSD (crypto) ...
+2025-10-11 19:37:03,794 INFO \U0001f4b0 Fetched DOGEUSD (5m) from Binance
+2025-10-11 19:37:03,858 INFO \U0001f4b0 Fetched DOGEUSD (1h) from Binance
+2025-10-11 19:37:04,049 INFO DOGEUSD done | Trades=25 | Win%=48.0 | PnL=6278.85
+2025-10-11 19:37:04,049 INFO Backtesting AVAXUSD (crypto) ...
+2025-10-11 19:37:04,112 INFO \U0001f4b0 Fetched AVAXUSD (5m) from Binance
+2025-10-11 19:37:04,159 INFO \U0001f4b0 Fetched AVAXUSD (1h) from Binance
+2025-10-11 19:37:04,328 INFO AVAXUSD done | Trades=23 | Win%=65.2 | PnL=-10811.27
+2025-10-11 19:37:04,329 INFO Backtesting XRPUSD (crypto) ...
+2025-10-11 19:37:04,369 INFO \U0001f4b0 Fetched XRPUSD (5m) from Binance
+2025-10-11 19:37:04,439 INFO \U0001f4b0 Fetched XRPUSD (1h) from Binance
+2025-10-11 19:37:04,629 INFO XRPUSD done | Trades=24 | Win%=54.2 | PnL=-6091.65
+2025-10-11 19:37:04,629 INFO Backtesting LINKUSD (crypto) ...
+2025-10-11 19:37:04,699 INFO \U0001f4b0 Fetched LINKUSD (5m) from Binance
+2025-10-11 19:37:04,756 INFO \U0001f4b0 Fetched LINKUSD (1h) from Binance
+2025-10-11 19:37:04,925 INFO LINKUSD done | Trades=23 | Win%=52.2 | PnL=9278.39
+2025-10-11 19:37:04,925 INFO Backtesting BNBUSD (crypto) ...
+2025-10-11 19:37:04,994 INFO \U0001f4b0 Fetched BNBUSD (5m) from Binance
+2025-10-11 19:37:05,037 INFO \U0001f4b0 Fetched BNBUSD (1h) from Binance
+2025-10-11 19:37:05,238 INFO BNBUSD done | Trades=6 | Win%=33.3 | PnL=1978.85
+2025-10-11 19:37:05,238 INFO Backtesting DOTUSD (crypto) ...
+2025-10-11 19:37:05,287 INFO \U0001f4b0 Fetched DOTUSD (5m) from Binance
+2025-10-11 19:37:05,337 INFO \U0001f4b0 Fetched DOTUSD (1h) from Binance
+2025-10-11 19:37:05,498 INFO DOTUSD done | Trades=18 | Win%=55.6 | PnL=24109.28
+2025-10-11 19:37:05,498 INFO Backtesting UNIUSD (crypto) ...
+2025-10-11 19:37:05,540 INFO \U0001f4b0 Fetched UNIUSD (5m) from Binance
+2025-10-11 19:37:05,603 INFO \U0001f4b0 Fetched UNIUSD (1h) from Binance
+2025-10-11 19:37:05,702 INFO UNIUSD done | Trades=10 | Win%=40.0 | PnL=8667.29
+2025-10-11 19:37:05,702 INFO Backtesting MATICUSD (crypto) ...
+2025-10-11 19:37:05,761 INFO \U0001f4b0 Fetched MATICUSD (5m) from Binance
+2025-10-11 19:37:05,822 INFO \U0001f4b0 Fetched MATICUSD (1h) from Binance
+2025-10-11 19:37:06,015 INFO MATICUSD done | Trades=1 | Win%=0.0 | PnL=-1531.08
+2025-10-11 19:37:06,015 INFO Backtesting LTCUSD (crypto) ...
+2025-10-11 19:37:06,069 INFO \U0001f4b0 Fetched LTCUSD (5m) from Binance
+2025-10-11 19:37:06,127 INFO \U0001f4b0 Fetched LTCUSD (1h) from Binance
+2025-10-11 19:37:06,300 INFO LTCUSD done | Trades=15 | Win%=60.0 | PnL=-18258.09
+2025-10-11 19:37:06,310 INFO \u2705 Backtest complete | 175 total trades | saved to logs/backtest_results.csv
+2025-10-11 19:43:24,126 INFO Backtesting NVDA (stock) ...
+2025-10-11 19:43:24,547 INFO \U0001f4b0 Fetched NVDA (1h) from Yahoo Finance
+2025-10-11 19:43:24,746 INFO \U0001f4b0 Fetched NVDA (1h) from Yahoo Finance
+2025-10-11 19:43:24,848 WARNING No data or trades for NVDA
+2025-10-11 19:43:24,849 INFO Backtesting TSLA (stock) ...
+2025-10-11 19:43:25,030 INFO \U0001f4b0 Fetched TSLA (1h) from Yahoo Finance
+2025-10-11 19:43:25,172 INFO \U0001f4b0 Fetched TSLA (1h) from Yahoo Finance
+2025-10-11 19:43:25,277 WARNING No data or trades for TSLA
+2025-10-11 19:43:25,278 INFO Backtesting AMZN (stock) ...
+2025-10-11 19:43:25,464 INFO \U0001f4b0 Fetched AMZN (1h) from Yahoo Finance
+2025-10-11 19:43:25,596 INFO \U0001f4b0 Fetched AMZN (1h) from Yahoo Finance
+2025-10-11 19:43:25,699 WARNING No data or trades for AMZN
+2025-10-11 19:43:25,700 INFO Backtesting META (stock) ...
+2025-10-11 19:43:25,916 INFO \U0001f4b0 Fetched META (1h) from Yahoo Finance
+2025-10-11 19:43:26,080 INFO \U0001f4b0 Fetched META (1h) from Yahoo Finance
+2025-10-11 19:43:26,215 WARNING No data or trades for META
+2025-10-11 19:43:26,216 INFO Backtesting SMCI (stock) ...
+2025-10-11 19:43:26,349 INFO \U0001f4b0 Fetched SMCI (1h) from Yahoo Finance
+2025-10-11 19:43:26,511 INFO \U0001f4b0 Fetched SMCI (1h) from Yahoo Finance
+2025-10-11 19:43:26,615 WARNING No data or trades for SMCI
+2025-10-11 19:43:26,615 INFO Backtesting COIN (stock) ...
+2025-10-11 19:43:26,777 INFO \U0001f4b0 Fetched COIN (1h) from Yahoo Finance
+2025-10-11 19:43:26,942 INFO \U0001f4b0 Fetched COIN (1h) from Yahoo Finance
+2025-10-11 19:43:27,048 WARNING No data or trades for COIN
+2025-10-11 19:43:27,049 INFO Backtesting PLTR (stock) ...
+2025-10-11 19:43:27,201 INFO \U0001f4b0 Fetched PLTR (1h) from Yahoo Finance
+2025-10-11 19:43:27,377 INFO \U0001f4b0 Fetched PLTR (1h) from Yahoo Finance
+2025-10-11 19:43:27,487 WARNING No data or trades for PLTR
+2025-10-11 19:43:27,487 INFO Backtesting BTCUSD (crypto) ...
+2025-10-11 19:43:27,556 INFO \U0001f4b0 Fetched BTCUSD (15m) from Binance
+2025-10-11 19:43:27,660 INFO \U0001f4b0 Fetched BTCUSD (1h) from Binance
+2025-10-11 19:43:27,996 INFO BTCUSD done | Trades=4 | Win%=50.0 | PnL=4781.41
+2025-10-11 19:43:27,996 INFO Backtesting ETHUSD (crypto) ...
+2025-10-11 19:43:28,059 INFO \U0001f4b0 Fetched ETHUSD (15m) from Binance
+2025-10-11 19:43:28,126 INFO \U0001f4b0 Fetched ETHUSD (1h) from Binance
+2025-10-11 19:43:28,381 INFO ETHUSD done | Trades=7 | Win%=42.9 | PnL=4250.30
+2025-10-11 19:43:28,381 INFO Backtesting SOLUSD (crypto) ...
+2025-10-11 19:43:28,442 INFO \U0001f4b0 Fetched SOLUSD (15m) from Binance
+2025-10-11 19:43:28,490 INFO \U0001f4b0 Fetched SOLUSD (1h) from Binance
+2025-10-11 19:43:28,707 INFO SOLUSD done | Trades=9 | Win%=55.6 | PnL=12919.65
+2025-10-11 19:43:28,707 INFO Backtesting DOGEUSD (crypto) ...
+2025-10-11 19:43:28,762 INFO \U0001f4b0 Fetched DOGEUSD (15m) from Binance
+2025-10-11 19:43:28,819 INFO \U0001f4b0 Fetched DOGEUSD (1h) from Binance
+2025-10-11 19:43:29,042 INFO DOGEUSD done | Trades=13 | Win%=46.2 | PnL=5134.75
+2025-10-11 19:43:29,043 INFO Backtesting AVAXUSD (crypto) ...
+2025-10-11 19:43:29,094 INFO \U0001f4b0 Fetched AVAXUSD (15m) from Binance
+2025-10-11 19:43:29,142 INFO \U0001f4b0 Fetched AVAXUSD (1h) from Binance
+2025-10-11 19:43:29,375 INFO AVAXUSD done | Trades=23 | Win%=47.8 | PnL=34530.29
+2025-10-11 19:43:29,375 INFO Backtesting XRPUSD (crypto) ...
+2025-10-11 19:43:29,424 INFO \U0001f4b0 Fetched XRPUSD (15m) from Binance
+2025-10-11 19:43:29,475 INFO \U0001f4b0 Fetched XRPUSD (1h) from Binance
+2025-10-11 19:43:29,690 INFO XRPUSD done | Trades=17 | Win%=35.3 | PnL=1363.64
+2025-10-11 19:43:29,690 INFO Backtesting LINKUSD (crypto) ...
+2025-10-11 19:43:29,744 INFO \U0001f4b0 Fetched LINKUSD (15m) from Binance
+2025-10-11 19:43:29,792 INFO \U0001f4b0 Fetched LINKUSD (1h) from Binance
+2025-10-11 19:43:30,025 INFO LINKUSD done | Trades=16 | Win%=50.0 | PnL=18212.56
+2025-10-11 19:43:30,025 INFO Backtesting BNBUSD (crypto) ...
+2025-10-11 19:43:30,093 INFO \U0001f4b0 Fetched BNBUSD (15m) from Binance
+2025-10-11 19:43:30,142 INFO \U0001f4b0 Fetched BNBUSD (1h) from Binance
+2025-10-11 19:43:30,357 INFO BNBUSD done | Trades=8 | Win%=12.5 | PnL=-8513.94
+2025-10-11 19:43:30,357 INFO Backtesting DOTUSD (crypto) ...
+2025-10-11 19:43:30,408 INFO \U0001f4b0 Fetched DOTUSD (15m) from Binance
+2025-10-11 19:43:30,458 INFO \U0001f4b0 Fetched DOTUSD (1h) from Binance
+2025-10-11 19:43:30,692 INFO DOTUSD done | Trades=17 | Win%=52.9 | PnL=22400.11
+2025-10-11 19:43:30,692 INFO Backtesting UNIUSD (crypto) ...
+2025-10-11 19:43:30,747 INFO \U0001f4b0 Fetched UNIUSD (15m) from Binance
+2025-10-11 19:43:30,797 INFO \U0001f4b0 Fetched UNIUSD (1h) from Binance
+2025-10-11 19:43:30,968 INFO UNIUSD done | Trades=15 | Win%=40.0 | PnL=-1890.51
+2025-10-11 19:43:30,968 INFO Backtesting MATICUSD (crypto) ...
+2025-10-11 19:43:31,025 INFO \U0001f4b0 Fetched MATICUSD (15m) from Binance
+2025-10-11 19:43:31,075 INFO \U0001f4b0 Fetched MATICUSD (1h) from Binance
+2025-10-11 19:43:31,306 INFO MATICUSD done | Trades=5 | Win%=20.0 | PnL=-1087.16
+2025-10-11 19:43:31,306 INFO Backtesting LTCUSD (crypto) ...
+2025-10-11 19:43:31,358 INFO \U0001f4b0 Fetched LTCUSD (15m) from Binance
+2025-10-11 19:43:31,412 INFO \U0001f4b0 Fetched LTCUSD (1h) from Binance
+2025-10-11 19:43:31,612 INFO LTCUSD done | Trades=10 | Win%=40.0 | PnL=10303.66
+2025-10-11 19:43:31,623 INFO \u2705 Backtest complete | 144 total trades | saved to logs/backtest_results.csv
+2025-10-11 19:48:55,754 INFO Backtesting NVDA (stock) ...
+2025-10-11 19:48:56,161 INFO \U0001f4b0 Fetched NVDA (1h) from Yahoo Finance
+2025-10-11 19:48:56,347 INFO \U0001f4b0 Fetched NVDA (1h) from Yahoo Finance
+2025-10-11 19:48:56,452 WARNING No data or trades for NVDA
+2025-10-11 19:48:56,453 INFO Backtesting TSLA (stock) ...
+2025-10-11 19:48:56,624 INFO \U0001f4b0 Fetched TSLA (1h) from Yahoo Finance
+2025-10-11 19:48:56,763 INFO \U0001f4b0 Fetched TSLA (1h) from Yahoo Finance
+2025-10-11 19:48:56,868 WARNING No data or trades for TSLA
+2025-10-11 19:48:56,868 INFO Backtesting AMZN (stock) ...
+2025-10-11 19:48:57,018 INFO \U0001f4b0 Fetched AMZN (1h) from Yahoo Finance
+2025-10-11 19:48:57,178 INFO \U0001f4b0 Fetched AMZN (1h) from Yahoo Finance
+2025-10-11 19:48:57,290 WARNING No data or trades for AMZN
+2025-10-11 19:48:57,290 INFO Backtesting META (stock) ...
+2025-10-11 19:48:57,451 INFO \U0001f4b0 Fetched META (1h) from Yahoo Finance
+2025-10-11 19:48:57,605 INFO \U0001f4b0 Fetched META (1h) from Yahoo Finance
+2025-10-11 19:48:57,714 WARNING No data or trades for META
+2025-10-11 19:48:57,714 INFO Backtesting SMCI (stock) ...
+2025-10-11 19:48:57,871 INFO \U0001f4b0 Fetched SMCI (1h) from Yahoo Finance
+2025-10-11 19:48:58,008 INFO \U0001f4b0 Fetched SMCI (1h) from Yahoo Finance
+2025-10-11 19:48:58,107 WARNING No data or trades for SMCI
+2025-10-11 19:48:58,107 INFO Backtesting COIN (stock) ...
+2025-10-11 19:48:58,254 INFO \U0001f4b0 Fetched COIN (1h) from Yahoo Finance
+2025-10-11 19:48:58,412 INFO \U0001f4b0 Fetched COIN (1h) from Yahoo Finance
+2025-10-11 19:48:58,506 WARNING No data or trades for COIN
+2025-10-11 19:48:58,506 INFO Backtesting PLTR (stock) ...
+2025-10-11 19:48:58,660 INFO \U0001f4b0 Fetched PLTR (1h) from Yahoo Finance
+2025-10-11 19:48:58,820 INFO \U0001f4b0 Fetched PLTR (1h) from Yahoo Finance
+2025-10-11 19:48:58,923 WARNING No data or trades for PLTR
+2025-10-11 19:48:58,923 INFO Backtesting BTCUSD (crypto) ...
+2025-10-11 19:48:59,013 INFO \U0001f4b0 Fetched BTCUSD (5m) from Binance
+2025-10-11 19:48:59,087 INFO \U0001f4b0 Fetched BTCUSD (1h) from Binance
+2025-10-11 19:48:59,345 INFO BTCUSD done | Trades=2 | Win%=100.0 | PnL=12939.19
+2025-10-11 19:48:59,345 INFO Backtesting ETHUSD (crypto) ...
+2025-10-11 19:48:59,408 INFO \U0001f4b0 Fetched ETHUSD (5m) from Binance
+2025-10-11 19:48:59,473 INFO \U0001f4b0 Fetched ETHUSD (1h) from Binance
+2025-10-11 19:48:59,676 INFO ETHUSD done | Trades=18 | Win%=50.0 | PnL=13301.04
+2025-10-11 19:48:59,676 INFO Backtesting SOLUSD (crypto) ...
+2025-10-11 19:48:59,725 INFO \U0001f4b0 Fetched SOLUSD (5m) from Binance
+2025-10-11 19:48:59,791 INFO \U0001f4b0 Fetched SOLUSD (1h) from Binance
+2025-10-11 19:48:59,989 INFO SOLUSD done | Trades=12 | Win%=41.7 | PnL=11010.21
+2025-10-11 19:48:59,989 INFO Backtesting DOGEUSD (crypto) ...
+2025-10-11 19:49:00,058 INFO \U0001f4b0 Fetched DOGEUSD (5m) from Binance
+2025-10-11 19:49:00,126 INFO \U0001f4b0 Fetched DOGEUSD (1h) from Binance
+2025-10-11 19:49:00,329 INFO DOGEUSD done | Trades=28 | Win%=53.6 | PnL=4971.14
+2025-10-11 19:49:00,329 INFO Backtesting AVAXUSD (crypto) ...
+2025-10-11 19:49:00,377 INFO \U0001f4b0 Fetched AVAXUSD (5m) from Binance
+2025-10-11 19:49:00,425 INFO \U0001f4b0 Fetched AVAXUSD (1h) from Binance
+2025-10-11 19:49:00,597 INFO AVAXUSD done | Trades=24 | Win%=66.7 | PnL=-9402.09
+2025-10-11 19:49:00,597 INFO Backtesting XRPUSD (crypto) ...
+2025-10-11 19:49:00,642 INFO \U0001f4b0 Fetched XRPUSD (5m) from Binance
+2025-10-11 19:49:00,704 INFO \U0001f4b0 Fetched XRPUSD (1h) from Binance
+2025-10-11 19:49:00,904 INFO XRPUSD done | Trades=26 | Win%=53.8 | PnL=-3359.10
+2025-10-11 19:49:00,905 INFO Backtesting LINKUSD (crypto) ...
+2025-10-11 19:49:00,957 INFO \U0001f4b0 Fetched LINKUSD (5m) from Binance
+2025-10-11 19:49:01,009 INFO \U0001f4b0 Fetched LINKUSD (1h) from Binance
+2025-10-11 19:49:01,241 INFO LINKUSD done | Trades=24 | Win%=50.0 | PnL=26890.36
+2025-10-11 19:49:01,241 INFO Backtesting BNBUSD (crypto) ...
+2025-10-11 19:49:01,307 INFO \U0001f4b0 Fetched BNBUSD (5m) from Binance
+2025-10-11 19:49:01,360 INFO \U0001f4b0 Fetched BNBUSD (1h) from Binance
+2025-10-11 19:49:01,562 INFO BNBUSD done | Trades=6 | Win%=33.3 | PnL=3664.73
+2025-10-11 19:49:01,563 INFO Backtesting DOTUSD (crypto) ...
+2025-10-11 19:49:01,607 INFO \U0001f4b0 Fetched DOTUSD (5m) from Binance
+2025-10-11 19:49:01,663 INFO \U0001f4b0 Fetched DOTUSD (1h) from Binance
+2025-10-11 19:49:01,816 INFO DOTUSD done | Trades=19 | Win%=52.6 | PnL=22990.62
+2025-10-11 19:49:01,816 INFO Backtesting UNIUSD (crypto) ...
+2025-10-11 19:49:01,875 INFO \U0001f4b0 Fetched UNIUSD (5m) from Binance
+2025-10-11 19:49:01,931 INFO \U0001f4b0 Fetched UNIUSD (1h) from Binance
+2025-10-11 19:49:02,043 INFO UNIUSD done | Trades=10 | Win%=50.0 | PnL=28255.92
+2025-10-11 19:49:02,043 INFO Backtesting MATICUSD (crypto) ...
+2025-10-11 19:49:02,092 INFO \U0001f4b0 Fetched MATICUSD (5m) from Binance
+2025-10-11 19:49:02,150 INFO \U0001f4b0 Fetched MATICUSD (1h) from Binance
+2025-10-11 19:49:02,347 INFO MATICUSD done | Trades=1 | Win%=100.0 | PnL=3680.48
+2025-10-11 19:49:02,347 INFO Backtesting LTCUSD (crypto) ...
+2025-10-11 19:49:02,407 INFO \U0001f4b0 Fetched LTCUSD (5m) from Binance
+2025-10-11 19:49:02,458 INFO \U0001f4b0 Fetched LTCUSD (1h) from Binance
+2025-10-11 19:49:02,640 INFO LTCUSD done | Trades=15 | Win%=60.0 | PnL=-24431.42
+2025-10-11 19:49:02,657 INFO \u2705 Backtest complete | 185 total trades | saved to logs/backtest_results.csv
+2025-10-11 20:05:27,911 INFO Backtesting NVDA (stock) ...
+2025-10-11 20:05:28,432 INFO \U0001f4b0 Fetched NVDA (1h) from Yahoo Finance
+2025-10-11 20:05:28,520 WARNING No data or trades for NVDA
+2025-10-11 20:05:28,520 INFO Backtesting TSLA (stock) ...
+2025-10-11 20:05:28,691 INFO \U0001f4b0 Fetched TSLA (1h) from Yahoo Finance
+2025-10-11 20:05:28,759 WARNING No data or trades for TSLA
+2025-10-11 20:05:28,759 INFO Backtesting AMZN (stock) ...
+2025-10-11 20:05:28,939 INFO \U0001f4b0 Fetched AMZN (1h) from Yahoo Finance
+2025-10-11 20:05:29,017 WARNING No data or trades for AMZN
+2025-10-11 20:05:29,018 INFO Backtesting META (stock) ...
+2025-10-11 20:05:29,172 INFO \U0001f4b0 Fetched META (1h) from Yahoo Finance
+2025-10-11 20:05:29,251 WARNING No data or trades for META
+2025-10-11 20:05:29,252 INFO Backtesting SMCI (stock) ...
+2025-10-11 20:05:29,411 INFO \U0001f4b0 Fetched SMCI (1h) from Yahoo Finance
+2025-10-11 20:05:29,497 WARNING No data or trades for SMCI
+2025-10-11 20:05:29,498 INFO Backtesting COIN (stock) ...
+2025-10-11 20:05:29,651 INFO \U0001f4b0 Fetched COIN (1h) from Yahoo Finance
+2025-10-11 20:05:29,735 WARNING No data or trades for COIN
+2025-10-11 20:05:29,736 INFO Backtesting PLTR (stock) ...
+2025-10-11 20:05:29,902 INFO \U0001f4b0 Fetched PLTR (1h) from Yahoo Finance
+2025-10-11 20:05:29,979 WARNING No data or trades for PLTR
+2025-10-11 20:05:29,980 INFO Backtesting BTCUSD (crypto) ...
+2025-10-11 20:05:30,028 INFO \U0001f4b0 Fetched BTCUSD (5m) from Binance
+2025-10-11 20:05:30,225 WARNING No data or trades for BTCUSD
+2025-10-11 20:05:30,225 INFO Backtesting ETHUSD (crypto) ...
+2025-10-11 20:05:30,288 INFO \U0001f4b0 Fetched ETHUSD (5m) from Binance
+2025-10-11 20:05:30,508 WARNING No data or trades for ETHUSD
+2025-10-11 20:05:30,509 INFO Backtesting SOLUSD (crypto) ...
+2025-10-11 20:05:30,567 INFO \U0001f4b0 Fetched SOLUSD (5m) from Binance
+2025-10-11 20:05:30,793 WARNING No data or trades for SOLUSD
+2025-10-11 20:05:30,794 INFO Backtesting DOGEUSD (crypto) ...
+2025-10-11 20:05:30,846 INFO \U0001f4b0 Fetched DOGEUSD (5m) from Binance
+2025-10-11 20:05:31,058 WARNING No data or trades for DOGEUSD
+2025-10-11 20:05:31,058 INFO Backtesting AVAXUSD (crypto) ...
+2025-10-11 20:05:31,174 INFO \U0001f4b0 Fetched AVAXUSD (5m) from Binance
+2025-10-11 20:05:31,323 WARNING No data or trades for AVAXUSD
+2025-10-11 20:05:31,323 INFO Backtesting XRPUSD (crypto) ...
+2025-10-11 20:05:31,377 INFO \U0001f4b0 Fetched XRPUSD (5m) from Binance
+2025-10-11 20:05:31,572 WARNING No data or trades for XRPUSD
+2025-10-11 20:05:31,572 INFO Backtesting LINKUSD (crypto) ...
+2025-10-11 20:05:31,627 INFO \U0001f4b0 Fetched LINKUSD (5m) from Binance
+2025-10-11 20:05:31,808 WARNING No data or trades for LINKUSD
+2025-10-11 20:05:31,808 INFO Backtesting BNBUSD (crypto) ...
+2025-10-11 20:05:31,881 INFO \U0001f4b0 Fetched BNBUSD (5m) from Binance
+2025-10-11 20:05:32,129 WARNING No data or trades for BNBUSD
+2025-10-11 20:05:32,129 INFO Backtesting DOTUSD (crypto) ...
+2025-10-11 20:05:32,178 INFO \U0001f4b0 Fetched DOTUSD (5m) from Binance
+2025-10-11 20:05:32,345 WARNING No data or trades for DOTUSD
+2025-10-11 20:05:32,345 INFO Backtesting UNIUSD (crypto) ...
+2025-10-11 20:05:32,405 INFO \U0001f4b0 Fetched UNIUSD (5m) from Binance
+2025-10-11 20:05:32,509 WARNING No data or trades for UNIUSD
+2025-10-11 20:05:32,509 INFO Backtesting MATICUSD (crypto) ...
+2025-10-11 20:05:32,578 INFO \U0001f4b0 Fetched MATICUSD (5m) from Binance
+2025-10-11 20:05:32,786 WARNING No data or trades for MATICUSD
+2025-10-11 20:05:32,786 INFO Backtesting LTCUSD (crypto) ...
+2025-10-11 20:05:32,847 INFO \U0001f4b0 Fetched LTCUSD (5m) from Binance
+2025-10-11 20:05:33,021 WARNING No data or trades for LTCUSD
+2025-10-11 20:05:33,033 INFO \u2705 Backtest complete | 0 total trades | saved to logs/backtest_results.csv
+2025-10-11 20:10:01,161 INFO Backtesting NVDA (stock) ...
+2025-10-11 20:10:01,658 INFO \U0001f4b0 Fetched NVDA (1h) from Yahoo Finance
+2025-10-11 20:10:01,740 WARNING No data or trades for NVDA
+2025-10-11 20:10:01,740 INFO Backtesting TSLA (stock) ...
+2025-10-11 20:10:01,899 INFO \U0001f4b0 Fetched TSLA (1h) from Yahoo Finance
+2025-10-11 20:10:01,982 WARNING No data or trades for TSLA
+2025-10-11 20:10:01,983 INFO Backtesting AMZN (stock) ...
+2025-10-11 20:10:02,138 INFO \U0001f4b0 Fetched AMZN (1h) from Yahoo Finance
+2025-10-11 20:10:02,219 WARNING No data or trades for AMZN
+2025-10-11 20:10:02,220 INFO Backtesting META (stock) ...
+2025-10-11 20:10:02,395 INFO \U0001f4b0 Fetched META (1h) from Yahoo Finance
+2025-10-11 20:10:02,478 WARNING No data or trades for META
+2025-10-11 20:10:02,478 INFO Backtesting SMCI (stock) ...
+2025-10-11 20:10:02,625 INFO \U0001f4b0 Fetched SMCI (1h) from Yahoo Finance
+2025-10-11 20:10:02,707 WARNING No data or trades for SMCI
+2025-10-11 20:10:02,707 INFO Backtesting COIN (stock) ...
+2025-10-11 20:10:02,866 INFO \U0001f4b0 Fetched COIN (1h) from Yahoo Finance
+2025-10-11 20:10:02,948 WARNING No data or trades for COIN
+2025-10-11 20:10:02,948 INFO Backtesting PLTR (stock) ...
+2025-10-11 20:10:03,121 INFO \U0001f4b0 Fetched PLTR (1h) from Yahoo Finance
+2025-10-11 20:10:03,207 WARNING No data or trades for PLTR
+2025-10-11 20:10:03,207 INFO Backtesting BTCUSD (crypto) ...
+2025-10-11 20:10:03,301 INFO \U0001f4b0 Fetched BTCUSD (5m) from Binance
+2025-10-11 20:10:03,488 WARNING No data or trades for BTCUSD
+2025-10-11 20:10:03,499 INFO Backtesting ETHUSD (crypto) ...
+2025-10-11 20:10:03,558 INFO \U0001f4b0 Fetched ETHUSD (5m) from Binance
+2025-10-11 20:10:03,739 WARNING No data or trades for ETHUSD
+2025-10-11 20:10:03,739 INFO Backtesting SOLUSD (crypto) ...
+2025-10-11 20:10:03,792 INFO \U0001f4b0 Fetched SOLUSD (5m) from Binance
+2025-10-11 20:10:03,969 WARNING No data or trades for SOLUSD
+2025-10-11 20:10:03,969 INFO Backtesting DOGEUSD (crypto) ...
+2025-10-11 20:10:04,025 INFO \U0001f4b0 Fetched DOGEUSD (5m) from Binance
+2025-10-11 20:10:04,205 WARNING No data or trades for DOGEUSD
+2025-10-11 20:10:04,205 INFO Backtesting AVAXUSD (crypto) ...
+2025-10-11 20:10:04,312 INFO \U0001f4b0 Fetched AVAXUSD (5m) from Binance
+2025-10-11 20:10:04,455 WARNING No data or trades for AVAXUSD
+2025-10-11 20:10:04,455 INFO Backtesting XRPUSD (crypto) ...
+2025-10-11 20:10:04,547 INFO \U0001f4b0 Fetched XRPUSD (5m) from Binance
+2025-10-11 20:10:04,713 WARNING No data or trades for XRPUSD
+2025-10-11 20:10:04,715 INFO Backtesting LINKUSD (crypto) ...
+2025-10-11 20:10:04,767 INFO \U0001f4b0 Fetched LINKUSD (5m) from Binance
+2025-10-11 20:10:04,921 WARNING No data or trades for LINKUSD
+2025-10-11 20:10:04,921 INFO Backtesting BNBUSD (crypto) ...
+2025-10-11 20:10:04,984 INFO \U0001f4b0 Fetched BNBUSD (5m) from Binance
+2025-10-11 20:10:05,176 WARNING No data or trades for BNBUSD
+2025-10-11 20:10:05,176 INFO Backtesting DOTUSD (crypto) ...
+2025-10-11 20:10:05,234 INFO \U0001f4b0 Fetched DOTUSD (5m) from Binance
+2025-10-11 20:10:05,371 WARNING No data or trades for DOTUSD
+2025-10-11 20:10:05,371 INFO Backtesting UNIUSD (crypto) ...
+2025-10-11 20:10:05,424 INFO \U0001f4b0 Fetched UNIUSD (5m) from Binance
+2025-10-11 20:10:05,526 WARNING No data or trades for UNIUSD
+2025-10-11 20:10:05,527 INFO Backtesting MATICUSD (crypto) ...
+2025-10-11 20:10:05,589 INFO \U0001f4b0 Fetched MATICUSD (5m) from Binance
+2025-10-11 20:10:05,758 WARNING No data or trades for MATICUSD
+2025-10-11 20:10:05,758 INFO Backtesting LTCUSD (crypto) ...
+2025-10-11 20:10:05,826 INFO \U0001f4b0 Fetched LTCUSD (5m) from Binance
+2025-10-11 20:10:05,971 WARNING No data or trades for LTCUSD
+2025-10-11 20:10:05,990 INFO \u2705 Backtest complete | 0 total trades | saved to logs/backtest_results.csv
+2025-10-11 20:15:05,025 INFO Backtesting NVDA (stock) ...
+2025-10-11 20:17:20,175 INFO Backtesting NVDA (stock) ...
+2025-10-11 20:17:20,663 INFO \U0001f4b0 Fetched NVDA (1h) from Yahoo Finance
+2025-10-11 20:17:20,746 WARNING No data or trades for NVDA
+2025-10-11 20:17:20,746 INFO Backtesting TSLA (stock) ...
+2025-10-11 20:17:20,910 INFO \U0001f4b0 Fetched TSLA (1h) from Yahoo Finance
+2025-10-11 20:17:20,990 WARNING No data or trades for TSLA
+2025-10-11 20:17:20,991 INFO Backtesting AMZN (stock) ...
+2025-10-11 20:17:21,153 INFO \U0001f4b0 Fetched AMZN (1h) from Yahoo Finance
+2025-10-11 20:17:21,243 WARNING No data or trades for AMZN
+2025-10-11 20:17:21,244 INFO Backtesting META (stock) ...
+2025-10-11 20:17:21,406 INFO \U0001f4b0 Fetched META (1h) from Yahoo Finance
+2025-10-11 20:17:21,491 WARNING No data or trades for META
+2025-10-11 20:17:21,491 INFO Backtesting SMCI (stock) ...
+2025-10-11 20:17:21,647 INFO \U0001f4b0 Fetched SMCI (1h) from Yahoo Finance
+2025-10-11 20:17:21,727 WARNING No data or trades for SMCI
+2025-10-11 20:17:21,728 INFO Backtesting COIN (stock) ...
+2025-10-11 20:17:21,896 INFO \U0001f4b0 Fetched COIN (1h) from Yahoo Finance
+2025-10-11 20:17:21,985 WARNING No data or trades for COIN
+2025-10-11 20:17:21,986 INFO Backtesting PLTR (stock) ...
+2025-10-11 20:17:22,152 INFO \U0001f4b0 Fetched PLTR (1h) from Yahoo Finance
+2025-10-11 20:17:22,239 WARNING No data or trades for PLTR
+2025-10-11 20:17:22,240 INFO Backtesting BTCUSD (crypto) ...
+2025-10-11 20:17:22,299 INFO \U0001f4b0 Fetched BTCUSD (5m) from Binance
+2025-10-11 20:17:22,472 WARNING No data or trades for BTCUSD
+2025-10-11 20:17:22,472 INFO Backtesting ETHUSD (crypto) ...
+2025-10-11 20:17:22,564 INFO \U0001f4b0 Fetched ETHUSD (5m) from Binance
+2025-10-11 20:17:22,739 WARNING No data or trades for ETHUSD
+2025-10-11 20:17:22,739 INFO Backtesting SOLUSD (crypto) ...
+2025-10-11 20:17:22,855 INFO \U0001f4b0 Fetched SOLUSD (5m) from Binance
+2025-10-11 20:17:23,021 WARNING No data or trades for SOLUSD
+2025-10-11 20:17:23,021 INFO Backtesting DOGEUSD (crypto) ...
+2025-10-11 20:17:23,081 INFO \U0001f4b0 Fetched DOGEUSD (5m) from Binance
+2025-10-11 20:17:23,300 WARNING No data or trades for DOGEUSD
+2025-10-11 20:17:23,300 INFO Backtesting AVAXUSD (crypto) ...
+2025-10-11 20:17:23,356 INFO \U0001f4b0 Fetched AVAXUSD (5m) from Binance
+2025-10-11 20:17:23,505 WARNING No data or trades for AVAXUSD
+2025-10-11 20:17:23,505 INFO Backtesting XRPUSD (crypto) ...
+2025-10-11 20:17:23,565 INFO \U0001f4b0 Fetched XRPUSD (5m) from Binance
+2025-10-11 20:17:23,738 WARNING No data or trades for XRPUSD
+2025-10-11 20:17:23,740 INFO Backtesting LINKUSD (crypto) ...
+2025-10-11 20:17:23,791 INFO \U0001f4b0 Fetched LINKUSD (5m) from Binance
+2025-10-11 20:17:23,940 WARNING No data or trades for LINKUSD
+2025-10-11 20:17:23,956 INFO Backtesting BNBUSD (crypto) ...
+2025-10-11 20:17:24,018 INFO \U0001f4b0 Fetched BNBUSD (5m) from Binance
+2025-10-11 20:17:24,194 WARNING No data or trades for BNBUSD
+2025-10-11 20:17:24,195 INFO Backtesting DOTUSD (crypto) ...
+2025-10-11 20:17:24,231 INFO \U0001f4b0 Fetched DOTUSD (5m) from Binance
+2025-10-11 20:17:24,380 WARNING No data or trades for DOTUSD
+2025-10-11 20:17:24,380 INFO Backtesting UNIUSD (crypto) ...
+2025-10-11 20:17:24,432 INFO \U0001f4b0 Fetched UNIUSD (5m) from Binance
+2025-10-11 20:17:24,530 WARNING No data or trades for UNIUSD
+2025-10-11 20:17:24,530 INFO Backtesting MATICUSD (crypto) ...
+2025-10-11 20:17:24,583 INFO \U0001f4b0 Fetched MATICUSD (5m) from Binance
+2025-10-11 20:17:24,779 WARNING No data or trades for MATICUSD
+2025-10-11 20:17:24,779 INFO Backtesting LTCUSD (crypto) ...
+2025-10-11 20:17:24,850 INFO \U0001f4b0 Fetched LTCUSD (5m) from Binance
+2025-10-11 20:17:25,113 WARNING No data or trades for LTCUSD
+2025-10-11 20:17:25,113 INFO \u2705 Backtest complete | 0 total trades | saved to logs/backtest_results.csv
+2025-10-11 20:25:40,098 INFO Backtesting NVDA (stock) ...
+2025-10-11 20:25:40,539 INFO \U0001f4b0 Fetched NVDA (1h) from Yahoo Finance
+2025-10-11 20:25:40,712 INFO \U0001f4b0 Fetched NVDA (1h) from Yahoo Finance
+2025-10-11 20:28:16,030 INFO Backtesting NVDA (stock) ...
+2025-10-11 20:28:16,462 INFO \U0001f4b0 Fetched NVDA (1h) from Yahoo Finance
+2025-10-11 20:28:16,600 INFO \U0001f4b0 Fetched NVDA (1h) from Yahoo Finance
+2025-10-11 20:48:16,014 INFO Backtesting NVDA (stock) ...
+2025-10-11 20:48:16,438 INFO \U0001f4b0 Fetched NVDA (1h) from Yahoo Finance
+2025-10-11 20:48:16,583 INFO \U0001f4b0 Fetched NVDA (1h) from Yahoo Finance
+2025-10-11 20:50:25,097 INFO Backtesting BTCUSD (crypto) ...
+2025-10-11 20:50:25,157 INFO \U0001f4b0 Fetched BTCUSD (5m) from Binance
+2025-10-11 20:50:25,267 INFO \U0001f4b0 Fetched BTCUSD (1h) from Binance
+2025-10-11 20:51:05,080 INFO Backtesting BTCUSD (crypto) ...
+2025-10-11 20:51:05,141 INFO \U0001f4b0 Fetched BTCUSD (5m) from Binance
+2025-10-11 20:52:47,976 INFO Backtesting BTCUSD (crypto) ...
+2025-10-11 20:52:48,038 INFO \U0001f4b0 Fetched BTCUSD (5m) from Binance
+2025-10-11 20:52:48,237 WARNING No data or trades for BTCUSD
+2025-10-11 20:52:48,249 INFO Backtesting ETHUSD (crypto) ...
+2025-10-11 20:52:48,314 INFO \U0001f4b0 Fetched ETHUSD (5m) from Binance
+2025-10-11 20:52:48,512 WARNING No data or trades for ETHUSD
+2025-10-11 20:52:48,513 INFO Backtesting SOLUSD (crypto) ...
+2025-10-11 20:52:48,571 INFO \U0001f4b0 Fetched SOLUSD (5m) from Binance
+2025-10-11 20:52:48,754 WARNING No data or trades for SOLUSD
+2025-10-11 20:52:48,770 INFO Backtesting DOGEUSD (crypto) ...
+2025-10-11 20:52:48,817 INFO \U0001f4b0 Fetched DOGEUSD (5m) from Binance
+2025-10-11 20:52:49,004 WARNING No data or trades for DOGEUSD
+2025-10-11 20:52:49,020 INFO Backtesting AVAXUSD (crypto) ...
+2025-10-11 20:52:49,061 INFO \U0001f4b0 Fetched AVAXUSD (5m) from Binance
+2025-10-11 20:52:49,240 WARNING No data or trades for AVAXUSD
+2025-10-11 20:52:49,240 INFO Backtesting XRPUSD (crypto) ...
+2025-10-11 20:52:49,344 INFO \U0001f4b0 Fetched XRPUSD (5m) from Binance
+2025-10-11 20:52:49,518 WARNING No data or trades for XRPUSD
+2025-10-11 20:52:49,534 INFO Backtesting LINKUSD (crypto) ...
+2025-10-11 20:52:49,578 INFO \U0001f4b0 Fetched LINKUSD (5m) from Binance
+2025-10-11 20:52:49,753 WARNING No data or trades for LINKUSD
+2025-10-11 20:52:49,753 INFO Backtesting BNBUSD (crypto) ...
+2025-10-11 20:52:49,821 INFO \U0001f4b0 Fetched BNBUSD (5m) from Binance
+2025-10-11 20:52:50,026 WARNING No data or trades for BNBUSD
+2025-10-11 20:52:50,026 INFO Backtesting DOTUSD (crypto) ...
+2025-10-11 20:52:50,078 INFO \U0001f4b0 Fetched DOTUSD (5m) from Binance
+2025-10-11 20:52:50,255 WARNING No data or trades for DOTUSD
+2025-10-11 20:52:50,255 INFO Backtesting UNIUSD (crypto) ...
+2025-10-11 20:52:50,309 INFO \U0001f4b0 Fetched UNIUSD (5m) from Binance
+2025-10-11 20:52:50,426 WARNING No data or trades for UNIUSD
+2025-10-11 20:52:50,426 INFO Backtesting MATICUSD (crypto) ...
+2025-10-11 20:52:50,479 INFO \U0001f4b0 Fetched MATICUSD (5m) from Binance
+2025-10-11 20:52:50,675 WARNING No data or trades for MATICUSD
+2025-10-11 20:52:50,675 INFO Backtesting LTCUSD (crypto) ...
+2025-10-11 20:52:50,729 INFO \U0001f4b0 Fetched LTCUSD (5m) from Binance
+2025-10-11 20:52:50,911 WARNING No data or trades for LTCUSD
+2025-10-11 20:52:50,911 INFO \u2705 Backtest complete | 0 total trades | saved to logs/backtest_results.csv

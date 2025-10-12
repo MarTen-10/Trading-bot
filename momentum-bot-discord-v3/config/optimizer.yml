@@ -1,0 +1,11 @@
+opt_window_days: 270 # Increased to 9 months (was 180) for better trend diversity
+rebalance_days: 30
+grids:
+  rsi_period: [10, 12, 14, 16, 18, 20] # Retained, good range
+  ema_short: [10, 15, 20, 25, 30, 35] # Expanded search range slightly
+  ema_long: [40, 55, 70, 85, 100]    # Expanded max period to 100 (was 70) for slow, strong trends
+  adx_min: [18, 21, 24, 27, 30]      # Simplified and focused the ADX minimum
+  vol_mult: [1.2, 1.4, 1.6, 1.8]     # Expanded maximum volume multiplier (was 1.6)
+objective: "netprofit_over_dd"
+oos_check_days: 21
+param_change_cap_pct: 20

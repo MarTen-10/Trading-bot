@@ -1,0 +1,19 @@
+# === config/global.yml (DAILY SWING TRADER SETTINGS) ===
+
+engine:
+  mode: "paper"
+  timezone: "America/New_York"
+  bar_timeframes: ["1h", "1D"] # Primary trade execution on 1h, bias on 1D
+  # ... (Other settings are largely the same)
+
+risk:
+  # --- shared base ---
+  risk_per_trade_pct: 0.020 # Max 2.0% risk for maximum compounding
+  # ...
+
+  # --- crypto mode (HIGH R/R SWING RISK) ---
+  crypto:
+    stop_atr_mult: 1.2   # Standard ATR stop for swing volatility
+    tp_atr_mult: 4.8     # HIGH TP: Targeting 4:1 R/R for max percentage gain
+    trail_atr_mult: 1.5  # Trail stop to capture the trend
+    weekend_blackout: true
