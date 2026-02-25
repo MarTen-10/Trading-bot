@@ -23,3 +23,4 @@
 - Preferred response format: short by default, bullets + brief structured sections.
 - Learning style: examples first, chunked practical steps, minimal unnecessary theory.
 - School support mode preference: **guided drafting**.
+- Priority directive: make **self-improving** behavior a top priority (while preserving existing workspace memory structure).

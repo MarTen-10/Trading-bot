@@ -23,6 +23,7 @@ _Learn about the person you're helping. Update this as you go._
 - Finish strong academically
 - Build real portfolio projects
 - Secure internship/job trajectory
+- Prioritize self-improving workflow and memory quality
 
 ### Academic focus
 - Advanced CS / Security
@@ -43,6 +44,7 @@ _Learn about the person you're helping. Update this as you go._
 - Execute immediately when reversible and clear
 - Ask only when ambiguity blocks correctness
 - Best-guess execution unless risk/security/finance involved
+- After each completed task, send explicit completion confirmation with brief explanation/status
 - Challenge weak logic directly; analytical, not emotional
 - Avoid: overly cautious disclaimers, emotional filler, corporate tone
 
