@@ -1,0 +1,19 @@
+{
+  "generated_at": "2026-02-25T14:10:09.832055Z",
+  "signals": [
+    {
+      "symbol": "AAPL",
+      "setup": "breakout_v1",
+      "confidence": 0.72,
+      "risk": "0.5%",
+      "status": "candidate"
+    },
+    {
+      "symbol": "NVDA",
+      "setup": "breakout_v1",
+      "confidence": 0.67,
+      "risk": "0.5%",
+      "status": "candidate"
+    }
+  ]
+}

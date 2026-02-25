@@ -1,0 +1,18 @@
+{
+  "name": "mean_reversion_v1",
+  "timeframe": "5m",
+  "entry": {
+    "type": "zscore_revert",
+    "lookback_bars": 30,
+    "zscore_threshold": -2.0
+  },
+  "exit": {
+    "stop_atr_mult": 1.0,
+    "target_r_mult": 1.5,
+    "max_bars_in_trade": 18
+  },
+  "filters": {
+    "min_volume": 100000,
+    "max_spread_bps": 20
+  }
+}

@@ -12,3 +12,15 @@ Primary objective: maximize net profit while preserving capital.
 - Environment scaffolded
 - Risk policy defined
 - Master plan initialized
+- Backtesting v1 scripts + strategy templates in place
+
+## Quick run
+```bash
+python3 horus/scripts/generate_sample_data.py
+python3 horus/scripts/backtest_engine.py \
+  --csv horus/data/raw/sample_5m.csv \
+  --strategy horus/strategies/breakout_v1.json \
+  --out horus/data/backtests/sample_breakout_report.json
+python3 horus/scripts/paper_session.py
+python3 horus/scripts/report_daily.py
+```

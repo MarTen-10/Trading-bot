@@ -1,0 +1,14 @@
+{
+  "generated_at": "2026-02-25T14:10:51.630268+00:00",
+  "backtests": [
+    {
+      "file": "sample_breakout_report.json",
+      "trades": 10,
+      "win_rate": 0.4,
+      "avg_r": 0.0225,
+      "expectancy_r": 0.0225,
+      "profit_factor": 1.0375,
+      "max_dd_r": -2.7749
+    }
+  ]
+}

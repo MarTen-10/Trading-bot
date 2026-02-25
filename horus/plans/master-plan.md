@@ -7,8 +7,9 @@
 - [ ] Paper broker integration
 
 ## Phase 2 — Research + Backtesting
-- [ ] Strategy library v1 (breakout/pullback/mean-reversion/momentum)
-- [ ] Event-driven backtester + slippage/fees
+- [x] Strategy library v1 initialized (breakout + mean-reversion templates)
+- [x] Event-driven backtester v1 scaffolded (R-multiple outputs + metrics)
+- [ ] Slippage/fees model
 - [ ] Walk-forward validation
 
 ## Phase 3 — Paper Execution
