@@ -1,0 +1,24 @@
+# Horus Learning Loop (latest)
+
+Source: `sample_breakout_report.json`
+
+## Metrics
+- trades: 9
+- win_rate: 0.4444
+- expectancy_r: 0.3333
+- profit_factor: 1.6
+- max_dd_r: -5.0
+- stop_rate: 0.5556
+- target_rate: 0.4444
+- time_exit_rate: 0.0
+
+## Lessons
+- Too many stop-outs (stop_rate > 55%).
+- Drawdown too high (max_dd_r < -2.5R).
+- Win rate below baseline (<45%).
+
+## Next actions
+- Increase breakout confirmation and reduce early entries.
+- Lower risk/trade and add no-trade window during chop.
+- Restrict to top confidence regime only.
+
