@@ -1,0 +1,14 @@
+data_sources:
+  market_data: pending
+  news_feed: pending
+  econ_calendar: pending
+broker:
+  paper_account: pending
+  live_trading_enabled: false
+execution:
+  allowed_order_types: [market, limit, stop, stop_limit]
+  require_human_approval_for_live: true
+reporting:
+  morning_brief_time_local: "07:00"
+  eod_report: true
+  weekly_health_report: true

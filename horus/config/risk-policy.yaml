@@ -1,0 +1,16 @@
+mode: paper
+risk:
+  max_risk_per_trade_pct: 0.5
+  max_daily_drawdown_pct: 2.0
+  max_open_risk_pct: 1.5
+  max_consecutive_losses: 3
+  max_position_concentration_pct: 20
+rules:
+  no_averaging_down: true
+  require_liquidity_filter: true
+  require_spread_filter: true
+  require_news_risk_check: true
+killswitch:
+  enabled: true
+  trigger_on_daily_limit: true
+  trigger_on_data_stale: true
