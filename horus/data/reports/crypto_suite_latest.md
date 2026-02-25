@@ -1,6 +1,6 @@
 # Horus Crypto Paper Suite
 
-Generated: 2026-02-25T14:43:41.118118+00:00
+Generated: 2026-02-25T14:47:12.189852+00:00
 
 ## Results
 - BTCUSD | breakout_v1 | PF 0 | ExpR 0 | MaxDD 0 | Trades 0 | FAIL

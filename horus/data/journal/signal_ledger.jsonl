@@ -4,3 +4,6 @@
 {"logged_at": "2026-02-25T14:28:45.835890+00:00", "symbol": "NVDA", "setup": "breakout_v1", "confidence": 0.67, "risk": "0.5%", "status": "candidate"}
 {"logged_at": "2026-02-25T14:43:41.324137+00:00", "symbol": "AAPL", "setup": "breakout_v1", "confidence": 0.72, "risk": "0.5%", "status": "candidate"}
 {"logged_at": "2026-02-25T14:43:41.324137+00:00", "symbol": "NVDA", "setup": "breakout_v1", "confidence": 0.67, "risk": "0.5%", "status": "candidate"}
+{"logged_at": "2026-02-25T14:47:12.264325+00:00", "symbol": "BTCUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-25T14:47:12.264325+00:00", "symbol": "ETHUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-25T14:47:12.264325+00:00", "symbol": "SOLUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}

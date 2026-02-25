@@ -13,9 +13,9 @@
 - [x] Walk-forward validation scaffolded
 
 ## Phase 3 — Paper Execution
-- [ ] Signal scoring + regime filters
-- [ ] Daily paper sessions + strict risk controls
-- [ ] Trade journal + attribution analytics
+- [x] Signal scoring + regime filters (gated by promotion rules)
+- [x] Daily paper sessions + strict risk controls (no-trade on failed coins)
+- [x] Trade/signal journal + attribution scaffolding
 
 ## Phase 4 — Readiness Gate
 - [ ] 30+ day paper consistency checks

@@ -44,3 +44,13 @@ python3 horus/scripts/walkforward.py \
 - Signal ledger: `horus/data/journal/signal_ledger.jsonl`
 - Learning state: `horus/data/journal/learning_state.json`
 - Latest lessons: `horus/data/journal/lessons_latest.md`
+- Strategy selection state: `horus/data/reports/strategy_selection_latest.json`
+
+## Automated crypto paper flow
+```bash
+python3 horus/scripts/fetch_crypto_coinbase.py
+python3 horus/scripts/run_crypto_paper_suite.py
+python3 horus/scripts/select_strategies.py
+python3 horus/scripts/paper_session_livefeed.py
+```
+Only strategies that pass promotion gates are allowed to emit paper signals.

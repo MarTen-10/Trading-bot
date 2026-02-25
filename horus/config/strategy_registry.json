@@ -1,0 +1,44 @@
+{
+  "coins": {
+    "BTCUSD": {
+      "enabled": true,
+      "default": "breakout_crypto_v1",
+      "allowed": [
+        "breakout_crypto_v1"
+      ],
+      "blocked": [
+        "breakout_v1",
+        "mean_reversion_v1",
+        "mean_reversion_crypto_v1"
+      ]
+    },
+    "ETHUSD": {
+      "enabled": true,
+      "default": "breakout_crypto_v1",
+      "allowed": [],
+      "blocked": [
+        "breakout_v1",
+        "mean_reversion_v1",
+        "mean_reversion_crypto_v1",
+        "breakout_crypto_v1"
+      ]
+    },
+    "SOLUSD": {
+      "enabled": true,
+      "default": "breakout_crypto_v1",
+      "allowed": [],
+      "blocked": [
+        "breakout_v1",
+        "mean_reversion_v1",
+        "mean_reversion_crypto_v1",
+        "breakout_crypto_v1"
+      ]
+    }
+  },
+  "promotion_gate": {
+    "min_profit_factor": 1.15,
+    "min_expectancy_r": 0.0,
+    "max_drawdown_r": -3.0,
+    "min_trades": 5
+  }
+}
