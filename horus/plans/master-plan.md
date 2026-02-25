@@ -9,8 +9,8 @@
 ## Phase 2 — Research + Backtesting
 - [x] Strategy library v1 initialized (breakout + mean-reversion templates)
 - [x] Event-driven backtester v1 scaffolded (R-multiple outputs + metrics)
-- [ ] Slippage/fees model
-- [ ] Walk-forward validation
+- [x] Slippage/fees model integrated
+- [x] Walk-forward validation scaffolded
 
 ## Phase 3 — Paper Execution
 - [ ] Signal scoring + regime filters

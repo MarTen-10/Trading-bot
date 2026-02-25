@@ -31,6 +31,14 @@ python3 horus/scripts/learn_loop.py
 python3 horus/scripts/validate_horus.py
 ```
 
+## Walk-forward test
+```bash
+python3 horus/scripts/walkforward.py \
+  --csv horus/data/raw/sample_5m.csv \
+  --strategy horus/strategies/breakout_v1.json \
+  --out horus/data/backtests/walkforward_breakout_v1.json
+```
+
 ## Learning + logging outputs
 - Trade ledger: `horus/data/journal/trade_ledger.jsonl`
 - Signal ledger: `horus/data/journal/signal_ledger.jsonl`

@@ -1,0 +1,74 @@
+{
+  "generated_at": "2026-02-25T14:28:21.257120+00:00",
+  "strategy": "breakout_v1",
+  "entry_type": "range_breakout",
+  "costs": {
+    "fee_bps": 1.5,
+    "slippage_bps": 3.0
+  },
+  "summary": {
+    "trades": 4,
+    "win_rate": 0.5,
+    "avg_r": 0.307,
+    "expectancy_r": 0.307,
+    "profit_factor": 1.5708,
+    "max_dd_r": -1.0834,
+    "stop_rate": 0.5,
+    "target_rate": 0.5,
+    "time_exit_rate": 0.0
+  },
+  "trades": [
+    {
+      "trade_id": 1,
+      "entry_ts": "2026-01-03T06:30:00",
+      "exit_ts": "2026-01-03T07:45:00",
+      "bars_held": 15,
+      "entry": 97.22213,
+      "exit": 96.540106,
+      "reason": "stop",
+      "regime": "trend_up",
+      "fee_bps": 1.5,
+      "slippage_bps": 3.0,
+      "r": -1.068063
+    },
+    {
+      "trade_id": 2,
+      "entry_ts": "2026-01-03T11:50:00",
+      "exit_ts": "2026-01-03T12:45:00",
+      "bars_held": 11,
+      "entry": 96.619759,
+      "exit": 97.552056,
+      "reason": "target",
+      "regime": "trend_up",
+      "fee_bps": 1.5,
+      "slippage_bps": 3.0,
+      "r": 1.684986
+    },
+    {
+      "trade_id": 3,
+      "entry_ts": "2026-01-03T12:50:00",
+      "exit_ts": "2026-01-03T13:15:00",
+      "bars_held": 5,
+      "entry": 97.95526,
+      "exit": 98.935568,
+      "reason": "target",
+      "regime": "trend_up",
+      "fee_bps": 1.5,
+      "slippage_bps": 3.0,
+      "r": 1.694526
+    },
+    {
+      "trade_id": 4,
+      "entry_ts": "2026-01-03T13:35:00",
+      "exit_ts": "2026-01-03T14:30:00",
+      "bars_held": 11,
+      "entry": 99.501456,
+      "exit": 98.92271,
+      "reason": "stop",
+      "regime": "trend_up",
+      "fee_bps": 1.5,
+      "slippage_bps": 3.0,
+      "r": -1.083367
+    }
+  ]
+}

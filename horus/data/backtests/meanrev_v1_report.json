@@ -1,0 +1,126 @@
+{
+  "generated_at": "2026-02-25T14:28:21.327567+00:00",
+  "strategy": "mean_reversion_v1",
+  "entry_type": "zscore_revert",
+  "costs": {
+    "fee_bps": 1.5,
+    "slippage_bps": 3.0
+  },
+  "summary": {
+    "trades": 8,
+    "win_rate": 0.5,
+    "avg_r": 0.0429,
+    "expectancy_r": 0.0429,
+    "profit_factor": 1.0783,
+    "max_dd_r": -4.3803,
+    "stop_rate": 0.5,
+    "target_rate": 0.5,
+    "time_exit_rate": 0.0
+  },
+  "trades": [
+    {
+      "trade_id": 1,
+      "entry_ts": "2026-01-02T12:05:00",
+      "exit_ts": "2026-01-02T12:35:00",
+      "bars_held": 6,
+      "entry": 99.215327,
+      "exit": 99.76455,
+      "reason": "target",
+      "regime": "chop",
+      "fee_bps": 1.5,
+      "slippage_bps": 3.0,
+      "r": 1.167393
+    },
+    {
+      "trade_id": 2,
+      "entry_ts": "2026-01-02T14:35:00",
+      "exit_ts": "2026-01-02T15:45:00",
+      "bars_held": 14,
+      "entry": 98.931999,
+      "exit": 99.544535,
+      "reason": "target",
+      "regime": "chop",
+      "fee_bps": 1.5,
+      "slippage_bps": 3.0,
+      "r": 1.195426
+    },
+    {
+      "trade_id": 3,
+      "entry_ts": "2026-01-02T16:10:00",
+      "exit_ts": "2026-01-02T16:20:00",
+      "bars_held": 2,
+      "entry": 98.665279,
+      "exit": 98.178621,
+      "reason": "stop",
+      "regime": "chop",
+      "fee_bps": 1.5,
+      "slippage_bps": 3.0,
+      "r": -1.099897
+    },
+    {
+      "trade_id": 4,
+      "entry_ts": "2026-01-02T16:40:00",
+      "exit_ts": "2026-01-02T17:15:00",
+      "bars_held": 7,
+      "entry": 98.142544,
+      "exit": 97.617538,
+      "reason": "stop",
+      "regime": "chop",
+      "fee_bps": 1.5,
+      "slippage_bps": 3.0,
+      "r": -1.091356
+    },
+    {
+      "trade_id": 5,
+      "entry_ts": "2026-01-02T22:35:00",
+      "exit_ts": "2026-01-02T22:45:00",
+      "bars_held": 2,
+      "entry": 98.136442,
+      "exit": 97.654436,
+      "reason": "stop",
+      "regime": "chop",
+      "fee_bps": 1.5,
+      "slippage_bps": 3.0,
+      "r": -1.100366
+    },
+    {
+      "trade_id": 6,
+      "entry_ts": "2026-01-03T01:10:00",
+      "exit_ts": "2026-01-03T01:15:00",
+      "bars_held": 1,
+      "entry": 96.014587,
+      "exit": 95.486883,
+      "reason": "stop",
+      "regime": "chop",
+      "fee_bps": 1.5,
+      "slippage_bps": 3.0,
+      "r": -1.088688
+    },
+    {
+      "trade_id": 7,
+      "entry_ts": "2026-01-03T09:55:00",
+      "exit_ts": "2026-01-03T10:30:00",
+      "bars_held": 7,
+      "entry": 94.969417,
+      "exit": 95.536714,
+      "reason": "target",
+      "regime": "chop",
+      "fee_bps": 1.5,
+      "slippage_bps": 3.0,
+      "r": 1.186648
+    },
+    {
+      "trade_id": 8,
+      "entry_ts": "2026-01-03T16:40:00",
+      "exit_ts": "2026-01-03T17:45:00",
+      "bars_held": 13,
+      "entry": 98.686089,
+      "exit": 99.246283,
+      "reason": "target",
+      "regime": "chop",
+      "fee_bps": 1.5,
+      "slippage_bps": 3.0,
+      "r": 1.173842
+    }
+  ]
+}
