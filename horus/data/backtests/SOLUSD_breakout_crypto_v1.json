@@ -1,0 +1,100 @@
+{
+  "generated_at": "2026-02-25T14:43:39.446548+00:00",
+  "strategy": "breakout_crypto_v1",
+  "entry_type": "range_breakout",
+  "costs": {
+    "fee_bps": 1.5,
+    "slippage_bps": 3.0
+  },
+  "summary": {
+    "trades": 6,
+    "win_rate": 0.5,
+    "avg_r": 0.022,
+    "expectancy_r": 0.022,
+    "profit_factor": 1.0395,
+    "max_dd_r": -1.1774,
+    "stop_rate": 0.5,
+    "target_rate": 0.5,
+    "time_exit_rate": 0.0
+  },
+  "trades": [
+    {
+      "trade_id": 1,
+      "entry_ts": "2026-02-24T16:00:00+00:00",
+      "exit_ts": "2026-02-24T16:30:00+00:00",
+      "bars_held": 6,
+      "entry": 78.075118,
+      "exit": 77.64076,
+      "reason": "stop",
+      "regime": "trend_up",
+      "fee_bps": 1.5,
+      "slippage_bps": 3.0,
+      "r": -1.087516
+    },
+    {
+      "trade_id": 2,
+      "entry_ts": "2026-02-24T23:20:00+00:00",
+      "exit_ts": "2026-02-24T23:40:00+00:00",
+      "bars_held": 4,
+      "entry": 79.285663,
+      "exit": 79.573033,
+      "reason": "target",
+      "regime": "trend_up",
+      "fee_bps": 1.5,
+      "slippage_bps": 3.0,
+      "r": 1.105492
+    },
+    {
+      "trade_id": 3,
+      "entry_ts": "2026-02-25T01:10:00+00:00",
+      "exit_ts": "2026-02-25T01:15:00+00:00",
+      "bars_held": 1,
+      "entry": 81.406617,
+      "exit": 81.959387,
+      "reason": "target",
+      "regime": "trend_up",
+      "fee_bps": 1.5,
+      "slippage_bps": 3.0,
+      "r": 1.291385
+    },
+    {
+      "trade_id": 4,
+      "entry_ts": "2026-02-25T07:15:00+00:00",
+      "exit_ts": "2026-02-25T07:25:00+00:00",
+      "bars_held": 2,
+      "entry": 82.377053,
+      "exit": 82.067339,
+      "reason": "stop",
+      "regime": "trend_up",
+      "fee_bps": 1.5,
+      "slippage_bps": 3.0,
+      "r": -1.135452
+    },
+    {
+      "trade_id": 5,
+      "entry_ts": "2026-02-25T12:45:00+00:00",
+      "exit_ts": "2026-02-25T12:50:00+00:00",
+      "bars_held": 1,
+      "entry": 83.757674,
+      "exit": 84.037595,
+      "reason": "target",
+      "regime": "trend_up",
+      "fee_bps": 1.5,
+      "slippage_bps": 3.0,
+      "r": 1.077377
+    },
+    {
+      "trade_id": 6,
+      "entry_ts": "2026-02-25T13:45:00+00:00",
+      "exit_ts": "2026-02-25T13:50:00+00:00",
+      "bars_held": 1,
+      "entry": 84.457989,
+      "exit": 84.102851,
+      "reason": "stop",
+      "regime": "trend_up",
+      "fee_bps": 1.5,
+      "slippage_bps": 3.0,
+      "r": -1.119339
+    }
+  ]
+}

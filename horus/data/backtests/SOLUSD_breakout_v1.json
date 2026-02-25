@@ -1,0 +1,21 @@
+{
+  "generated_at": "2026-02-25T14:43:39.336964+00:00",
+  "strategy": "breakout_v1",
+  "entry_type": "range_breakout",
+  "costs": {
+    "fee_bps": 1.5,
+    "slippage_bps": 3.0
+  },
+  "summary": {
+    "trades": 0,
+    "win_rate": 0,
+    "avg_r": 0,
+    "expectancy_r": 0,
+    "profit_factor": 0,
+    "max_dd_r": 0,
+    "stop_rate": 0,
+    "target_rate": 0,
+    "time_exit_rate": 0
+  },
+  "trades": []
+}

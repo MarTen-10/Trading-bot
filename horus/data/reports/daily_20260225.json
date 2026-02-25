@@ -1,6 +1,60 @@
 {
-  "generated_at": "2026-02-25T14:28:45.870314+00:00",
+  "generated_at": "2026-02-25T14:43:41.352565+00:00",
   "backtests": [
+    {
+      "file": "SOLUSD_breakout_crypto_v1.json",
+      "trades": 6,
+      "win_rate": 0.5,
+      "avg_r": 0.022,
+      "expectancy_r": 0.022,
+      "profit_factor": 1.0395,
+      "max_dd_r": -1.1774,
+      "stop_rate": 0.5,
+      "target_rate": 0.5,
+      "time_exit_rate": 0.0
+    },
+    {
+      "file": "SOLUSD_breakout_v1.json",
+      "trades": 0,
+      "win_rate": 0,
+      "avg_r": 0,
+      "expectancy_r": 0,
+      "profit_factor": 0,
+      "max_dd_r": 0,
+      "stop_rate": 0,
+      "target_rate": 0,
+      "time_exit_rate": 0
+    },
+    {
+      "file": "SOLUSD_mean_reversion_crypto_v1.json",
+      "trades": 13,
+      "win_rate": 0.4615,
+      "avg_r": -0.2358,
+      "expectancy_r": -0.2358,
+      "profit_factor": 0.616,
+      "max_dd_r": -4.5574,
+      "stop_rate": 0.5385,
+      "target_rate": 0.4615,
+      "time_exit_rate": 0.0
+    },
+    {
+      "file": "SOLUSD_mean_reversion_v1.json",
+      "trades": 0,
+      "win_rate": 0,
+      "avg_r": 0,
+      "expectancy_r": 0,
+      "profit_factor": 0,
+      "max_dd_r": 0,
+      "stop_rate": 0,
+      "target_rate": 0,
+      "time_exit_rate": 0
+    },
+    {
+      "file": "SOLUSD_walkforward_breakout_crypto_v1.json"
+    },
+    {
+      "file": "SOLUSD_walkforward_breakout_v1.json"
+    },
     {
       "file": "breakout_v1_report.json",
       "trades": 4,
@@ -27,15 +81,15 @@
     },
     {
       "file": "sample_breakout_report.json",
-      "trades": 9,
-      "win_rate": 0.4444,
-      "avg_r": 0.1271,
-      "expectancy_r": 0.1271,
-      "profit_factor": 1.2428,
-      "max_dd_r": -3.6407,
-      "stop_rate": 0.4444,
-      "target_rate": 0.3333,
-      "time_exit_rate": 0.2222
+      "trades": 7,
+      "win_rate": 0.4286,
+      "avg_r": 0.3046,
+      "expectancy_r": 0.3046,
+      "profit_factor": 1.6753,
+      "max_dd_r": -1.304,
+      "stop_rate": 0.2857,
+      "target_rate": 0.4286,
+      "time_exit_rate": 0.2857
     },
     {
       "file": "walkforward_breakout_v1.json"
