@@ -28,6 +28,15 @@ def sh(cmd):
     return p.stdout.strip()
 
 
+def log(msg):
+    p = BASE/'logs'/'paper_runtime.log'
+    p.parent.mkdir(parents=True, exist_ok=True)
+    line = f"[{datetime.now(UTC).isoformat()}] {msg}"
+    with p.open('a') as f:
+        f.write(line + '\n')
+    print(line, flush=True)
+
+
 def save_state(state):
     STATE.parent.mkdir(parents=True, exist_ok=True)
     STATE.write_text(json.dumps(state, indent=2))
@@ -74,11 +83,31 @@ def main():
             # market adapter emits canonical events
             produced = stream.poll()
 
+            if produced == 0:
+                snap0 = RuntimeSnapshot(
+                    stale_seconds=5,
+                    latency_p95_ms=stream.metrics.get('feed_latency_ms', 0),
+                    spread_bps=8,
+                    daily_median_spread_bps=7,
+                    spread_shock_minutes=0,
+                    reject_count_10m=0,
+                    fill_mismatch_polls=0,
+                    realized_r_day=state.get('realized_r_day', 0.0),
+                )
+                cb0 = evaluate(snap0)
+                if cb0:
+                    state['safe_mode'] = True
+                    for e in cb0:
+                        dbio.insert_cb(e['trigger'], e['threshold'], e['action'], json.dumps({'instrument': 'ALL'}))
+                    log(f"SAFE_MODE triggers={json.dumps(cb0)}")
+
             # process queue
             while True:
                 event = BUS.next()
                 if event is None:
                     break
+
+                log(f"CANDLE instrument={event.instrument} tf={event.timeframe} ts={event.timestamp.isoformat()} seq_id={event.sequence_id}")
 
                 # circuit breaker check uses runtime metrics
                 snap = RuntimeSnapshot(
@@ -104,24 +133,32 @@ def main():
                     continue
 
                 metrics.signals_generated += 1
+                dbio.insert_signal(signal['signal_id'], signal['ts'], signal['instrument'], 'breakout_v2', 'pending', '')
 
                 allowed, reason, gate_meta = gate_adapter.allow(signal)
                 if not allowed:
                     metrics.signals_vetoed += 1
+                    dbio.insert_signal(signal['signal_id'], signal['ts'], signal['instrument'], 'breakout_v2', 'vetoed', reason)
                     dbio.insert_governance('GATE_VETO', signal['instrument'], 'breakout_v2', 'BLOCK', reason, json.dumps(gate_meta))
+                    log(f"GATE_VETO signal={signal['signal_id']} reason={reason} meta={json.dumps(gate_meta)}")
                     continue
 
                 ok, r_reason = risk.allow(signal)
                 if not ok:
                     metrics.signals_vetoed += 1
+                    dbio.insert_signal(signal['signal_id'], signal['ts'], signal['instrument'], 'breakout_v2', 'vetoed', r_reason)
                     dbio.insert_governance('RISK_BLOCK', signal['instrument'], 'breakout_v2', 'BLOCK', r_reason, json.dumps(gate_meta))
+                    log(f"RISK_BLOCK signal={signal['signal_id']} reason={r_reason} meta={json.dumps(gate_meta)}")
                     continue
 
                 qty, risk_d = risk.size(signal, equity=1000.0)
                 signal['qty'] = qty
                 signal['risk_dollars'] = risk_d
 
+                dbio.insert_signal(signal['signal_id'], signal['ts'], signal['instrument'], 'breakout_v2', 'taken', '')
+                log(f"GATE_ALLOW signal={signal['signal_id']} meta={json.dumps(gate_meta)}")
                 order, fill = place_order(signal)
+                log(f"ORDER_FILLED signal={signal['signal_id']} order={order['order_id']} fill_px={round(fill.fill_px,8)} qty={round(fill.fill_qty,8)}")
                 metrics.orders_sent += 1
                 metrics.fills += 1
                 metrics.current_regime = gate_meta.get('regime', 'UNKNOWN') if gate_meta else 'UNKNOWN'

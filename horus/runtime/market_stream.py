@@ -40,24 +40,24 @@ class MarketStream:
             new_rows = [x for x in rows if last is None or x['timestamp'] > last]
             if not new_rows:
                 continue
-            # emit only latest row per poll for controlled deterministic cadence
-            row = new_rows[-1]
-            ts = datetime.fromisoformat(row['timestamp'].replace('Z', '+00:00'))
-            seq = BUS.next_sequence(s, '5m')
-            ev = MarketEvent(
-                instrument=s,
-                timeframe='5m',
-                timestamp=ts,
-                open=float(row['open']),
-                high=float(row['high']),
-                low=float(row['low']),
-                close=float(row['close']),
-                volume=float(row.get('volume', 0) or 0),
-                sequence_id=seq,
-            )
-            BUS.emit(ev)
-            self.last_ts[s] = row['timestamp']
-            produced += 1
+            # emit all unseen rows in strict timestamp order
+            for row in new_rows:
+                ts = datetime.fromisoformat(row['timestamp'].replace('Z', '+00:00'))
+                seq = BUS.next_sequence(s, '5m')
+                ev = MarketEvent(
+                    instrument=s,
+                    timeframe='5m',
+                    timestamp=ts,
+                    open=float(row['open']),
+                    high=float(row['high']),
+                    low=float(row['low']),
+                    close=float(row['close']),
+                    volume=float(row.get('volume', 0) or 0),
+                    sequence_id=seq,
+                )
+                BUS.emit(ev)
+                self.last_ts[s] = row['timestamp']
+                produced += 1
 
         dt_ms = (time.time() - t0) * 1000.0
         self.metrics['feed_latency_ms'] = round(dt_ms, 3)

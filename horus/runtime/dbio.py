@@ -39,6 +39,15 @@ def insert_cb(trigger_name, threshold, action, details_json):
     return with_sqlite(_do)
 
 
+def insert_signal(signal_id, ts, instrument, strategy, decision, veto_reason=''):
+    def _do(con):
+        con.execute(
+            "INSERT OR REPLACE INTO signals(signal_id, ts, instrument, strategy, decision, veto_reason) VALUES(?,?,?,?,?,?)",
+            (signal_id, ts, instrument, strategy, decision, veto_reason)
+        )
+    return with_sqlite(_do)
+
+
 def counts():
     def _do(con):
         out = {}
