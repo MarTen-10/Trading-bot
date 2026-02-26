@@ -282,7 +282,9 @@ def run_backtest(bars, strategy, p, costs):
                 trades.append({
                     "entry_ts": pos["entry_ts"], "exit_ts": ts,
                     "entry": round(pos["entry"], 6), "exit": round(eff_exit, 6),
-                    "qty": round(pos["qty"], 8), "pnl": round(pnl, 4),
+                    "qty": round(pos["qty"], 8), "risk_dollars": round(pos["risk_dollars"], 4),
+                    "entry_equity": round(pos["entry_equity"], 4),
+                    "pnl": round(pnl, 4),
                     "r": round(r, 4), "reason": exit_reason
                 })
                 pos = None
@@ -311,6 +313,7 @@ def run_backtest(bars, strategy, p, costs):
                 "stop": stop,
                 "target": target,
                 "risk_dollars": risk_dollars,
+                "entry_equity": equity,
             }
 
         peak = max(peak, equity)
@@ -327,7 +330,9 @@ def run_backtest(bars, strategy, p, costs):
         trades.append({
             "entry_ts": pos["entry_ts"], "exit_ts": bars[-1]["timestamp"],
             "entry": round(pos["entry"], 6), "exit": round(eff_exit, 6),
-            "qty": round(pos["qty"], 8), "pnl": round(pnl, 4),
+            "qty": round(pos["qty"], 8), "risk_dollars": round(pos["risk_dollars"], 4),
+            "entry_equity": round(pos["entry_equity"], 4),
+            "pnl": round(pnl, 4),
             "r": round(r, 4), "reason": "eod"
         })
 

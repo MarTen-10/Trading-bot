@@ -64,3 +64,28 @@ python3 horus/backtester/format_report.py \
 This report tells you whether failure is likely from:
 - execution/integration issues, or
 - weak strategy edge.
+
+### Calibrated Monte Carlo (from actual backtest stats)
+```bash
+python3 horus/backtester/monte_carlo_calibrated.py \
+  --backtest-report horus/data/backtests/AAPL_sma_cross.json \
+  --out horus/data/reports/AAPL_sma_mc.json \
+  --equity 1000 --risk-pct 0.01
+```
+
+### Promotion / disable gate engine
+```bash
+python3 horus/backtester/gate_engine.py \
+  --backtest-report horus/data/backtests/AAPL_sma_cross.json \
+  --mc-report horus/data/reports/AAPL_sma_mc.json \
+  --out horus/data/reports/AAPL_sma_gate.json
+```
+
+### Acceptance tests (must pass)
+```bash
+python3 horus/backtester/acceptance_tests.py
+```
+Covers:
+- deterministic replay parity
+- risk governor enforcement
+- rollback/reject trigger path

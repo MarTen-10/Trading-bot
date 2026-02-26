@@ -1,0 +1,21 @@
+{
+  "promotion_gate": {
+    "min_trades": 50,
+    "min_expectancy_r": 0.05,
+    "min_profit_factor": 1.15,
+    "max_drawdown_pct": -20.0,
+    "max_p95_drawdown_pct": -25.0,
+    "max_rolling50_negative_windows": 1
+  },
+  "disable_rules": {
+    "rolling_window_trades": 50,
+    "disable_if_expectancy_below_zero_for_consecutive_windows": 2,
+    "disable_if_profit_factor_below": 1.0,
+    "disable_if_drawdown_below_pct": -25.0
+  },
+  "rollback_rules": {
+    "trigger_if_live_expectancy_below_baseline_by": 0.05,
+    "trigger_if_live_profit_factor_below": 1.0,
+    "trigger_if_live_drawdown_below_pct": -20.0
+  }
+}
