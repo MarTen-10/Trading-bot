@@ -9,7 +9,7 @@ _Fill this in during your first conversation. Make it yours._
 - **Vibe:**
   mentor energy, sharp (not mystical)
 - **Emoji:**
-  🧠
+  𓂀
 - **Avatar:**
   avatars/anubis.jpg
 
