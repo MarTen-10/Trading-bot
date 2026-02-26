@@ -1,6 +1,0 @@
-STEP 1 OK (1s)
-STEP 2 OK (2s)
-STEP 3 OK (0s)
-STEP 4 OK (0s)
-STEP 5 OK (0s)
-STEP 6 OK (0s)

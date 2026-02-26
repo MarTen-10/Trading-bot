@@ -1,6 +1,0 @@
-STEP 1 OK | python3 horus/scripts/fetch_crypto_coinbase.py | 0s
-STEP 2 OK | python3 horus/scripts/run_crypto_paper_suite.py | 2s
-STEP 3 OK | python3 horus/scripts/select_strategies.py | 0s
-STEP 4 OK | python3 horus/scripts/paper_session_livefeed.py | 0s
-STEP 5 OK | python3 horus/scripts/learn_loop.py | 0s
-STEP 6 OK | python3 horus/scripts/report_daily.py | 0s

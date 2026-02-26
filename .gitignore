@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+horus/logs/
+horus/cron_logs/
+horus/data/signals/signals_livefeed_*.json
+horus/data/reports/crypto_suite_*.json
+horus/data/reports/daily_*.json

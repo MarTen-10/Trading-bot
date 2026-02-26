@@ -1,6 +1,0 @@
-fetch_crypto_coinbase|OK|
-run_crypto_paper_suite|OK|
-select_strategies|OK|
-paper_session_livefeed|OK|
-learn_loop|OK|
-report_daily|OK|
