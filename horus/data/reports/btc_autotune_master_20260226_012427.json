@@ -1,0 +1,167 @@
+{
+  "generated_at": "2026-02-26T01:24:43.877687+00:00",
+  "ticker": "BTC-USD",
+  "data_csv": "/home/marten/.openclaw/workspace/horus/data/raw/BTCUSD_15mo_1h_20260226_012427.csv",
+  "objective": {
+    "initial_equity": 1000,
+    "risk_pct_per_trade": 0.01,
+    "target_r_mult_min": 2.0
+  },
+  "pass_criteria": {
+    "return_pct_min": 0.0,
+    "expectancy_r_min": 0.0,
+    "profit_factor_min": 1.1,
+    "trades_min": 8
+  },
+  "runs": [
+    {
+      "run": 1,
+      "name": "run1_breakout_baseline",
+      "strategy": "breakout",
+      "fix_applied": "baseline run",
+      "params_used": {
+        "initial_equity": 1000,
+        "risk_pct": 0.01,
+        "target_r_mult": 3.0,
+        "stop_atr_mult": 1.2,
+        "lookback": 36,
+        "exit_lookback": 6
+      },
+      "summary": {
+        "generated_at": "2026-02-26T01:24:31.404348+00:00",
+        "strategy": "breakout",
+        "trades": 232,
+        "win_rate": 0.2802,
+        "expectancy_r": -0.0512,
+        "avg_win_r": 2.362,
+        "avg_loss_r": -0.9905,
+        "gross_profit_r": 153.5281,
+        "gross_loss_r": 165.4127,
+        "profit_factor": 0.9282,
+        "net_pnl": -138.2781,
+        "return_pct": -13.8278,
+        "max_drawdown_$": -261.3376,
+        "max_drawdown_pct": -26.1338,
+        "final_equity": 861.7219,
+        "costs": {
+          "fee_bps": 1.0,
+          "slippage_bps": 2.0
+        }
+      },
+      "diagnostic_md": "/home/marten/.openclaw/workspace/horus/data/reports/btc_autotune_diag_run1_breakout_baseline_20260226_012427.md",
+      "status": "FAIL"
+    },
+    {
+      "run": 2,
+      "name": "run2_rsi_reversion_fix",
+      "strategy": "rsi_reversion",
+      "fix_applied": "Switch strategy family to mean-reversion RSI when breakout underperforms.",
+      "params_used": {
+        "initial_equity": 1000,
+        "risk_pct": 0.01,
+        "target_r_mult": 3.0,
+        "stop_atr_mult": 1.1,
+        "rsi_n": 14,
+        "buy_below": 25,
+        "sell_above": 60
+      },
+      "summary": {
+        "generated_at": "2026-02-26T01:24:40.124803+00:00",
+        "strategy": "rsi_reversion",
+        "trades": 321,
+        "win_rate": 0.3458,
+        "expectancy_r": 0.0386,
+        "avg_win_r": 2.1074,
+        "avg_loss_r": -1.0549,
+        "gross_profit_r": 233.926,
+        "gross_loss_r": 221.5235,
+        "profit_factor": 1.056,
+        "net_pnl": 87.0289,
+        "return_pct": 8.7029,
+        "max_drawdown_$": -430.1704,
+        "max_drawdown_pct": -43.017,
+        "final_equity": 1087.0289,
+        "costs": {
+          "fee_bps": 1.0,
+          "slippage_bps": 2.0
+        }
+      },
+      "diagnostic_md": "/home/marten/.openclaw/workspace/horus/data/reports/btc_autotune_diag_run2_rsi_reversion_fix_20260226_012427.md",
+      "status": "FAIL"
+    },
+    {
+      "run": 3,
+      "name": "run3_sma_cross_fix",
+      "strategy": "sma_cross",
+      "fix_applied": "Switch to trend-following crossover when reversion/breakout quality is poor.",
+      "params_used": {
+        "initial_equity": 1000,
+        "risk_pct": 0.01,
+        "target_r_mult": 2.5,
+        "stop_atr_mult": 1.0,
+        "fast": 30,
+        "slow": 80
+      },
+      "summary": {
+        "generated_at": "2026-02-26T01:24:43.718413+00:00",
+        "strategy": "sma_cross",
+        "trades": 78,
+        "win_rate": 0.3974,
+        "expectancy_r": 0.2824,
+        "avg_win_r": 2.2938,
+        "avg_loss_r": -1.0443,
+        "gross_profit_r": 71.1089,
+        "gross_loss_r": 49.0811,
+        "profit_factor": 1.4488,
+        "net_pnl": 232.7348,
+        "return_pct": 23.2735,
+        "max_drawdown_$": -88.4824,
+        "max_drawdown_pct": -8.8482,
+        "final_equity": 1232.7348,
+        "costs": {
+          "fee_bps": 1.0,
+          "slippage_bps": 2.0
+        }
+      },
+      "diagnostic_md": "/home/marten/.openclaw/workspace/horus/data/reports/btc_autotune_diag_run3_sma_cross_fix_20260226_012427.md",
+      "status": "PASS"
+    }
+  ],
+  "best_run": {
+    "run": 3,
+    "name": "run3_sma_cross_fix",
+    "strategy": "sma_cross",
+    "fix_applied": "Switch to trend-following crossover when reversion/breakout quality is poor.",
+    "params_used": {
+      "initial_equity": 1000,
+      "risk_pct": 0.01,
+      "target_r_mult": 2.5,
+      "stop_atr_mult": 1.0,
+      "fast": 30,
+      "slow": 80
+    },
+    "summary": {
+      "generated_at": "2026-02-26T01:24:43.718413+00:00",
+      "strategy": "sma_cross",
+      "trades": 78,
+      "win_rate": 0.3974,
+      "expectancy_r": 0.2824,
+      "avg_win_r": 2.2938,
+      "avg_loss_r": -1.0443,
+      "gross_profit_r": 71.1089,
+      "gross_loss_r": 49.0811,
+      "profit_factor": 1.4488,
+      "net_pnl": 232.7348,
+      "return_pct": 23.2735,
+      "max_drawdown_$": -88.4824,
+      "max_drawdown_pct": -8.8482,
+      "final_equity": 1232.7348,
+      "costs": {
+        "fee_bps": 1.0,
+        "slippage_bps": 2.0
+      }
+    },
+    "diagnostic_md": "/home/marten/.openclaw/workspace/horus/data/reports/btc_autotune_diag_run3_sma_cross_fix_20260226_012427.md",
+    "status": "PASS"
+  }
+}
