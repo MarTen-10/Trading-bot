@@ -1,6 +1,6 @@
 {
-  "signals_generated": 0,
-  "signals_vetoed": 0,
+  "signals_generated": 152,
+  "signals_vetoed": 152,
   "orders_sent": 0,
   "fills": 0,
   "avg_latency_ms": 0.0,

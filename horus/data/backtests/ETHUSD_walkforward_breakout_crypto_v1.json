@@ -11,32 +11,32 @@
     {
       "fold": 1,
       "rows": 87,
-      "trades": 2,
-      "expectancy_r": -0.1165,
-      "profit_factor": 0.7986,
-      "max_dd_r": -1.1565
+      "trades": 3,
+      "expectancy_r": -0.1227,
+      "profit_factor": 0.7149,
+      "max_dd_r": -1.2918
     },
     {
       "fold": 2,
       "rows": 87,
-      "trades": 5,
-      "expectancy_r": 0.3366,
-      "profit_factor": 1.7659,
-      "max_dd_r": -1.115
+      "trades": 4,
+      "expectancy_r": 0.6995,
+      "profit_factor": 3.585,
+      "max_dd_r": -1.0824
     },
     {
       "fold": 3,
       "rows": 87,
       "trades": 1,
-      "expectancy_r": 1.2369,
-      "profit_factor": 1236889000.0,
-      "max_dd_r": 0.0
+      "expectancy_r": -1.0729,
+      "profit_factor": 0.0,
+      "max_dd_r": -1.0729
     }
   ],
   "aggregate": {
     "folds": 4,
-    "avg_expectancy_r": 0.3887,
-    "avg_profit_factor": 309222250.9373,
-    "worst_max_dd_r": -1.1565
+    "avg_expectancy_r": -0.0996,
+    "avg_profit_factor": 1.3712,
+    "worst_max_dd_r": -1.2918
   }
 }

@@ -1,17 +1,27 @@
 {
-  "generated_at": "2026-02-26T02:20:34.790301+00:00",
+  "generated_at": "2026-02-26T03:20:34.287938+00:00",
   "backtests": [
     {
-      "file": "breakout_v1_report.json",
-      "trades": 4,
-      "win_rate": 0.5,
-      "avg_r": 0.307,
-      "expectancy_r": 0.307,
-      "profit_factor": 1.5708,
-      "max_dd_r": -1.0834,
-      "stop_rate": 0.5,
-      "target_rate": 0.5,
-      "time_exit_rate": 0.0
+      "file": "btc50_run_50_rsi_reversion_20260226_022109.json",
+      "generated_at": "2026-02-26T02:21:16.413482+00:00",
+      "strategy": "rsi_reversion",
+      "trades": 368,
+      "win_rate": 0.2935,
+      "expectancy_r": -0.0926,
+      "avg_win_r": 2.2687,
+      "avg_loss_r": -1.0734,
+      "gross_profit_r": 245.0199,
+      "gross_loss_r": 279.087,
+      "profit_factor": 0.8779,
+      "net_pnl": -319.1282,
+      "return_pct": -31.9128,
+      "max_drawdown_$": -405.2694,
+      "max_drawdown_pct": -40.5269,
+      "final_equity": 680.8718,
+      "costs": {
+        "fee_bps": 1.0,
+        "slippage_bps": 2.0
+      }
     },
     {
       "file": "btc_autotune_bt_run1_breakout_baseline_20260226_012427.json",

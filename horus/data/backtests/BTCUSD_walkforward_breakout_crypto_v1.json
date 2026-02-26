@@ -19,10 +19,10 @@
     {
       "fold": 2,
       "rows": 87,
-      "trades": 6,
-      "expectancy_r": 0.4315,
-      "profit_factor": 2.1485,
-      "max_dd_r": -1.15
+      "trades": 5,
+      "expectancy_r": 0.7478,
+      "profit_factor": 4.3858,
+      "max_dd_r": -1.1043
     },
     {
       "fold": 3,
@@ -35,8 +35,8 @@
   ],
   "aggregate": {
     "folds": 4,
-    "avg_expectancy_r": 0.1595,
-    "avg_profit_factor": 0.9196,
-    "worst_max_dd_r": -1.15
+    "avg_expectancy_r": 0.2386,
+    "avg_profit_factor": 1.4789,
+    "worst_max_dd_r": -1.1043
   }
 }

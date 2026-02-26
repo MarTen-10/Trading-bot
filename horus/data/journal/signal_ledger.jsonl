@@ -79,3 +79,9 @@
 {"logged_at": "2026-02-26T02:20:34.709840+00:00", "symbol": "BTCUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
 {"logged_at": "2026-02-26T02:20:34.709840+00:00", "symbol": "ETHUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
 {"logged_at": "2026-02-26T02:20:34.709840+00:00", "symbol": "SOLUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T02:50:35.309068+00:00", "symbol": "BTCUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T02:50:35.309068+00:00", "symbol": "ETHUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T02:50:35.309068+00:00", "symbol": "SOLUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T03:20:34.217169+00:00", "symbol": "BTCUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T03:20:34.217169+00:00", "symbol": "ETHUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T03:20:34.217169+00:00", "symbol": "SOLUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}

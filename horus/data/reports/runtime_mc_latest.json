@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-02-26T02:58:44.801469+00:00",
+  "generated_at": "2026-02-26T03:45:45.939179+00:00",
   "assumptions": {
     "source_report": "/home/marten/.openclaw/workspace/horus/data/backtests/btc_autotune_bt_run3_sma_cross_fix_20260226_012427.json",
     "trades_count": 78,

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-02-26T02:58:44.863137+00:00",
+  "generated_at": "2026-02-26T03:45:45.998122+00:00",
   "inputs": {
     "backtest_report": "/home/marten/.openclaw/workspace/horus/data/backtests/btc_autotune_bt_run3_sma_cross_fix_20260226_012427.json",
     "mc_report": "/home/marten/.openclaw/workspace/horus/data/reports/runtime_mc_latest.json",

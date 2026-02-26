@@ -1,11 +1,23 @@
 {
   "date_utc": "20260226",
   "symbols": [
-    "BTCUSD",
-    "ETHUSD",
     "SOLUSD",
-    "BNBUSD",
-    "XRPUSD"
+    "ETHUSD",
+    "BTCUSD"
   ],
-  "source": "frozen-default"
+  "source": "volume_top5_24h",
+  "ranked": [
+    [
+      "SOLUSD",
+      2675287.86738731
+    ],
+    [
+      "ETHUSD",
+      295792.94098673
+    ],
+    [
+      "BTCUSD",
+      16473.87138476
+    ]
+  ]
 }
