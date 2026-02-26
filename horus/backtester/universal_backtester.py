@@ -240,6 +240,15 @@ def run_backtest(bars, strategy, p, costs):
     trades = []
     curve = []
 
+    diagnostics = {
+        "bars": len(bars),
+        "entry_signals": sum(1 for x in sig if x == 1),
+        "exit_signals": sum(1 for x in sig if x == -1),
+        "entries_opened": 0,
+        "entries_fallback_no_atr": 0,
+        "exits": {"stop": 0, "target": 0, "signal": 0, "eod": 0},
+    }
+
     def apply_cost(price, side):
         bps = (fee_bps + slippage_bps) / 10000.0
         return price * (1 + bps) if side == "buy" else price * (1 - bps)
@@ -265,6 +274,7 @@ def run_backtest(bars, strategy, p, costs):
                 exit_px = px
 
             if exit_reason:
+                diagnostics["exits"][exit_reason] += 1
                 eff_exit = apply_cost(exit_px, "sell")
                 pnl = (eff_exit - pos["entry"]) * pos["qty"]
                 equity += pnl
@@ -287,11 +297,13 @@ def run_backtest(bars, strategy, p, costs):
                 qty = max(0.0, risk_dollars / risk_per_unit)
                 target = eff_entry + take_r * risk_per_unit
             else:
+                diagnostics["entries_fallback_no_atr"] += 1
                 qty = (equity * notional_pct) / max(1e-9, eff_entry)
                 risk_dollars = equity * risk_pct
                 stop = eff_entry * 0.98
                 target = eff_entry * 1.03
 
+            diagnostics["entries_opened"] += 1
             pos = {
                 "entry_ts": ts,
                 "entry": eff_entry,
@@ -307,6 +319,7 @@ def run_backtest(bars, strategy, p, costs):
         curve.append({"timestamp": ts, "equity": round(equity, 4)})
 
     if pos is not None:
+        diagnostics["exits"]["eod"] += 1
         eff_exit = apply_cost(bars[-1]["close"], "sell")
         pnl = (eff_exit - pos["entry"]) * pos["qty"]
         equity += pnl
@@ -331,6 +344,10 @@ def run_backtest(bars, strategy, p, costs):
         "trades": len(trades),
         "win_rate": round((len(wins) / len(rs)) if rs else 0, 4),
         "expectancy_r": round((statistics.mean(rs) if rs else 0), 4),
+        "avg_win_r": round(statistics.mean(wins), 4) if wins else 0,
+        "avg_loss_r": round(statistics.mean(losses), 4) if losses else 0,
+        "gross_profit_r": round(gp, 4),
+        "gross_loss_r": round(gl, 4),
         "profit_factor": pf,
         "net_pnl": round(equity - init_equity, 4),
         "return_pct": round(((equity / init_equity) - 1) * 100, 4),
@@ -339,7 +356,7 @@ def run_backtest(bars, strategy, p, costs):
         "final_equity": round(equity, 4),
         "costs": costs,
     }
-    return summary, trades, curve
+    return summary, trades, curve, diagnostics
 
 
 def walkforward(bars, strategy, p, costs, folds=4):
@@ -351,7 +368,7 @@ def walkforward(bars, strategy, p, costs, folds=4):
         e = min((i + 1) * fold, n)
         if e - s < 40:
             continue
-        sm, _, _ = run_backtest(bars[s:e], strategy, p, costs)
+        sm, _, _, _ = run_backtest(bars[s:e], strategy, p, costs)
         out.append({"fold": i, **sm})
     pf_vals = [x["profit_factor"] for x in out if x.get("profit_factor") is not None]
     agg = {
@@ -371,7 +388,7 @@ def optimize(bars, strategy, base_params, grid, costs):
         p = dict(base_params)
         for k, v in zip(keys, vals):
             p[k] = v
-        s, _, _ = run_backtest(bars, strategy, p, costs)
+        s, _, _, _ = run_backtest(bars, strategy, p, costs)
         rows.append({**{k: p[k] for k in keys}, **s})
     rows.sort(key=lambda x: (x["expectancy_r"], x["profit_factor"], x["return_pct"]), reverse=True)
     return rows
@@ -446,9 +463,16 @@ def main():
     costs = json.loads(args.costs)
 
     if args.cmd == "backtest":
-        summary, trades, curve = run_backtest(bars, args.strategy, params, costs)
+        summary, trades, curve, diagnostics = run_backtest(bars, args.strategy, params, costs)
+        nocost_summary, _, _, _ = run_backtest(bars, args.strategy, params, {"fee_bps": 0.0, "slippage_bps": 0.0})
         out = {
             "summary": summary,
+            "diagnostics": diagnostics,
+            "comparison": {
+                "with_costs_expectancy_r": summary["expectancy_r"],
+                "no_cost_expectancy_r": nocost_summary["expectancy_r"],
+                "cost_impact_expectancy_r": round(summary["expectancy_r"] - nocost_summary["expectancy_r"], 4)
+            },
             "trades": trades,
             "equity_curve": curve,
         }

@@ -1,10 +1,14 @@
 {
   "summary": {
-    "generated_at": "2026-02-26T00:39:54.795649+00:00",
+    "generated_at": "2026-02-26T00:44:55.037967+00:00",
     "strategy": "sma_cross",
     "trades": 3,
     "win_rate": 0.3333,
     "expectancy_r": -0.4143,
+    "avg_win_r": 0.7754,
+    "avg_loss_r": -1.0091,
+    "gross_profit_r": 0.7754,
+    "gross_loss_r": 2.0182,
     "profit_factor": 0.3842,
     "net_pnl": -62.2806,
     "return_pct": -0.6228,
@@ -15,6 +19,24 @@
       "fee_bps": 1.0,
       "slippage_bps": 2.0
     }
+  },
+  "diagnostics": {
+    "bars": 251,
+    "entry_signals": 3,
+    "exit_signals": 2,
+    "entries_opened": 3,
+    "entries_fallback_no_atr": 0,
+    "exits": {
+      "stop": 2,
+      "target": 0,
+      "signal": 0,
+      "eod": 1
+    }
+  },
+  "comparison": {
+    "with_costs_expectancy_r": -0.4143,
+    "no_cost_expectancy_r": -0.4029,
+    "cost_impact_expectancy_r": -0.0114
   },
   "trades": [
     {

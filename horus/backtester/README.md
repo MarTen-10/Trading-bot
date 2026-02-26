@@ -50,5 +50,17 @@ python3 horus/backtester/universal_backtester.py optimize \
 ## Output
 Each backtest JSON includes:
 - `summary`: trades, win rate, expectancy, profit factor, return, drawdown
+- `diagnostics`: execution integrity counters (signals, entries, exits, ATR fallbacks)
+- `comparison`: with-cost vs no-cost expectancy impact
 - `trades`: trade-by-trade ledger
 - `equity_curve`: timestamped equity points
+
+### Diagnostic formatter (human-readable)
+```bash
+python3 horus/backtester/format_report.py \
+  --report horus/data/backtests/AAPL_sma_cross.json \
+  --out-md horus/data/reports/AAPL_sma_cross_diagnostic.md
+```
+This report tells you whether failure is likely from:
+- execution/integration issues, or
+- weak strategy edge.
