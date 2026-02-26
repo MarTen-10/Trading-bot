@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import argparse, json, random, statistics
+import argparse, json, os, random, statistics
 from datetime import datetime, UTC
 from pathlib import Path
 
@@ -54,8 +54,8 @@ def calibrate_from_backtest(backtest_json):
     }
 
 
-def run_mc(params, days=60, paths=2000, min_trades_day=3, max_trades_day=6, equity0=1000, risk_pct=0.01):
-    rng = random.Random(7)
+def run_mc(params, days=60, paths=2000, min_trades_day=3, max_trades_day=6, equity0=1000, risk_pct=0.01, seed=7):
+    rng = random.Random(seed)
     term = []
     mdds = []
     samples = []
@@ -89,7 +89,8 @@ def run_mc(params, days=60, paths=2000, min_trades_day=3, max_trades_day=6, equi
         'paths': paths,
         'trades_per_day_range': [min_trades_day, max_trades_day],
         'equity0': equity0,
-        'risk_pct': risk_pct
+        'risk_pct': risk_pct,
+        'seed': seed
       },
       'terminal_equity': {
         'mean': round(statistics.mean(term), 2),
@@ -118,10 +119,11 @@ def main():
     ap.add_argument('--paths', type=int, default=2000)
     ap.add_argument('--equity', type=float, default=1000)
     ap.add_argument('--risk-pct', type=float, default=0.01)
+    ap.add_argument('--seed', type=int, default=int(os.getenv('CALIBRATION_SEED', '7')))
     args = ap.parse_args()
 
     params = calibrate_from_backtest(args.backtest_report)
-    out = run_mc(params, days=args.days, paths=args.paths, equity0=args.equity, risk_pct=args.risk_pct)
+    out = run_mc(params, days=args.days, paths=args.paths, equity0=args.equity, risk_pct=args.risk_pct, seed=args.seed)
     Path(args.out).parent.mkdir(parents=True, exist_ok=True)
     Path(args.out).write_text(json.dumps(out, indent=2))
     print(args.out)

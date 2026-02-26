@@ -14,6 +14,8 @@ from horus.runtime.strategy import StrategyEngine
 from horus.runtime.risk_engine import RiskEngine
 from horus.runtime import gate_adapter
 from horus.runtime.paper_execution import place_order
+from horus.core.engine import Engine
+from horus.core.events import CandleEvent
 from horus.runtime.reconciliation import run_check
 from horus.runtime.circuit_breakers import RuntimeSnapshot, evaluate
 from horus.runtime import dbio
@@ -90,6 +92,10 @@ def main():
     metrics = load_metrics()
     state = load_state()
 
+    engine = Engine(strategy=strategy, risk=risk, gate=gate_adapter, dbio=dbio, logger=log)
+    engine.state.safe_mode = bool(state.get('safe_mode', False))
+    engine.state.open_exposure_r = float(state.get('open_exposure_r', 0.0))
+
     poll_seconds = cfg['poll_seconds']
     last_reconcile = 0.0
     last_cpu_log = 0.0
@@ -102,10 +108,9 @@ def main():
             sh(['python3', str(BASE / 'backtester/regime_classifier.py'), '--csv', str(latest_btc), '--out', str(BASE / 'data/reports/regime_labels_btc_latest.json')])
 
             best_bt = sorted((BASE / 'data/backtests').glob('btc_autotune_bt_run3_sma_cross_fix_*.json'))
-            if best_bt:
+            if best_bt and not (BASE / 'data/reports/runtime_gate_latest.json').exists():
                 best_bt = best_bt[-1]
-                sh(['python3', str(BASE / 'backtester/monte_carlo_calibrated.py'), '--backtest-report', str(best_bt), '--out', str(BASE / 'data/reports/runtime_mc_latest.json'), '--equity', '1000', '--risk-pct', str(cfg['risk_fraction'])])
-                sh(['python3', str(BASE / 'backtester/gate_engine.py'), '--backtest-report', str(best_bt), '--mc-report', str(BASE / 'data/reports/runtime_mc_latest.json'), '--out', str(BASE / 'data/reports/runtime_gate_latest.json')])
+                sh(['python3', str(BASE / 'backtester/gate_engine.py'), '--backtest-report', str(best_bt), '--mc-report', str(BASE / 'data/reports/nightly_mc_latest.json'), '--out', str(BASE / 'data/reports/runtime_gate_latest.json')])
 
             produced = stream.poll()
 
@@ -123,6 +128,7 @@ def main():
                 cb0 = evaluate(snap0)
                 if cb0:
                     state['safe_mode'] = True
+                    engine.state.safe_mode = True
                     for e in cb0:
                         dbio.insert_cb(e['trigger'], e['threshold'], e['action'], json.dumps({'instrument': 'ALL'}))
                     log('ERROR', 'SAFE_MODE', triggers=cb0)
@@ -147,61 +153,58 @@ def main():
                 cb_events = evaluate(snap)
                 if cb_events:
                     state['safe_mode'] = True
+                    engine.state.safe_mode = True
                     for e in cb_events:
                         dbio.insert_cb(e['trigger'], e['threshold'], e['action'], json.dumps({'instrument': event.instrument}))
                     log('ERROR', 'SAFE_TRIGGER', triggers=cb_events, instrument=event.instrument)
                     continue
                 state['safe_mode'] = False
+                engine.state.safe_mode = False
 
-                signal = strategy.generate(event)
-                if not signal:
-                    continue
+                ce = CandleEvent(
+                    instrument=event.instrument,
+                    timeframe=event.timeframe,
+                    timestamp=event.timestamp,
+                    open=event.open,
+                    high=event.high,
+                    low=event.low,
+                    close=event.close,
+                    volume=event.volume,
+                    sequence_id=event.sequence_id,
+                )
+                decision = engine.process_event(ce)
+                if decision.signal:
+                    metrics.signals_generated += 1
+                    dbio.insert_signal(decision.signal['signal_id'], decision.signal['ts'], decision.signal['instrument'], 'breakout_v2', 'pending', '')
 
-                metrics.signals_generated += 1
-                dbio.insert_signal(signal['signal_id'], signal['ts'], signal['instrument'], 'breakout_v2', 'pending', '')
-
-                allowed, reason, gate_meta = gate_adapter.allow(signal)
-                if not allowed:
+                if decision.veto_reason:
                     metrics.signals_vetoed += 1
-                    dbio.insert_signal(signal['signal_id'], signal['ts'], signal['instrument'], 'breakout_v2', 'vetoed', reason)
-                    dbio.insert_governance('GATE_VETO', signal['instrument'], 'breakout_v2', 'BLOCK', reason, json.dumps(gate_meta))
-                    log('WARNING', 'GATE_BLOCK', signal=signal['signal_id'], reason=reason, meta=gate_meta)
+                    if decision.signal:
+                        dbio.insert_signal(decision.signal['signal_id'], decision.signal['ts'], decision.signal['instrument'], 'breakout_v2', 'vetoed', decision.veto_reason)
                     continue
 
-                ok, r_reason = risk.allow(signal)
-                if not ok:
-                    metrics.signals_vetoed += 1
-                    dbio.insert_signal(signal['signal_id'], signal['ts'], signal['instrument'], 'breakout_v2', 'vetoed', r_reason)
-                    dbio.insert_governance('RISK_BLOCK', signal['instrument'], 'breakout_v2', 'BLOCK', r_reason, json.dumps(gate_meta))
-                    log('WARNING', 'RISK_BLOCK', signal=signal['signal_id'], reason=r_reason, meta=gate_meta)
-                    continue
+                for intent in decision.intents:
+                    dbio.insert_signal(intent.signal_id, intent.event_ts, intent.instrument, 'breakout_v2', 'taken', '')
+                    order, fill = place_order(intent)
+                    log('INFO', 'ORDER_FILLED', signal=intent.signal_id, order=order['order_id'], fill_px=round(fill.fill_px, 8), qty=round(fill.fill_qty, 8))
+                    metrics.orders_sent += 1
+                    metrics.fills += 1
+                    metrics.add_latency(stream.metrics.get('feed_latency_ms', 0.0))
 
-                qty, risk_d = risk.size(signal, equity=1000.0)
-                signal['qty'] = qty
-                signal['risk_dollars'] = risk_d
-
-                dbio.insert_signal(signal['signal_id'], signal['ts'], signal['instrument'], 'breakout_v2', 'taken', '')
-                log('INFO', 'GATE_ALLOW', signal=signal['signal_id'], meta=gate_meta)
-                order, fill = place_order(signal)
-                log('INFO', 'ORDER_FILLED', signal=signal['signal_id'], order=order['order_id'], fill_px=round(fill.fill_px, 8), qty=round(fill.fill_qty, 8))
-                metrics.orders_sent += 1
-                metrics.fills += 1
-                metrics.current_regime = gate_meta.get('regime', 'UNKNOWN') if gate_meta else 'UNKNOWN'
-                metrics.add_latency(stream.metrics.get('feed_latency_ms', 0.0))
-
-                def _insert_trade(con):
-                    with con.cursor() as cur:
-                        cur.execute(
-                            "INSERT INTO trades(trade_id, signal_id, entry_timestamp, exit_timestamp, realized_r, realized_pnl, mfe_r, mae_r, exit_reason) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s) ON CONFLICT(trade_id) DO UPDATE SET realized_r=EXCLUDED.realized_r,realized_pnl=EXCLUDED.realized_pnl",
-                            (order['order_id'], signal['signal_id'], signal['ts'], signal['ts'], signal['target_r'], fill.fill_qty * (fill.fill_px - signal['entry_px']), signal['target_r'], -1.0, 'paper_instant')
-                        )
-                dbio.with_conn(_insert_trade)
+                    def _insert_trade(con):
+                        with con.cursor() as cur:
+                            cur.execute(
+                                "INSERT INTO trades(trade_id, signal_id, entry_timestamp, exit_timestamp, realized_r, realized_pnl, mfe_r, mae_r, exit_reason) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s) ON CONFLICT(trade_id) DO UPDATE SET realized_r=EXCLUDED.realized_r,realized_pnl=EXCLUDED.realized_pnl",
+                                (order['order_id'], intent.signal_id, intent.event_ts, intent.event_ts, 2.5, fill.fill_qty * (fill.fill_px - intent.entry_px), 2.5, -1.0, 'paper_instant')
+                            )
+                    dbio.with_conn(_insert_trade)
 
             if time.time() - last_reconcile >= 30:
                 rec = run_check()
                 state['last_reconcile_ts'] = datetime.now(UTC).isoformat()
                 if rec.get('mismatch'):
                     state['safe_mode'] = True
+                    engine.state.safe_mode = True
                     dbio.insert_cb('fill_mismatch', '>=2 polls', 'SAFE_RECONCILE_OPTIONAL_FLATTEN', json.dumps(rec))
                     log('ERROR', 'SAFE_RECONCILE', rec=rec)
                 last_reconcile = time.time()
@@ -213,12 +216,14 @@ def main():
                 log(level, 'RESOURCE_METRICS', rss_mb=round(rss_mb, 2), cpu_percent=cpu)
                 last_cpu_log = time.time()
 
+            state['open_exposure_r'] = engine.state.open_exposure_r
             metrics.save()
             save_state(state)
 
         except Exception as e:
             dbio.insert_cb('runtime_error', 'exception', 'SAFE_AND_ALERT', json.dumps({'error': str(e)}))
             state['safe_mode'] = True
+            engine.state.safe_mode = True
             save_state(state)
             log('ERROR', 'SAFE_RUNTIME_EXCEPTION', error=str(e))
 

@@ -12,3 +12,5 @@ reporting:
   morning_brief_time_local: "07:00"
   eod_report: true
   weekly_health_report: true
+calibration:
+  seed: 7

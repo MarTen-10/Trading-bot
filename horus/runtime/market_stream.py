@@ -32,32 +32,35 @@ class MarketStream:
     def poll(self):
         produced = 0
         t0 = time.time()
+        pending = []
         for s in self.universe:
             rows = self._load_rows(s)
             if not rows:
                 continue
             last = self.last_ts.get(s)
             new_rows = [x for x in rows if last is None or x['timestamp'] > last]
-            if not new_rows:
-                continue
-            # emit all unseen rows in strict timestamp order
             for row in new_rows:
-                ts = datetime.fromisoformat(row['timestamp'].replace('Z', '+00:00'))
-                seq = BUS.next_sequence(s, '5m')
-                ev = MarketEvent(
-                    instrument=s,
-                    timeframe='5m',
-                    timestamp=ts,
-                    open=float(row['open']),
-                    high=float(row['high']),
-                    low=float(row['low']),
-                    close=float(row['close']),
-                    volume=float(row.get('volume', 0) or 0),
-                    sequence_id=seq,
-                )
-                BUS.emit(ev)
-                self.last_ts[s] = row['timestamp']
-                produced += 1
+                pending.append((s, row))
+
+        # deterministic ordering regardless of input csv row order
+        pending.sort(key=lambda x: (x[0], '5m', x[1]['timestamp']))
+        for s, row in pending:
+            ts = datetime.fromisoformat(row['timestamp'].replace('Z', '+00:00'))
+            seq = BUS.next_sequence(s, '5m')
+            ev = MarketEvent(
+                instrument=s,
+                timeframe='5m',
+                timestamp=ts,
+                open=float(row['open']),
+                high=float(row['high']),
+                low=float(row['low']),
+                close=float(row['close']),
+                volume=float(row.get('volume', 0) or 0),
+                sequence_id=seq,
+            )
+            BUS.emit(ev)
+            self.last_ts[s] = row['timestamp']
+            produced += 1
 
         dt_ms = (time.time() - t0) * 1000.0
         self.metrics['feed_latency_ms'] = round(dt_ms, 3)

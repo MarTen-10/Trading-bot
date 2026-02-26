@@ -10,6 +10,7 @@ from horus.runtime.strategy import StrategyEngine
 from horus.runtime.risk_engine import RiskEngine
 from horus.runtime.paper_execution import place_order
 from horus.runtime import gate_adapter
+from horus.core.events import OrderIntent
 
 BASE = Path('/home/marten/.openclaw/workspace/horus')
 
@@ -60,9 +61,19 @@ def replay_once(csv_path):
         ok, _ = risk.allow(sig)
         if not ok:
             continue
-        qty, _ = risk.size(sig, equity=1000.0)
-        sig['qty'] = qty
-        order, fill = place_order(sig)
+        qty, risk_d = risk.size(sig, equity=1000.0)
+        intent = OrderIntent(
+            intent_id='test_intent',
+            signal_id=sig['signal_id'],
+            instrument=sig['instrument'],
+            side=sig['side'],
+            entry_px=float(sig['entry_px']),
+            stop_px=float(sig['stop_px']),
+            qty=float(qty),
+            risk_dollars=float(risk_d),
+            event_ts=sig['ts'],
+        )
+        order, fill = place_order(intent)
 
         trade_obj = {
             'signal_id': sig['signal_id'],

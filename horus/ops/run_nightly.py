@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 import csv
 import json
+import hashlib
+import os
 import subprocess
 from datetime import datetime, UTC
 from pathlib import Path
@@ -57,8 +59,12 @@ def main():
     best_bt = sorted(BASE.glob('data/backtests/btc_autotune_bt_run3_sma_cross_fix_*.json'))
     if best_bt:
         best_bt = best_bt[-1]
-        run(['python3', str(BASE/'backtester/monte_carlo_calibrated.py'), '--backtest-report', str(best_bt), '--out', str(BASE/'data/reports/nightly_mc_latest.json'), '--equity', '1000', '--risk-pct', '0.01'])
-        run(['python3', str(BASE/'backtester/gate_engine.py'), '--backtest-report', str(best_bt), '--mc-report', str(BASE/'data/reports/nightly_mc_latest.json'), '--out', str(BASE/'data/reports/nightly_gate_latest.json')])
+        seed = os.getenv('CALIBRATION_SEED', '7')
+        mc_out = BASE/'data/reports/nightly_mc_latest.json'
+        run(['python3', str(BASE/'backtester/monte_carlo_calibrated.py'), '--backtest-report', str(best_bt), '--out', str(mc_out), '--equity', '1000', '--risk-pct', '0.01'])
+        mc_hash = hashlib.sha256(mc_out.read_bytes()).hexdigest()
+        dbio.insert_governance('CALIBRATION_ARTIFACT', None, None, 'SNAPSHOT', 'mc_hash', {'seed': seed, 'path': str(mc_out), 'sha256': mc_hash})
+        run(['python3', str(BASE/'backtester/gate_engine.py'), '--backtest-report', str(best_bt), '--mc-report', str(mc_out), '--out', str(BASE/'data/reports/nightly_gate_latest.json')])
 
     run(['python3', str(BASE/'backtester/acceptance_tests.py')])
 

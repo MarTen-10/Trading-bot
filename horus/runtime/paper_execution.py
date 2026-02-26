@@ -3,8 +3,6 @@ import hashlib, json, os
 from dataclasses import dataclass
 from pathlib import Path
 
-from horus.runtime import dbio
-
 CAL = Path('/home/marten/.openclaw/workspace/horus/data/reports/calibration_report_latest.json')
 
 @dataclass
@@ -31,12 +29,16 @@ def _det_id(*parts):
     return hashlib.sha256(x.encode()).hexdigest()[:32]
 
 
-def place_order(signal: dict) -> tuple[dict, Fill]:
+def place_order(intent) -> tuple[dict, Fill]:
     # deterministic fill model using calibrated p75 slippage
-    instrument = signal['instrument']
-    side = signal['side']
-    px = float(signal['entry_px'])
-    qty = float(signal['qty'])
+    from horus.core.events import OrderIntent
+    if not isinstance(intent, OrderIntent):
+        raise TypeError('Execution adapter accepts only OrderIntent from Engine.process_event')
+
+    instrument = intent.instrument
+    side = intent.side
+    px = float(intent.entry_px)
+    qty = float(intent.qty)
     sl_bps = _p75_slippage(instrument)
     fee_bps = 1.0
 
@@ -44,18 +46,20 @@ def place_order(signal: dict) -> tuple[dict, Fill]:
     bps = (sl_bps + fee_bps) / 10000.0
     fill_px = px * (1 + bps) if side == 'buy' else px * (1 - bps)
 
-    order_id = _det_id('order', signal['signal_id'])
+    order_id = _det_id('order', intent.signal_id, intent.event_ts)
     fill_id = _det_id('fill', order_id)
+
+    from horus.runtime import dbio
 
     def _write(con):
         with con.cursor() as cur:
             cur.execute(
                 "INSERT INTO orders(order_id, signal_id, status, sent_at, ack_at) VALUES(%s,%s,%s,%s,%s) ON CONFLICT(order_id) DO UPDATE SET status=EXCLUDED.status,sent_at=EXCLUDED.sent_at,ack_at=EXCLUDED.ack_at",
-                (order_id, signal['signal_id'], 'filled', signal['ts'], signal['ts'])
+                (order_id, intent.signal_id, 'filled', intent.event_ts, intent.event_ts)
             )
             cur.execute(
                 "INSERT INTO fills(fill_id, order_id, timestamp, fill_px, fill_qty, mid_at_send, bid_at_send, ask_at_send, slippage_bps) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s) ON CONFLICT(fill_id) DO UPDATE SET fill_px=EXCLUDED.fill_px,fill_qty=EXCLUDED.fill_qty,slippage_bps=EXCLUDED.slippage_bps",
-                (fill_id, order_id, signal['ts'], fill_px, qty, px, px, px, sl_bps)
+                (fill_id, order_id, intent.event_ts, fill_px, qty, px, px, px, sl_bps)
             )
     dbio.with_conn(_write)
 
