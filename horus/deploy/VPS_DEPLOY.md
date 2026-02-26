@@ -18,7 +18,7 @@ SQL
 ## 3) Repo + venv
 ```bash
 cd ~
-git clone <YOUR_REPO_URL> horus
+git clone https://github.com/MarTen-10/Trading-bot horus
 cd horus
 python3.11 -m venv .venv
 source .venv/bin/activate
