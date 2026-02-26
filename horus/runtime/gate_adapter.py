@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import json
+import json, os
 from pathlib import Path
 
 GATE = Path('/home/marten/.openclaw/workspace/horus/data/reports/runtime_gate_latest.json')
@@ -18,8 +18,9 @@ def current_regime(instrument='BTCUSD'):
 
 def allow(signal: dict):
     regime = current_regime(signal['instrument'])
-    if regime != 'TREND_NORMAL':
-        return False, 'regime_block', {'regime': regime}
+    required_regime = os.getenv('HORUS_REQUIRED_REGIME', 'TREND_NORMAL')
+    if regime != required_regime:
+        return False, 'regime_block', {'regime': regime, 'required_regime': required_regime}
 
     if GATE.exists():
         g = json.loads(GATE.read_text())

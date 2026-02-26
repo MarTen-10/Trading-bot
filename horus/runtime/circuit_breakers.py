@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import os
 from dataclasses import dataclass
 from typing import Dict, Any, List
 
@@ -17,53 +18,30 @@ class RuntimeSnapshot:
 
 def evaluate(snapshot: RuntimeSnapshot) -> List[Dict[str, Any]]:
     events = []
+    stale_s = int(os.getenv('HORUS_DATA_STALE_SECONDS', '3'))
+    latency_ms = int(os.getenv('HORUS_LATENCY_THRESHOLD_MS', '1000'))
+    spread_mult = float(os.getenv('HORUS_SPREAD_SHOCK_MULTIPLIER', '2'))
+    spread_min = int(os.getenv('HORUS_SPREAD_SHOCK_MINUTES', '3'))
+    reject_n = int(os.getenv('HORUS_BREAKER_REJECT_COUNT_10M', '5'))
+    mismatch_n = int(os.getenv('HORUS_BREAKER_FILL_MISMATCH_POLLS', '2'))
+    daily_loss = float(os.getenv('HORUS_BREAKER_DAILY_LOSS_R', '-3'))
 
-    if snapshot.stale_seconds > 3:
-        events.append({
-            'trigger': 'data_stale',
-            'threshold': '>3s',
-            'action': 'SAFE_BLOCK_NEW_ENTRIES'
-        })
+    if snapshot.stale_seconds > stale_s:
+        events.append({'trigger': 'data_stale', 'threshold': f'>{stale_s}s', 'action': 'SAFE_BLOCK_NEW_ENTRIES'})
 
-    if snapshot.latency_p95_ms > 1000:
-        events.append({
-            'trigger': 'latency_spike',
-            'threshold': 'p95>1000ms(5m)',
-            'action': 'SAFE_AND_ALERT'
-        })
+    if snapshot.latency_p95_ms > latency_ms:
+        events.append({'trigger': 'latency_spike', 'threshold': f'p95>{latency_ms}ms(5m)', 'action': 'SAFE_AND_ALERT'})
 
-    if snapshot.daily_median_spread_bps > 0 and snapshot.spread_bps > 2 * snapshot.daily_median_spread_bps and snapshot.spread_shock_minutes >= 3:
-        events.append({
-            'trigger': 'spread_shock',
-            'threshold': 'spread>2x median for >=3m',
-            'action': 'VETO_ENTRIES_CANCEL_RESTING'
-        })
+    if snapshot.daily_median_spread_bps > 0 and snapshot.spread_bps > spread_mult * snapshot.daily_median_spread_bps and snapshot.spread_shock_minutes >= spread_min:
+        events.append({'trigger': 'spread_shock', 'threshold': f'spread>{spread_mult}x median for >={spread_min}m', 'action': 'VETO_ENTRIES_CANCEL_RESTING'})
 
-    if snapshot.reject_count_10m >= 5:
-        events.append({
-            'trigger': 'reject_streak',
-            'threshold': '>=5 rejects in 10m',
-            'action': 'SAFE_STOP_SENDING'
-        })
+    if snapshot.reject_count_10m >= reject_n:
+        events.append({'trigger': 'reject_streak', 'threshold': f'>={reject_n} rejects in 10m', 'action': 'SAFE_STOP_SENDING'})
 
-    if snapshot.fill_mismatch_polls >= 2:
-        events.append({
-            'trigger': 'fill_mismatch',
-            'threshold': 'mismatch >=2 polls',
-            'action': 'SAFE_RECONCILE_OPTIONAL_FLATTEN'
-        })
+    if snapshot.fill_mismatch_polls >= mismatch_n:
+        events.append({'trigger': 'fill_mismatch', 'threshold': f'mismatch >={mismatch_n} polls', 'action': 'SAFE_RECONCILE_OPTIONAL_FLATTEN'})
 
-    if snapshot.realized_r_day <= -3:
-        events.append({
-            'trigger': 'daily_loss_cap',
-            'threshold': 'realized_R_day<=-3',
-            'action': 'STOP_UNTIL_NEXT_UTC_DAY'
-        })
+    if snapshot.realized_r_day <= daily_loss:
+        events.append({'trigger': 'daily_loss_cap', 'threshold': f'realized_R_day<={daily_loss}', 'action': 'STOP_UNTIL_NEXT_UTC_DAY'})
 
     return events
-
-
-if __name__ == '__main__':
-    # smoke example
-    snap = RuntimeSnapshot(4, 1200, 25, 8, 5, 0, 0, -1)
-    print(evaluate(snap))
