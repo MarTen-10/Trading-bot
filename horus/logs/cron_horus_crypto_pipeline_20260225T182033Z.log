@@ -1,0 +1,24 @@
+===== STEP 1: python3 horus/scripts/fetch_crypto_coinbase.py =====
+START 2026-02-25T18:20:33Z
+OK rc=0 END 2026-02-25T18:20:33Z
+
+===== STEP 2: python3 horus/scripts/run_crypto_paper_suite.py =====
+START 2026-02-25T18:20:33Z
+OK rc=0 END 2026-02-25T18:20:35Z
+
+===== STEP 3: python3 horus/scripts/select_strategies.py =====
+START 2026-02-25T18:20:35Z
+OK rc=0 END 2026-02-25T18:20:35Z
+
+===== STEP 4: python3 horus/scripts/paper_session_livefeed.py =====
+START 2026-02-25T18:20:35Z
+OK rc=0 END 2026-02-25T18:20:35Z
+
+===== STEP 5: python3 horus/scripts/learn_loop.py =====
+START 2026-02-25T18:20:35Z
+OK rc=0 END 2026-02-25T18:20:35Z
+
+===== STEP 6: python3 horus/scripts/report_daily.py =====
+START 2026-02-25T18:20:36Z
+OK rc=0 END 2026-02-25T18:20:36Z
+

@@ -1,0 +1,22 @@
+Horus crypto pipeline run (UTC Wed Feb 25 20:20:36 UTC 2026)
+Log: horus/logs/cron_crypto_pipeline_20260225T202036Z.log
+
+===== step1: python3 horus/scripts/fetch_crypto_coinbase.py =====
+OK (0s)
+
+===== step2: python3 horus/scripts/run_crypto_paper_suite.py =====
+OK (2s)
+
+===== step3: python3 horus/scripts/select_strategies.py =====
+OK (1s)
+
+===== step4: python3 horus/scripts/paper_session_livefeed.py =====
+OK (0s)
+
+===== step5: python3 horus/scripts/learn_loop.py =====
+OK (0s)
+
+===== step6: python3 horus/scripts/report_daily.py =====
+OK (0s)
+
+DONE

@@ -1,0 +1,11 @@
+{
+  "date_utc": "20260226",
+  "symbols": [
+    "BTCUSD",
+    "ETHUSD",
+    "SOLUSD",
+    "BNBUSD",
+    "XRPUSD"
+  ],
+  "source": "frozen-default"
+}

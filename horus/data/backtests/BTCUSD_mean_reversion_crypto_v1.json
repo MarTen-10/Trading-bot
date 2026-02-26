@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-02-25T14:47:10.018510+00:00",
+  "generated_at": "2026-02-26T02:46:44.051243+00:00",
   "strategy": "mean_reversion_crypto_v1",
   "entry_type": "zscore_revert",
   "costs": {
@@ -7,188 +7,19 @@
     "slippage_bps": 3.0
   },
   "summary": {
-    "trades": 24,
-    "win_rate": 0.4583,
-    "avg_r": -0.385,
-    "expectancy_r": -0.385,
-    "profit_factor": 0.4162,
-    "max_dd_r": -10.0916,
-    "stop_rate": 0.5417,
-    "target_rate": 0.4583,
-    "time_exit_rate": 0.0
+    "trades": 17,
+    "win_rate": 0.3529,
+    "avg_r": -0.5731,
+    "expectancy_r": -0.5731,
+    "profit_factor": 0.2596,
+    "max_dd_r": -10.5217,
+    "stop_rate": 0.6471,
+    "target_rate": 0.2941,
+    "time_exit_rate": 0.0588
   },
   "trades": [
     {
       "trade_id": 1,
-      "entry_ts": "2026-02-24T11:30:00+00:00",
-      "exit_ts": "2026-02-24T11:35:00+00:00",
-      "bars_held": 1,
-      "entry": 63155.097011,
-      "exit": 63202.15312,
-      "reason": "target",
-      "regime": "chop",
-      "fee_bps": 1.5,
-      "slippage_bps": 3.0,
-      "r": 0.434325
-    },
-    {
-      "trade_id": 2,
-      "entry_ts": "2026-02-24T12:00:00+00:00",
-      "exit_ts": "2026-02-24T12:10:00+00:00",
-      "bars_held": 2,
-      "entry": 63164.801376,
-      "exit": 63209.246676,
-      "reason": "target",
-      "regime": "chop",
-      "fee_bps": 1.5,
-      "slippage_bps": 3.0,
-      "r": 0.417935
-    },
-    {
-      "trade_id": 3,
-      "entry_ts": "2026-02-24T12:35:00+00:00",
-      "exit_ts": "2026-02-24T12:45:00+00:00",
-      "bars_held": 2,
-      "entry": 63111.737508,
-      "exit": 62963.103562,
-      "reason": "stop",
-      "regime": "chop",
-      "fee_bps": 1.5,
-      "slippage_bps": 3.0,
-      "r": -1.235653
-    },
-    {
-      "trade_id": 4,
-      "entry_ts": "2026-02-24T12:50:00+00:00",
-      "exit_ts": "2026-02-24T12:55:00+00:00",
-      "bars_held": 1,
-      "entry": 63067.497609,
-      "exit": 62919.826188,
-      "reason": "stop",
-      "regime": "chop",
-      "fee_bps": 1.5,
-      "slippage_bps": 3.0,
-      "r": -1.237352
-    },
-    {
-      "trade_id": 5,
-      "entry_ts": "2026-02-24T13:00:00+00:00",
-      "exit_ts": "2026-02-24T13:15:00+00:00",
-      "bars_held": 3,
-      "entry": 62991.893602,
-      "exit": 63063.327184,
-      "reason": "target",
-      "regime": "chop",
-      "fee_bps": 1.5,
-      "slippage_bps": 3.0,
-      "r": 0.562837
-    },
-    {
-      "trade_id": 6,
-      "entry_ts": "2026-02-24T13:20:00+00:00",
-      "exit_ts": "2026-02-24T13:30:00+00:00",
-      "bars_held": 2,
-      "entry": 62948.183942,
-      "exit": 62784.087227,
-      "reason": "stop",
-      "regime": "chop",
-      "fee_bps": 1.5,
-      "slippage_bps": 3.0,
-      "r": -1.208093
-    },
-    {
-      "trade_id": 7,
-      "entry_ts": "2026-02-24T14:00:00+00:00",
-      "exit_ts": "2026-02-24T14:05:00+00:00",
-      "bars_held": 1,
-      "entry": 62813.263255,
-      "exit": 62952.458947,
-      "reason": "target",
-      "regime": "chop",
-      "fee_bps": 1.5,
-      "slippage_bps": 3.0,
-      "r": 0.778233
-    },
-    {
-      "trade_id": 8,
-      "entry_ts": "2026-02-24T14:30:00+00:00",
-      "exit_ts": "2026-02-24T14:35:00+00:00",
-      "bars_held": 1,
-      "entry": 62850.259895,
-      "exit": 63016.516501,
-      "reason": "target",
-      "regime": "chop",
-      "fee_bps": 1.5,
-      "slippage_bps": 3.0,
-      "r": 0.832411
-    },
-    {
-      "trade_id": 9,
-      "entry_ts": "2026-02-24T20:05:00+00:00",
-      "exit_ts": "2026-02-24T20:15:00+00:00",
-      "bars_held": 2,
-      "entry": 64348.623856,
-      "exit": 64461.612094,
-      "reason": "target",
-      "regime": "chop",
-      "fee_bps": 1.5,
-      "slippage_bps": 3.0,
-      "r": 0.704213
-    },
-    {
-      "trade_id": 10,
-      "entry_ts": "2026-02-24T21:00:00+00:00",
-      "exit_ts": "2026-02-24T21:15:00+00:00",
-      "bars_held": 3,
-      "entry": 64200.267126,
-      "exit": 64029.341896,
-      "reason": "stop",
-      "regime": "chop",
-      "fee_bps": 1.5,
-      "slippage_bps": 3.0,
-      "r": -1.20286
-    },
-    {
-      "trade_id": 11,
-      "entry_ts": "2026-02-24T21:20:00+00:00",
-      "exit_ts": "2026-02-24T21:25:00+00:00",
-      "bars_held": 1,
-      "entry": 64113.217971,
-      "exit": 63936.234527,
-      "reason": "stop",
-      "regime": "chop",
-      "fee_bps": 1.5,
-      "slippage_bps": 3.0,
-      "r": -1.194227
-    },
-    {
-      "trade_id": 12,
-      "entry_ts": "2026-02-24T21:30:00+00:00",
-      "exit_ts": "2026-02-24T21:45:00+00:00",
-      "bars_held": 3,
-      "entry": 63939.529847,
-      "exit": 64050.128652,
-      "reason": "target",
-      "regime": "chop",
-      "fee_bps": 1.5,
-      "slippage_bps": 3.0,
-      "r": 0.699373
-    },
-    {
-      "trade_id": 13,
-      "entry_ts": "2026-02-24T23:05:00+00:00",
-      "exit_ts": "2026-02-24T23:10:00+00:00",
-      "bars_held": 1,
-      "entry": 63899.34177,
-      "exit": 63970.530387,
-      "reason": "target",
-      "regime": "chop",
-      "fee_bps": 1.5,
-      "slippage_bps": 3.0,
-      "r": 0.557184
-    },
-    {
-      "trade_id": 14,
       "entry_ts": "2026-02-25T00:05:00+00:00",
       "exit_ts": "2026-02-25T00:35:00+00:00",
       "bars_held": 6,
@@ -201,7 +32,7 @@
       "r": 0.536899
     },
     {
-      "trade_id": 15,
+      "trade_id": 2,
       "entry_ts": "2026-02-25T03:00:00+00:00",
       "exit_ts": "2026-02-25T03:15:00+00:00",
       "bars_held": 3,
@@ -214,7 +45,7 @@
       "r": -1.160854
     },
     {
-      "trade_id": 16,
+      "trade_id": 3,
       "entry_ts": "2026-02-25T03:20:00+00:00",
       "exit_ts": "2026-02-25T03:35:00+00:00",
       "bars_held": 3,
@@ -227,7 +58,7 @@
       "r": -1.180949
     },
     {
-      "trade_id": 17,
+      "trade_id": 4,
       "entry_ts": "2026-02-25T03:40:00+00:00",
       "exit_ts": "2026-02-25T04:00:00+00:00",
       "bars_held": 4,
@@ -240,7 +71,7 @@
       "r": -1.19227
     },
     {
-      "trade_id": 18,
+      "trade_id": 5,
       "entry_ts": "2026-02-25T05:10:00+00:00",
       "exit_ts": "2026-02-25T05:20:00+00:00",
       "bars_held": 2,
@@ -253,7 +84,7 @@
       "r": -1.217955
     },
     {
-      "trade_id": 19,
+      "trade_id": 6,
       "entry_ts": "2026-02-25T05:25:00+00:00",
       "exit_ts": "2026-02-25T05:30:00+00:00",
       "bars_held": 1,
@@ -266,7 +97,7 @@
       "r": -1.249737
     },
     {
-      "trade_id": 20,
+      "trade_id": 7,
       "entry_ts": "2026-02-25T05:35:00+00:00",
       "exit_ts": "2026-02-25T05:40:00+00:00",
       "bars_held": 1,
@@ -279,7 +110,7 @@
       "r": -1.220534
     },
     {
-      "trade_id": 21,
+      "trade_id": 8,
       "entry_ts": "2026-02-25T05:45:00+00:00",
       "exit_ts": "2026-02-25T06:20:00+00:00",
       "bars_held": 7,
@@ -292,7 +123,7 @@
       "r": 0.641963
     },
     {
-      "trade_id": 22,
+      "trade_id": 9,
       "entry_ts": "2026-02-25T10:20:00+00:00",
       "exit_ts": "2026-02-25T10:45:00+00:00",
       "bars_held": 5,
@@ -305,7 +136,7 @@
       "r": 0.422271
     },
     {
-      "trade_id": 23,
+      "trade_id": 10,
       "entry_ts": "2026-02-25T10:50:00+00:00",
       "exit_ts": "2026-02-25T11:00:00+00:00",
       "bars_held": 2,
@@ -318,7 +149,7 @@
       "r": -1.273435
     },
     {
-      "trade_id": 24,
+      "trade_id": 11,
       "entry_ts": "2026-02-25T11:05:00+00:00",
       "exit_ts": "2026-02-25T11:15:00+00:00",
       "bars_held": 2,
@@ -329,6 +160,84 @@
       "fee_bps": 1.5,
       "slippage_bps": 3.0,
       "r": -1.253023
+    },
+    {
+      "trade_id": 12,
+      "entry_ts": "2026-02-25T20:10:00+00:00",
+      "exit_ts": "2026-02-25T20:25:00+00:00",
+      "bars_held": 3,
+      "entry": 68702.912405,
+      "exit": 68865.735053,
+      "reason": "target",
+      "regime": "chop",
+      "fee_bps": 1.5,
+      "slippage_bps": 3.0,
+      "r": 0.799049
+    },
+    {
+      "trade_id": 13,
+      "entry_ts": "2026-02-25T21:25:00+00:00",
+      "exit_ts": "2026-02-25T21:30:00+00:00",
+      "bars_held": 1,
+      "entry": 68846.9672,
+      "exit": 68997.474344,
+      "reason": "target",
+      "regime": "chop",
+      "fee_bps": 1.5,
+      "slippage_bps": 3.0,
+      "r": 0.773985
+    },
+    {
+      "trade_id": 14,
+      "entry_ts": "2026-02-25T22:15:00+00:00",
+      "exit_ts": "2026-02-25T22:35:00+00:00",
+      "bars_held": 4,
+      "entry": 68978.686447,
+      "exit": 68669.324606,
+      "reason": "stop",
+      "regime": "chop",
+      "fee_bps": 1.5,
+      "slippage_bps": 3.0,
+      "r": -1.111027
+    },
+    {
+      "trade_id": 15,
+      "entry_ts": "2026-02-25T22:55:00+00:00",
+      "exit_ts": "2026-02-25T23:00:00+00:00",
+      "bars_held": 1,
+      "entry": 68484.554188,
+      "exit": 68230.077142,
+      "reason": "stop",
+      "regime": "chop",
+      "fee_bps": 1.5,
+      "slippage_bps": 3.0,
+      "r": -1.137278
+    },
+    {
+      "trade_id": 16,
+      "entry_ts": "2026-02-26T02:00:00+00:00",
+      "exit_ts": "2026-02-26T02:10:00+00:00",
+      "bars_held": 2,
+      "entry": 68020.79559,
+      "exit": 67801.766612,
+      "reason": "stop",
+      "regime": "chop",
+      "fee_bps": 1.5,
+      "slippage_bps": 3.0,
+      "r": -1.16193
+    },
+    {
+      "trade_id": 17,
+      "entry_ts": "2026-02-26T02:15:00+00:00",
+      "exit_ts": "2026-02-26T02:40:00+00:00",
+      "bars_held": 5,
+      "entry": 68062.554373,
+      "exit": 68106.428309,
+      "reason": "time",
+      "regime": "chop",
+      "fee_bps": 1.5,
+      "slippage_bps": 3.0,
+      "r": 0.241489
     }
   ]
 }

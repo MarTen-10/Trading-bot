@@ -1,23 +1,25 @@
 # Horus Crypto Paper Suite
 
-Generated: 2026-02-25T14:47:12.189852+00:00
+Generated: 2026-02-26T02:46:45.957996+00:00
 
 ## Results
 - BTCUSD | breakout_v1 | PF 0 | ExpR 0 | MaxDD 0 | Trades 0 | FAIL
 - BTCUSD | mean_reversion_v1 | PF 0 | ExpR 0 | MaxDD 0 | Trades 0 | FAIL
-- BTCUSD | breakout_crypto_v1 | PF 1.7455 | ExpR 0.2878 | MaxDD -1.15 | Trades 5 | PASS
-- BTCUSD | mean_reversion_crypto_v1 | PF 0.4162 | ExpR -0.385 | MaxDD -10.0916 | Trades 24 | FAIL
+- BTCUSD | breakout_crypto_v1 | PF 2.2909 | ExpR 0.4352 | MaxDD -1.15 | Trades 9 | PASS
+- BTCUSD | mean_reversion_crypto_v1 | PF 0.2596 | ExpR -0.5731 | MaxDD -10.5217 | Trades 17 | FAIL
 - ETHUSD | breakout_v1 | PF 0 | ExpR 0 | MaxDD 0 | Trades 0 | FAIL
 - ETHUSD | mean_reversion_v1 | PF 0 | ExpR 0 | MaxDD 0 | Trades 0 | FAIL
-- ETHUSD | breakout_crypto_v1 | PF 0.9843 | ExpR -0.0087 | MaxDD -1.2923 | Trades 8 | FAIL
-- ETHUSD | mean_reversion_crypto_v1 | PF 0.5747 | ExpR -0.2665 | MaxDD -5.2884 | Trades 17 | FAIL
+- ETHUSD | breakout_crypto_v1 | PF 2.1475 | ExpR 0.422 | MaxDD -1.2923 | Trades 12 | PASS
+- ETHUSD | mean_reversion_crypto_v1 | PF 0.6451 | ExpR -0.2076 | MaxDD -5.2884 | Trades 16 | FAIL
 - SOLUSD | breakout_v1 | PF 0 | ExpR 0 | MaxDD 0 | Trades 0 | FAIL
 - SOLUSD | mean_reversion_v1 | PF 0 | ExpR 0 | MaxDD 0 | Trades 0 | FAIL
-- SOLUSD | breakout_crypto_v1 | PF 1.0395 | ExpR 0.022 | MaxDD -1.1774 | Trades 6 | FAIL
-- SOLUSD | mean_reversion_crypto_v1 | PF 0.616 | ExpR -0.2358 | MaxDD -4.5574 | Trades 13 | FAIL
+- SOLUSD | breakout_crypto_v1 | PF 1.5694 | ExpR 0.2639 | MaxDD -2.2597 | Trades 12 | PASS
+- SOLUSD | mean_reversion_crypto_v1 | PF 0.1834 | ExpR -0.6614 | MaxDD -8.112 | Trades 11 | FAIL
 
 ## What is working
 - BTCUSD breakout_crypto_v1 passes current gate.
+- ETHUSD breakout_crypto_v1 passes current gate.
+- SOLUSD breakout_crypto_v1 passes current gate.
 
 ## What is not working
 - BTCUSD breakout_v1: weak PF, non-positive expectancy, insufficient trades
@@ -25,11 +27,9 @@ Generated: 2026-02-25T14:47:12.189852+00:00
 - BTCUSD mean_reversion_crypto_v1: weak PF, non-positive expectancy, drawdown too high
 - ETHUSD breakout_v1: weak PF, non-positive expectancy, insufficient trades
 - ETHUSD mean_reversion_v1: weak PF, non-positive expectancy, insufficient trades
-- ETHUSD breakout_crypto_v1: weak PF, non-positive expectancy
 - ETHUSD mean_reversion_crypto_v1: weak PF, non-positive expectancy, drawdown too high
 - SOLUSD breakout_v1: weak PF, non-positive expectancy, insufficient trades
 - SOLUSD mean_reversion_v1: weak PF, non-positive expectancy, insufficient trades
-- SOLUSD breakout_crypto_v1: weak PF
 - SOLUSD mean_reversion_crypto_v1: weak PF, non-positive expectancy, drawdown too high
 
 ## Immediate system issues found

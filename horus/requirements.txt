@@ -1,0 +1,8 @@
+psycopg2-binary
+sqlalchemy
+pandas
+numpy
+matplotlib
+pydantic
+websockets
+python-dotenv

@@ -1,0 +1,23 @@
+[START] Horus crypto paper pipeline @ Wed Feb 25 14:50:32 UTC 2026
+\n[STEP] python3 horus/scripts/fetch_crypto_coinbase.py
+/home/marten/.openclaw/workspace/horus/data/raw/crypto/BTCUSD_5m.csv
+/home/marten/.openclaw/workspace/horus/data/raw/crypto/ETHUSD_5m.csv
+/home/marten/.openclaw/workspace/horus/data/raw/crypto/SOLUSD_5m.csv
+[OK] python3 horus/scripts/fetch_crypto_coinbase.py
+\n[STEP] python3 horus/scripts/run_crypto_paper_suite.py
+/home/marten/.openclaw/workspace/horus/data/reports/crypto_suite_20260225_145035.json
+/home/marten/.openclaw/workspace/horus/data/reports/crypto_suite_latest.md
+[OK] python3 horus/scripts/run_crypto_paper_suite.py
+\n[STEP] python3 horus/scripts/select_strategies.py
+{"BTCUSD": ["breakout_crypto_v1"], "ETHUSD": [], "SOLUSD": []}
+[OK] python3 horus/scripts/select_strategies.py
+\n[STEP] python3 horus/scripts/paper_session_livefeed.py
+/home/marten/.openclaw/workspace/horus/data/signals/signals_livefeed_20260225_145035.json
+[OK] python3 horus/scripts/paper_session_livefeed.py
+\n[STEP] python3 horus/scripts/learn_loop.py
+{"lessons": 2, "actions": 2}
+[OK] python3 horus/scripts/learn_loop.py
+\n[STEP] python3 horus/scripts/report_daily.py
+/home/marten/.openclaw/workspace/horus/data/reports/daily_20260225.json
+[OK] python3 horus/scripts/report_daily.py
+\n[END] Pipeline completed @ Wed Feb 25 14:50:35 UTC 2026 | failures=0 | log=horus/logs/cron_pipeline_20260225T145032Z.log

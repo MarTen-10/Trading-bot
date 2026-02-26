@@ -1,0 +1,29 @@
+[START] 2026-02-25T18:50:38+00:00
+\n[STEP] fetch_crypto_coinbase
+[CMD] python3 horus/scripts/fetch_crypto_coinbase.py
+[OK] fetch_crypto_coinbase
+/home/marten/.openclaw/workspace/horus/data/raw/crypto/BTCUSD_5m.csv
+/home/marten/.openclaw/workspace/horus/data/raw/crypto/ETHUSD_5m.csv
+/home/marten/.openclaw/workspace/horus/data/raw/crypto/SOLUSD_5m.csv
+\n[STEP] run_crypto_paper_suite
+[CMD] python3 horus/scripts/run_crypto_paper_suite.py
+[OK] run_crypto_paper_suite
+/home/marten/.openclaw/workspace/horus/data/reports/crypto_suite_20260225_185041.json
+/home/marten/.openclaw/workspace/horus/data/reports/crypto_suite_latest.md
+\n[STEP] select_strategies
+[CMD] python3 horus/scripts/select_strategies.py
+[OK] select_strategies
+{"BTCUSD": ["breakout_crypto_v1"], "ETHUSD": ["breakout_crypto_v1"], "SOLUSD": ["breakout_crypto_v1"]}
+\n[STEP] paper_session_livefeed
+[CMD] python3 horus/scripts/paper_session_livefeed.py
+[OK] paper_session_livefeed
+/home/marten/.openclaw/workspace/horus/data/signals/signals_livefeed_20260225_185041.json
+\n[STEP] learn_loop
+[CMD] python3 horus/scripts/learn_loop.py
+[OK] learn_loop
+{"lessons": 2, "actions": 2}
+\n[STEP] report_daily
+[CMD] python3 horus/scripts/report_daily.py
+[OK] report_daily
+/home/marten/.openclaw/workspace/horus/data/reports/daily_20260225.json
+\n[END] 2026-02-25T18:50:41+00:00

@@ -1,0 +1,21 @@
+===== 1_fetch_crypto_coinbase | 2026-02-26T01:20:32Z =====
+python3 horus/scripts/fetch_crypto_coinbase.py
+/home/marten/.openclaw/workspace/horus/data/raw/crypto/BTCUSD_5m.csv
+/home/marten/.openclaw/workspace/horus/data/raw/crypto/ETHUSD_5m.csv
+/home/marten/.openclaw/workspace/horus/data/raw/crypto/SOLUSD_5m.csv
+===== 2_run_crypto_paper_suite | 2026-02-26T01:20:32Z =====
+python3 horus/scripts/run_crypto_paper_suite.py
+/home/marten/.openclaw/workspace/horus/data/reports/crypto_suite_20260226_012035.json
+/home/marten/.openclaw/workspace/horus/data/reports/crypto_suite_latest.md
+===== 3_select_strategies | 2026-02-26T01:20:35Z =====
+python3 horus/scripts/select_strategies.py
+{"BTCUSD": ["breakout_crypto_v1"], "ETHUSD": ["breakout_crypto_v1"], "SOLUSD": ["breakout_crypto_v1"]}
+===== 4_paper_session_livefeed | 2026-02-26T01:20:35Z =====
+python3 horus/scripts/paper_session_livefeed.py
+/home/marten/.openclaw/workspace/horus/data/signals/signals_livefeed_20260226_012035.json
+===== 5_learn_loop | 2026-02-26T01:20:35Z =====
+python3 horus/scripts/learn_loop.py
+{"lessons": 2, "actions": 2}
+===== 6_report_daily | 2026-02-26T01:20:35Z =====
+python3 horus/scripts/report_daily.py
+/home/marten/.openclaw/workspace/horus/data/reports/daily_20260226.json

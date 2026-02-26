@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-02-25T14:47:10.221681+00:00",
+  "generated_at": "2026-02-26T02:46:44.223459+00:00",
   "strategy": "breakout_crypto_v1",
   "entry_type": "range_breakout",
   "costs": {
@@ -7,32 +7,19 @@
     "slippage_bps": 3.0
   },
   "summary": {
-    "trades": 8,
-    "win_rate": 0.5,
-    "avg_r": -0.0087,
-    "expectancy_r": -0.0087,
-    "profit_factor": 0.9843,
+    "trades": 12,
+    "win_rate": 0.6667,
+    "avg_r": 0.422,
+    "expectancy_r": 0.422,
+    "profit_factor": 2.1475,
     "max_dd_r": -1.2923,
-    "stop_rate": 0.5,
-    "target_rate": 0.5,
+    "stop_rate": 0.3333,
+    "target_rate": 0.6667,
     "time_exit_rate": 0.0
   },
   "trades": [
     {
       "trade_id": 1,
-      "entry_ts": "2026-02-24T16:00:00+00:00",
-      "exit_ts": "2026-02-24T16:10:00+00:00",
-      "bars_held": 2,
-      "entry": 1860.556874,
-      "exit": 1851.310107,
-      "reason": "stop",
-      "regime": "trend_up",
-      "fee_bps": 1.5,
-      "slippage_bps": 3.0,
-      "r": -1.099065
-    },
-    {
-      "trade_id": 2,
       "entry_ts": "2026-02-25T01:10:00+00:00",
       "exit_ts": "2026-02-25T01:20:00+00:00",
       "bars_held": 2,
@@ -45,7 +32,7 @@
       "r": 1.25498
     },
     {
-      "trade_id": 3,
+      "trade_id": 2,
       "entry_ts": "2026-02-25T02:05:00+00:00",
       "exit_ts": "2026-02-25T03:00:00+00:00",
       "bars_held": 11,
@@ -58,7 +45,7 @@
       "r": -1.059294
     },
     {
-      "trade_id": 4,
+      "trade_id": 3,
       "entry_ts": "2026-02-25T08:35:00+00:00",
       "exit_ts": "2026-02-25T08:50:00+00:00",
       "bars_held": 3,
@@ -71,7 +58,7 @@
       "r": 0.923537
     },
     {
-      "trade_id": 5,
+      "trade_id": 4,
       "entry_ts": "2026-02-25T09:10:00+00:00",
       "exit_ts": "2026-02-25T09:35:00+00:00",
       "bars_held": 5,
@@ -84,7 +71,7 @@
       "r": -1.156507
     },
     {
-      "trade_id": 6,
+      "trade_id": 5,
       "entry_ts": "2026-02-25T12:15:00+00:00",
       "exit_ts": "2026-02-25T12:45:00+00:00",
       "bars_held": 6,
@@ -97,7 +84,7 @@
       "r": 1.050803
     },
     {
-      "trade_id": 7,
+      "trade_id": 6,
       "entry_ts": "2026-02-25T12:50:00+00:00",
       "exit_ts": "2026-02-25T13:25:00+00:00",
       "bars_held": 7,
@@ -110,7 +97,7 @@
       "r": 1.130764
     },
     {
-      "trade_id": 8,
+      "trade_id": 7,
       "entry_ts": "2026-02-25T13:45:00+00:00",
       "exit_ts": "2026-02-25T13:50:00+00:00",
       "bars_held": 1,
@@ -121,6 +108,71 @@
       "fee_bps": 1.5,
       "slippage_bps": 3.0,
       "r": -1.114985
+    },
+    {
+      "trade_id": 8,
+      "entry_ts": "2026-02-25T14:45:00+00:00",
+      "exit_ts": "2026-02-25T15:00:00+00:00",
+      "bars_held": 3,
+      "entry": 1991.275671,
+      "exit": 2003.786462,
+      "reason": "target",
+      "regime": "trend_up",
+      "fee_bps": 1.5,
+      "slippage_bps": 3.0,
+      "r": 1.271612
+    },
+    {
+      "trade_id": 9,
+      "entry_ts": "2026-02-25T15:30:00+00:00",
+      "exit_ts": "2026-02-25T16:15:00+00:00",
+      "bars_held": 9,
+      "entry": 2012.795351,
+      "exit": 2030.268539,
+      "reason": "target",
+      "regime": "trend_up",
+      "fee_bps": 1.5,
+      "slippage_bps": 3.0,
+      "r": 1.347906
+    },
+    {
+      "trade_id": 10,
+      "entry_ts": "2026-02-25T16:55:00+00:00",
+      "exit_ts": "2026-02-25T17:00:00+00:00",
+      "bars_held": 1,
+      "entry": 2047.72106,
+      "exit": 2060.064554,
+      "reason": "target",
+      "regime": "trend_up",
+      "fee_bps": 1.5,
+      "slippage_bps": 3.0,
+      "r": 1.26069
+    },
+    {
+      "trade_id": 11,
+      "entry_ts": "2026-02-25T17:40:00+00:00",
+      "exit_ts": "2026-02-25T18:00:00+00:00",
+      "bars_held": 4,
+      "entry": 2078.13474,
+      "exit": 2065.91135,
+      "reason": "stop",
+      "regime": "trend_up",
+      "fee_bps": 1.5,
+      "slippage_bps": 3.0,
+      "r": -1.082357
+    },
+    {
+      "trade_id": 12,
+      "entry_ts": "2026-02-25T21:30:00+00:00",
+      "exit_ts": "2026-02-25T21:35:00+00:00",
+      "bars_held": 1,
+      "entry": 2093.821796,
+      "exit": 2105.391576,
+      "reason": "target",
+      "regime": "trend_up",
+      "fee_bps": 1.5,
+      "slippage_bps": 3.0,
+      "r": 1.236889
     }
   ]
 }

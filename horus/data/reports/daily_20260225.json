@@ -1,16 +1,16 @@
 {
-  "generated_at": "2026-02-25T14:47:12.327184+00:00",
+  "generated_at": "2026-02-25T23:50:37.559252+00:00",
   "backtests": [
     {
       "file": "SOLUSD_breakout_crypto_v1.json",
-      "trades": 6,
-      "win_rate": 0.5,
-      "avg_r": 0.022,
-      "expectancy_r": 0.022,
-      "profit_factor": 1.0395,
-      "max_dd_r": -1.1774,
-      "stop_rate": 0.5,
-      "target_rate": 0.5,
+      "trades": 12,
+      "win_rate": 0.5833,
+      "avg_r": 0.2639,
+      "expectancy_r": 0.2639,
+      "profit_factor": 1.5694,
+      "max_dd_r": -2.2597,
+      "stop_rate": 0.4167,
+      "target_rate": 0.5833,
       "time_exit_rate": 0.0
     },
     {
@@ -27,14 +27,14 @@
     },
     {
       "file": "SOLUSD_mean_reversion_crypto_v1.json",
-      "trades": 13,
-      "win_rate": 0.4615,
-      "avg_r": -0.2358,
-      "expectancy_r": -0.2358,
-      "profit_factor": 0.616,
-      "max_dd_r": -4.5574,
-      "stop_rate": 0.5385,
-      "target_rate": 0.4615,
+      "trades": 11,
+      "win_rate": 0.3636,
+      "avg_r": -0.4136,
+      "expectancy_r": -0.4136,
+      "profit_factor": 0.4164,
+      "max_dd_r": -6.9982,
+      "stop_rate": 0.6364,
+      "target_rate": 0.3636,
       "time_exit_rate": 0.0
     },
     {

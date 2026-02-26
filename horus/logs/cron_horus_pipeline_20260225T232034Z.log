@@ -1,0 +1,18 @@
+===== STEP 1 START: python3 horus/scripts/fetch_crypto_coinbase.py =====
+STEP 1 OK
+===== STEP 1 END =====
+===== STEP 2 START: python3 horus/scripts/run_crypto_paper_suite.py =====
+STEP 2 OK
+===== STEP 2 END =====
+===== STEP 3 START: python3 horus/scripts/select_strategies.py =====
+STEP 3 OK
+===== STEP 3 END =====
+===== STEP 4 START: python3 horus/scripts/paper_session_livefeed.py =====
+STEP 4 OK
+===== STEP 4 END =====
+===== STEP 5 START: python3 horus/scripts/learn_loop.py =====
+STEP 5 OK
+===== STEP 5 END =====
+===== STEP 6 START: python3 horus/scripts/report_daily.py =====
+STEP 6 OK
+===== STEP 6 END =====

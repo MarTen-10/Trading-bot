@@ -1,0 +1,23 @@
+[START] Horus crypto loop Wed Feb 25 15:50:33 UTC 2026
+\n[STEP 1 START] python3 horus/scripts/fetch_crypto_coinbase.py
+/home/marten/.openclaw/workspace/horus/data/raw/crypto/BTCUSD_5m.csv
+/home/marten/.openclaw/workspace/horus/data/raw/crypto/ETHUSD_5m.csv
+/home/marten/.openclaw/workspace/horus/data/raw/crypto/SOLUSD_5m.csv
+[STEP 1 OK]
+\n[STEP 2 START] python3 horus/scripts/run_crypto_paper_suite.py
+/home/marten/.openclaw/workspace/horus/data/reports/crypto_suite_20260225_155035.json
+/home/marten/.openclaw/workspace/horus/data/reports/crypto_suite_latest.md
+[STEP 2 OK]
+\n[STEP 3 START] python3 horus/scripts/select_strategies.py
+{"BTCUSD": ["breakout_crypto_v1"], "ETHUSD": ["breakout_crypto_v1"], "SOLUSD": []}
+[STEP 3 OK]
+\n[STEP 4 START] python3 horus/scripts/paper_session_livefeed.py
+/home/marten/.openclaw/workspace/horus/data/signals/signals_livefeed_20260225_155035.json
+[STEP 4 OK]
+\n[STEP 5 START] python3 horus/scripts/learn_loop.py
+{"lessons": 2, "actions": 2}
+[STEP 5 OK]
+\n[STEP 6 START] python3 horus/scripts/report_daily.py
+/home/marten/.openclaw/workspace/horus/data/reports/daily_20260225.json
+[STEP 6 OK]
+\n[END] Horus crypto loop Wed Feb 25 15:50:35 UTC 2026
