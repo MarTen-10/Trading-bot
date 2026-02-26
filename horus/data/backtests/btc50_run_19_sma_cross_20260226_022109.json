@@ -1,0 +1,59 @@
+{
+  "run": 19,
+  "strategy": "sma_cross",
+  "params": {
+    "initial_equity": 1000,
+    "risk_pct": 0.01,
+    "target_r_mult": 3.0,
+    "fast": 20,
+    "slow": 50,
+    "stop_atr_mult": 1.0
+  },
+  "summary": {
+    "generated_at": "2026-02-26T02:21:11.934572+00:00",
+    "strategy": "sma_cross",
+    "trades": 125,
+    "win_rate": 0.184,
+    "expectancy_r": -0.34,
+    "avg_win_r": 2.7965,
+    "avg_loss_r": -1.0472,
+    "gross_profit_r": 64.3188,
+    "gross_loss_r": 106.8173,
+    "profit_factor": 0.6021,
+    "net_pnl": -355.89,
+    "return_pct": -35.589,
+    "max_drawdown_$": -385.8344,
+    "max_drawdown_pct": -38.5834,
+    "final_equity": 644.11,
+    "costs": {
+      "fee_bps": 1.0,
+      "slippage_bps": 2.0
+    }
+  },
+  "diagnostics": {
+    "bars": 10938,
+    "entry_signals": 125,
+    "exit_signals": 125,
+    "entries_opened": 125,
+    "entries_fallback_no_atr": 0,
+    "exits": {
+      "stop": 97,
+      "target": 22,
+      "signal": 6,
+      "eod": 0
+    }
+  },
+  "comparison": {
+    "with_costs_expectancy_r": -0.34,
+    "no_cost_expectancy_r": -0.2226,
+    "cost_impact_expectancy_r": -0.1174
+  },
+  "issues": [
+    "no_edge",
+    "weak_pf",
+    "high_dd"
+  ],
+  "status": "FAIL",
+  "wrong_sentence": "sma_cross had excessive drawdown relative to account size.",
+  "fixed_sentence": "Reduced aggressiveness and tightened risk behavior to control downside."
+}

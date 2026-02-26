@@ -1,0 +1,60 @@
+{
+  "run": 37,
+  "strategy": "breakout",
+  "params": {
+    "initial_equity": 1000,
+    "risk_pct": 0.01,
+    "target_r_mult": 2.0,
+    "lookback": 48,
+    "exit_lookback": 12,
+    "stop_atr_mult": 0.8
+  },
+  "summary": {
+    "generated_at": "2026-02-26T02:21:14.559097+00:00",
+    "strategy": "breakout",
+    "trades": 278,
+    "win_rate": 0.3022,
+    "expectancy_r": -0.1795,
+    "avg_win_r": 1.9058,
+    "avg_loss_r": -1.0824,
+    "gross_profit_r": 160.0861,
+    "gross_loss_r": 209.9829,
+    "profit_factor": 0.7624,
+    "net_pnl": -408.7555,
+    "return_pct": -40.8756,
+    "max_drawdown_$": -443.4866,
+    "max_drawdown_pct": -44.3487,
+    "final_equity": 591.2445,
+    "costs": {
+      "fee_bps": 1.0,
+      "slippage_bps": 2.0
+    }
+  },
+  "diagnostics": {
+    "bars": 10938,
+    "entry_signals": 384,
+    "exit_signals": 861,
+    "entries_opened": 278,
+    "entries_fallback_no_atr": 0,
+    "exits": {
+      "stop": 193,
+      "target": 84,
+      "signal": 1,
+      "eod": 0
+    }
+  },
+  "comparison": {
+    "with_costs_expectancy_r": -0.1795,
+    "no_cost_expectancy_r": -0.0442,
+    "cost_impact_expectancy_r": -0.1353
+  },
+  "issues": [
+    "no_edge",
+    "weak_pf",
+    "high_dd",
+    "cost_sensitive"
+  ],
+  "status": "FAIL",
+  "wrong_sentence": "breakout had excessive drawdown relative to account size.",
+  "fixed_sentence": "Reduced aggressiveness and tightened risk behavior to control downside."
+}

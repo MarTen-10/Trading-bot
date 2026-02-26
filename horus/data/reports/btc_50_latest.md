@@ -1,0 +1,161 @@
+# BTC 50-Run Parallel Diagnostic Sweep
+
+Generated: 2026-02-26T02:21:17.168720+00:00
+Data: `BTCUSD_15mo_1h_20260226_012427.csv`
+Passes: 0/50
+
+## Per-run short summary
+- Run 01 | breakout | FAIL | Trades 526 | ExpR -0.0596 | PF 0.9076 | Return% -31.0452
+  - Wrong: breakout had excessive drawdown relative to account size.
+  - Fix: Reduced aggressiveness and tightened risk behavior to control downside.
+- Run 02 | rsi_reversion | FAIL | Trades 537 | ExpR -0.1095 | PF 0.8447 | Return% -47.1616
+  - Wrong: rsi_reversion had excessive drawdown relative to account size.
+  - Fix: Reduced aggressiveness and tightened risk behavior to control downside.
+- Run 03 | sma_cross | FAIL | Trades 129 | ExpR -0.1174 | PF 0.8516 | Return% -15.5653
+  - Wrong: sma_cross had excessive drawdown relative to account size.
+  - Fix: Reduced aggressiveness and tightened risk behavior to control downside.
+- Run 04 | mean_reversion_z | FAIL | Trades 1013 | ExpR -0.1638 | PF 0.778 | Return% -82.678
+  - Wrong: mean_reversion_z had excessive drawdown relative to account size.
+  - Fix: Reduced aggressiveness and tightened risk behavior to control downside.
+- Run 05 | breakout | FAIL | Trades 329 | ExpR -0.0593 | PF 0.9186 | Return% -21.215
+  - Wrong: breakout had excessive drawdown relative to account size.
+  - Fix: Reduced aggressiveness and tightened risk behavior to control downside.
+- Run 06 | rsi_reversion | FAIL | Trades 159 | ExpR -0.2131 | PF 0.7144 | Return% -29.748
+  - Wrong: rsi_reversion had excessive drawdown relative to account size.
+  - Fix: Reduced aggressiveness and tightened risk behavior to control downside.
+- Run 07 | sma_cross | FAIL | Trades 69 | ExpR -0.2272 | PF 0.7166 | Return% -15.2309
+  - Wrong: sma_cross had excessive drawdown relative to account size.
+  - Fix: Reduced aggressiveness and tightened risk behavior to control downside.
+- Run 08 | mean_reversion_z | FAIL | Trades 585 | ExpR -0.1378 | PF 0.8137 | Return% -57.8008
+  - Wrong: mean_reversion_z had excessive drawdown relative to account size.
+  - Fix: Reduced aggressiveness and tightened risk behavior to control downside.
+- Run 09 | breakout | FAIL | Trades 521 | ExpR -0.1094 | PF 0.8474 | Return% -46.5664
+  - Wrong: breakout had excessive drawdown relative to account size.
+  - Fix: Reduced aggressiveness and tightened risk behavior to control downside.
+- Run 10 | rsi_reversion | FAIL | Trades 159 | ExpR -0.1299 | PF 0.8402 | Return% -20.4371
+  - Wrong: rsi_reversion had excessive drawdown relative to account size.
+  - Fix: Reduced aggressiveness and tightened risk behavior to control downside.
+- Run 11 | sma_cross | FAIL | Trades 91 | ExpR 0.133 | PF 1.198 | Return% 11.5215
+  - Wrong: sma_cross had excessive drawdown relative to account size.
+  - Fix: Reduced aggressiveness and tightened risk behavior to control downside.
+- Run 12 | mean_reversion_z | FAIL | Trades 846 | ExpR -0.1066 | PF 0.8657 | Return% -63.7668
+  - Wrong: mean_reversion_z had excessive drawdown relative to account size.
+  - Fix: Reduced aggressiveness and tightened risk behavior to control downside.
+- Run 13 | breakout | FAIL | Trades 231 | ExpR -0.0654 | PF 0.9015 | Return% -15.8235
+  - Wrong: breakout had excessive drawdown relative to account size.
+  - Fix: Reduced aggressiveness and tightened risk behavior to control downside.
+- Run 14 | rsi_reversion | FAIL | Trades 276 | ExpR -0.1068 | PF 0.8442 | Return% -27.2951
+  - Wrong: rsi_reversion had excessive drawdown relative to account size.
+  - Fix: Reduced aggressiveness and tightened risk behavior to control downside.
+- Run 15 | sma_cross | FAIL | Trades 88 | ExpR -0.2117 | PF 0.7288 | Return% -17.7841
+  - Wrong: sma_cross had excessive drawdown relative to account size.
+  - Fix: Reduced aggressiveness and tightened risk behavior to control downside.
+- Run 16 | mean_reversion_z | FAIL | Trades 580 | ExpR -0.1998 | PF 0.748 | Return% -70.5602
+  - Wrong: mean_reversion_z had excessive drawdown relative to account size.
+  - Fix: Reduced aggressiveness and tightened risk behavior to control downside.
+- Run 17 | breakout | FAIL | Trades 221 | ExpR -0.1054 | PF 0.8588 | Return% -23.0014
+  - Wrong: breakout had excessive drawdown relative to account size.
+  - Fix: Reduced aggressiveness and tightened risk behavior to control downside.
+- Run 18 | rsi_reversion | FAIL | Trades 325 | ExpR -0.1216 | PF 0.8316 | Return% -34.6975
+  - Wrong: rsi_reversion had excessive drawdown relative to account size.
+  - Fix: Reduced aggressiveness and tightened risk behavior to control downside.
+- Run 19 | sma_cross | FAIL | Trades 125 | ExpR -0.34 | PF 0.6021 | Return% -35.589
+  - Wrong: sma_cross had excessive drawdown relative to account size.
+  - Fix: Reduced aggressiveness and tightened risk behavior to control downside.
+- Run 20 | mean_reversion_z | FAIL | Trades 272 | ExpR -0.2728 | PF 0.6557 | Return% -53.5624
+  - Wrong: mean_reversion_z had excessive drawdown relative to account size.
+  - Fix: Reduced aggressiveness and tightened risk behavior to control downside.
+- Run 21 | breakout | FAIL | Trades 288 | ExpR -0.1483 | PF 0.7985 | Return% -36.5295
+  - Wrong: breakout had excessive drawdown relative to account size.
+  - Fix: Reduced aggressiveness and tightened risk behavior to control downside.
+- Run 22 | rsi_reversion | FAIL | Trades 304 | ExpR -0.1662 | PF 0.7962 | Return% -42.069
+  - Wrong: rsi_reversion had excessive drawdown relative to account size.
+  - Fix: Reduced aggressiveness and tightened risk behavior to control downside.
+- Run 23 | sma_cross | FAIL | Trades 103 | ExpR -0.101 | PF 0.8591 | Return% -10.8815
+  - Wrong: sma_cross had excessive drawdown relative to account size.
+  - Fix: Reduced aggressiveness and tightened risk behavior to control downside.
+- Run 24 | mean_reversion_z | FAIL | Trades 216 | ExpR -0.1933 | PF 0.743 | Return% -35.5625
+  - Wrong: mean_reversion_z had excessive drawdown relative to account size.
+  - Fix: Reduced aggressiveness and tightened risk behavior to control downside.
+- Run 25 | breakout | FAIL | Trades 394 | ExpR -0.0712 | PF 0.8868 | Return% -27.2262
+  - Wrong: breakout had excessive drawdown relative to account size.
+  - Fix: Reduced aggressiveness and tightened risk behavior to control downside.
+- Run 26 | rsi_reversion | FAIL | Trades 576 | ExpR -0.1387 | PF 0.7916 | Return% -57.0366
+  - Wrong: rsi_reversion had excessive drawdown relative to account size.
+  - Fix: Reduced aggressiveness and tightened risk behavior to control downside.
+- Run 27 | sma_cross | FAIL | Trades 51 | ExpR -0.0462 | PF 0.9418 | Return% -3.0709
+  - Wrong: sma_cross lacked durable edge (negative expectancy or weak PF).
+  - Fix: Switched/tuned parameter regime to improve signal quality and payoff ratio.
+- Run 28 | mean_reversion_z | FAIL | Trades 223 | ExpR -0.1564 | PF 0.7944 | Return% -31.1139
+  - Wrong: mean_reversion_z had excessive drawdown relative to account size.
+  - Fix: Reduced aggressiveness and tightened risk behavior to control downside.
+- Run 29 | breakout | FAIL | Trades 526 | ExpR -0.0596 | PF 0.9076 | Return% -31.0452
+  - Wrong: breakout had excessive drawdown relative to account size.
+  - Fix: Reduced aggressiveness and tightened risk behavior to control downside.
+- Run 30 | rsi_reversion | FAIL | Trades 122 | ExpR -0.1198 | PF 0.8294 | Return% -14.6743
+  - Wrong: rsi_reversion had excessive drawdown relative to account size.
+  - Fix: Reduced aggressiveness and tightened risk behavior to control downside.
+- Run 31 | sma_cross | FAIL | Trades 129 | ExpR -0.1413 | PF 0.7946 | Return% -17.5917
+  - Wrong: sma_cross had excessive drawdown relative to account size.
+  - Fix: Reduced aggressiveness and tightened risk behavior to control downside.
+- Run 32 | mean_reversion_z | FAIL | Trades 846 | ExpR -0.1066 | PF 0.8657 | Return% -63.7668
+  - Wrong: mean_reversion_z had excessive drawdown relative to account size.
+  - Fix: Reduced aggressiveness and tightened risk behavior to control downside.
+- Run 33 | breakout | FAIL | Trades 386 | ExpR -0.1961 | PF 0.7626 | Return% -55.4598
+  - Wrong: breakout had excessive drawdown relative to account size.
+  - Fix: Reduced aggressiveness and tightened risk behavior to control downside.
+- Run 34 | rsi_reversion | FAIL | Trades 224 | ExpR -0.1409 | PF 0.7905 | Return% -28.3716
+  - Wrong: rsi_reversion had excessive drawdown relative to account size.
+  - Fix: Reduced aggressiveness and tightened risk behavior to control downside.
+- Run 35 | sma_cross | FAIL | Trades 163 | ExpR -0.2559 | PF 0.6724 | Return% -35.2038
+  - Wrong: sma_cross had excessive drawdown relative to account size.
+  - Fix: Reduced aggressiveness and tightened risk behavior to control downside.
+- Run 36 | mean_reversion_z | FAIL | Trades 1222 | ExpR -0.164 | PF 0.7877 | Return% -88.1913
+  - Wrong: mean_reversion_z had excessive drawdown relative to account size.
+  - Fix: Reduced aggressiveness and tightened risk behavior to control downside.
+- Run 37 | breakout | FAIL | Trades 278 | ExpR -0.1795 | PF 0.7624 | Return% -40.8756
+  - Wrong: breakout had excessive drawdown relative to account size.
+  - Fix: Reduced aggressiveness and tightened risk behavior to control downside.
+- Run 38 | rsi_reversion | FAIL | Trades 461 | ExpR -0.0677 | PF 0.9095 | Return% -30.9603
+  - Wrong: rsi_reversion had excessive drawdown relative to account size.
+  - Fix: Reduced aggressiveness and tightened risk behavior to control downside.
+- Run 39 | sma_cross | FAIL | Trades 48 | ExpR -0.3587 | PF 0.5721 | Return% -16.2244
+  - Wrong: sma_cross had excessive drawdown relative to account size.
+  - Fix: Reduced aggressiveness and tightened risk behavior to control downside.
+- Run 40 | mean_reversion_z | FAIL | Trades 484 | ExpR -0.1004 | PF 0.851 | Return% -40.9361
+  - Wrong: mean_reversion_z had excessive drawdown relative to account size.
+  - Fix: Reduced aggressiveness and tightened risk behavior to control downside.
+- Run 41 | breakout | FAIL | Trades 298 | ExpR -0.1589 | PF 0.8005 | Return% -39.8844
+  - Wrong: breakout had excessive drawdown relative to account size.
+  - Fix: Reduced aggressiveness and tightened risk behavior to control downside.
+- Run 42 | rsi_reversion | FAIL | Trades 333 | ExpR -0.0894 | PF 0.8746 | Return% -28.0893
+  - Wrong: rsi_reversion had excessive drawdown relative to account size.
+  - Fix: Reduced aggressiveness and tightened risk behavior to control downside.
+- Run 43 | sma_cross | FAIL | Trades 76 | ExpR -0.2102 | PF 0.7325 | Return% -15.5508
+  - Wrong: sma_cross had excessive drawdown relative to account size.
+  - Fix: Reduced aggressiveness and tightened risk behavior to control downside.
+- Run 44 | mean_reversion_z | FAIL | Trades 1343 | ExpR -0.1628 | PF 0.7756 | Return% -90.0388
+  - Wrong: mean_reversion_z had excessive drawdown relative to account size.
+  - Fix: Reduced aggressiveness and tightened risk behavior to control downside.
+- Run 45 | breakout | FAIL | Trades 600 | ExpR -0.0847 | PF 0.8664 | Return% -42.786
+  - Wrong: breakout had excessive drawdown relative to account size.
+  - Fix: Reduced aggressiveness and tightened risk behavior to control downside.
+- Run 46 | rsi_reversion | FAIL | Trades 591 | ExpR -0.0745 | PF 0.8921 | Return% -39.0549
+  - Wrong: rsi_reversion had excessive drawdown relative to account size.
+  - Fix: Reduced aggressiveness and tightened risk behavior to control downside.
+- Run 47 | sma_cross | FAIL | Trades 77 | ExpR 0.0056 | PF 1.0076 | Return% -0.683
+  - Wrong: sma_cross had excessive drawdown relative to account size.
+  - Fix: Reduced aggressiveness and tightened risk behavior to control downside.
+- Run 48 | mean_reversion_z | FAIL | Trades 264 | ExpR -0.2134 | PF 0.7258 | Return% -44.5953
+  - Wrong: mean_reversion_z had excessive drawdown relative to account size.
+  - Fix: Reduced aggressiveness and tightened risk behavior to control downside.
+- Run 49 | breakout | FAIL | Trades 573 | ExpR -0.1094 | PF 0.8441 | Return% -49.3449
+  - Wrong: breakout had excessive drawdown relative to account size.
+  - Fix: Reduced aggressiveness and tightened risk behavior to control downside.
+- Run 50 | rsi_reversion | FAIL | Trades 368 | ExpR -0.0926 | PF 0.8779 | Return% -31.9128
+  - Wrong: rsi_reversion had excessive drawdown relative to account size.
+  - Fix: Reduced aggressiveness and tightened risk behavior to control downside.
+
+## Best run
+- Run 11 | sma_cross
+- ExpR 0.133 | PF 1.198 | Return% 11.5215

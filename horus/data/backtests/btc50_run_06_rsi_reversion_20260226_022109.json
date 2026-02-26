@@ -1,0 +1,61 @@
+{
+  "run": 6,
+  "strategy": "rsi_reversion",
+  "params": {
+    "initial_equity": 1000,
+    "risk_pct": 0.01,
+    "target_r_mult": 2.0,
+    "rsi_n": 21,
+    "buy_below": 25,
+    "sell_above": 52,
+    "stop_atr_mult": 0.9
+  },
+  "summary": {
+    "generated_at": "2026-02-26T02:21:10.283215+00:00",
+    "strategy": "rsi_reversion",
+    "trades": 159,
+    "win_rate": 0.2956,
+    "expectancy_r": -0.2131,
+    "avg_win_r": 1.8037,
+    "avg_loss_r": -1.0594,
+    "gross_profit_r": 84.7725,
+    "gross_loss_r": 118.6552,
+    "profit_factor": 0.7144,
+    "net_pnl": -297.48,
+    "return_pct": -29.748,
+    "max_drawdown_$": -342.9615,
+    "max_drawdown_pct": -34.2962,
+    "final_equity": 702.52,
+    "costs": {
+      "fee_bps": 1.0,
+      "slippage_bps": 2.0
+    }
+  },
+  "diagnostics": {
+    "bars": 10938,
+    "entry_signals": 357,
+    "exit_signals": 4884,
+    "entries_opened": 159,
+    "entries_fallback_no_atr": 0,
+    "exits": {
+      "stop": 112,
+      "target": 41,
+      "signal": 6,
+      "eod": 0
+    }
+  },
+  "comparison": {
+    "with_costs_expectancy_r": -0.2131,
+    "no_cost_expectancy_r": -0.0858,
+    "cost_impact_expectancy_r": -0.1273
+  },
+  "issues": [
+    "no_edge",
+    "weak_pf",
+    "high_dd",
+    "cost_sensitive"
+  ],
+  "status": "FAIL",
+  "wrong_sentence": "rsi_reversion had excessive drawdown relative to account size.",
+  "fixed_sentence": "Reduced aggressiveness and tightened risk behavior to control downside."
+}
