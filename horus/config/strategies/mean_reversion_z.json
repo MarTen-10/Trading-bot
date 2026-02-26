@@ -1,0 +1,1 @@
+{"strategy":"mean_reversion_z","params":{"lookback":30,"z_in":-2.0,"z_out":-0.2,"initial_equity":10000,"risk_pct":0.005,"stop_atr_mult":1.0,"target_r_mult":1.5}}

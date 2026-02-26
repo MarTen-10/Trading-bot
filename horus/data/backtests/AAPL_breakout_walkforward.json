@@ -1,0 +1,83 @@
+{
+  "walkforward": [
+    {
+      "fold": 0,
+      "generated_at": "2026-02-26T00:40:20.912738+00:00",
+      "strategy": "breakout",
+      "trades": 0,
+      "win_rate": 0,
+      "expectancy_r": 0,
+      "profit_factor": null,
+      "net_pnl": 0.0,
+      "return_pct": 0.0,
+      "max_drawdown_$": 0.0,
+      "max_drawdown_pct": 0.0,
+      "final_equity": 10000.0,
+      "costs": {
+        "fee_bps": 1.0,
+        "slippage_bps": 2.0
+      }
+    },
+    {
+      "fold": 1,
+      "generated_at": "2026-02-26T00:40:20.912942+00:00",
+      "strategy": "breakout",
+      "trades": 3,
+      "win_rate": 0.3333,
+      "expectancy_r": 0.3066,
+      "profit_factor": 1.8593,
+      "net_pnl": 45.4805,
+      "return_pct": 0.4548,
+      "max_drawdown_$": -50.8683,
+      "max_drawdown_pct": -0.5087,
+      "final_equity": 10045.4805,
+      "costs": {
+        "fee_bps": 1.0,
+        "slippage_bps": 2.0
+      }
+    },
+    {
+      "fold": 2,
+      "generated_at": "2026-02-26T00:40:20.913219+00:00",
+      "strategy": "breakout",
+      "trades": 1,
+      "win_rate": 1.0,
+      "expectancy_r": 0.7717,
+      "profit_factor": null,
+      "net_pnl": 38.5857,
+      "return_pct": 0.3859,
+      "max_drawdown_$": 0.0,
+      "max_drawdown_pct": 0.0,
+      "final_equity": 10038.5857,
+      "costs": {
+        "fee_bps": 1.0,
+        "slippage_bps": 2.0
+      }
+    },
+    {
+      "fold": 3,
+      "generated_at": "2026-02-26T00:40:20.913361+00:00",
+      "strategy": "breakout",
+      "trades": 1,
+      "win_rate": 0.0,
+      "expectancy_r": -1.0079,
+      "profit_factor": 0.0,
+      "net_pnl": -50.3973,
+      "return_pct": -0.504,
+      "max_drawdown_$": -50.3973,
+      "max_drawdown_pct": -0.504,
+      "final_equity": 9949.6027,
+      "costs": {
+        "fee_bps": 1.0,
+        "slippage_bps": 2.0
+      }
+    }
+  ],
+  "aggregate": {
+    "folds": 4,
+    "avg_expectancy_r": 0.0176,
+    "avg_profit_factor": 0.9296,
+    "avg_return_pct": 0.0842
+  },
+  "generated_at": "2026-02-26T00:40:20.913424+00:00"
+}

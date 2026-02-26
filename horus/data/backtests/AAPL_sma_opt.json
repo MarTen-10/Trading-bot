@@ -1,0 +1,81 @@
+{
+  "generated_at": "2026-02-26T00:40:20.982758+00:00",
+  "results": [
+    {
+      "fast": 20,
+      "slow": 50,
+      "generated_at": "2026-02-26T00:40:20.982321+00:00",
+      "strategy": "sma_cross",
+      "trades": 3,
+      "win_rate": 0.3333,
+      "expectancy_r": -0.4143,
+      "profit_factor": 0.3842,
+      "net_pnl": -62.2806,
+      "return_pct": -0.6228,
+      "max_drawdown_$": -100.6583,
+      "max_drawdown_pct": -1.0066,
+      "final_equity": 9937.7194,
+      "costs": {
+        "fee_bps": 1.0,
+        "slippage_bps": 2.0
+      }
+    },
+    {
+      "fast": 20,
+      "slow": 100,
+      "generated_at": "2026-02-26T00:40:20.982664+00:00",
+      "strategy": "sma_cross",
+      "trades": 2,
+      "win_rate": 0.5,
+      "expectancy_r": -0.4153,
+      "profit_factor": 0.1789,
+      "net_pnl": -41.5742,
+      "return_pct": -0.4157,
+      "max_drawdown_$": -50.572,
+      "max_drawdown_pct": -0.5057,
+      "final_equity": 9958.4258,
+      "costs": {
+        "fee_bps": 1.0,
+        "slippage_bps": 2.0
+      }
+    },
+    {
+      "fast": 10,
+      "slow": 100,
+      "generated_at": "2026-02-26T00:40:20.981947+00:00",
+      "strategy": "sma_cross",
+      "trades": 1,
+      "win_rate": 0.0,
+      "expectancy_r": -1.0077,
+      "profit_factor": 0.0,
+      "net_pnl": -50.3856,
+      "return_pct": -0.5039,
+      "max_drawdown_$": -50.3856,
+      "max_drawdown_pct": -0.5039,
+      "final_equity": 9949.6144,
+      "costs": {
+        "fee_bps": 1.0,
+        "slippage_bps": 2.0
+      }
+    },
+    {
+      "fast": 10,
+      "slow": 50,
+      "generated_at": "2026-02-26T00:40:20.981491+00:00",
+      "strategy": "sma_cross",
+      "trades": 3,
+      "win_rate": 0.0,
+      "expectancy_r": -1.0085,
+      "profit_factor": 0.0,
+      "net_pnl": -150.5207,
+      "return_pct": -1.5052,
+      "max_drawdown_$": -150.5207,
+      "max_drawdown_pct": -1.5052,
+      "final_equity": 9849.4793,
+      "costs": {
+        "fee_bps": 1.0,
+        "slippage_bps": 2.0
+      }
+    }
+  ]
+}
