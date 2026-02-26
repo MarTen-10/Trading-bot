@@ -1,0 +1,10 @@
+{
+  "signals_generated": 0,
+  "signals_vetoed": 0,
+  "orders_sent": 0,
+  "fills": 0,
+  "avg_latency_ms": 0.0,
+  "_latency_samples": 0,
+  "current_regime": "UNKNOWN",
+  "current_drawdown_R": 0.0
+}

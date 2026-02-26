@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
+import csv
 import json
 import subprocess
 from datetime import datetime, UTC
 from pathlib import Path
+
+from horus.runtime import dbio
 
 BASE = Path('/home/marten/.openclaw/workspace/horus')
 
@@ -14,33 +17,49 @@ def run(cmd):
     return p.stdout.strip()
 
 
-def freeze_universe():
-    # placeholder deterministic top-5 snapshot until volume-ranker is wired
-    symbols = ['BTCUSD', 'ETHUSD', 'SOLUSD', 'BNBUSD', 'XRPUSD']
+def freeze_universe_top5():
+    crypto_dir = BASE / 'data' / 'raw' / 'crypto'
+    totals = []
+    for p in sorted(crypto_dir.glob('*_5m.csv')):
+        symbol = p.name.replace('_5m.csv', '')
+        rows = []
+        with p.open(newline='') as f:
+            r = csv.DictReader(f)
+            rows = list(r)
+        if not rows:
+            continue
+        last = rows[-288:]  # previous 24h for 5m bars
+        vol_sum = sum(float(x.get('volume', 0) or 0) for x in last)
+        totals.append((symbol, vol_sum))
+
+    totals.sort(key=lambda x: x[1], reverse=True)
+    symbols = [s for s, _ in totals[:5]]
+    if not symbols:
+        symbols = ['BTCUSD', 'ETHUSD', 'SOLUSD', 'BNBUSD', 'XRPUSD']
+
     ts = datetime.now(UTC).strftime('%Y%m%d')
-    out = BASE/'data'/'reports'/f'universe_{ts}.json'
+    out = BASE / 'data' / 'reports' / f'universe_{ts}.json'
     out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps({'date_utc': ts, 'symbols': symbols, 'source': 'frozen-default'}, indent=2))
+    payload = {'date_utc': ts, 'symbols': symbols, 'source': 'volume_top5_24h', 'ranked': totals[:10]}
+    out.write_text(json.dumps(payload, indent=2))
+
+    dbio.insert_governance('UNIVERSE_FREEZE', None, None, 'SNAPSHOT', 'nightly_top5_by_volume', json.dumps(payload))
     return out
 
 
 def main():
-    # 1) freeze universe at 00:00 UTC equivalent nightly snapshot
-    uni = freeze_universe()
-
-    # 2) refresh suite + selection
     run(['python3', str(BASE/'scripts/fetch_crypto_coinbase.py')])
+    uni = freeze_universe_top5()
+
     run(['python3', str(BASE/'scripts/run_crypto_paper_suite.py')])
     run(['python3', str(BASE/'scripts/select_strategies.py')])
 
-    # 3) calibrated MC + gate on latest best known config
     best_bt = sorted(BASE.glob('data/backtests/btc_autotune_bt_run3_sma_cross_fix_*.json'))
     if best_bt:
         best_bt = best_bt[-1]
         run(['python3', str(BASE/'backtester/monte_carlo_calibrated.py'), '--backtest-report', str(best_bt), '--out', str(BASE/'data/reports/nightly_mc_latest.json'), '--equity', '1000', '--risk-pct', '0.01'])
         run(['python3', str(BASE/'backtester/gate_engine.py'), '--backtest-report', str(best_bt), '--mc-report', str(BASE/'data/reports/nightly_mc_latest.json'), '--out', str(BASE/'data/reports/nightly_gate_latest.json')])
 
-    # 4) acceptance tests nightly
     run(['python3', str(BASE/'backtester/acceptance_tests.py')])
 
     print(json.dumps({'status': 'ok', 'universe_snapshot': str(uni), 'generated_at': datetime.now(UTC).isoformat()}))

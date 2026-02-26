@@ -8,6 +8,7 @@ MC = BASE/'backtester'/'monte_carlo_calibrated.py'
 GE = BASE/'backtester'/'gate_engine.py'
 CAL = BASE/'backtester'/'calibration_loop.py'
 POL = BASE/'config'/'promotion_rollback_policy.json'
+PARITY = BASE/'tests'/'replay_parity.py'
 
 
 def run(cmd):
@@ -88,6 +89,10 @@ def test_circuit_breaker_reconciliation_trigger():
         raise AssertionError('circuit_breaker_failed:fill_mismatch_not_triggered')
 
 
+def test_replay_parity():
+    run(['python3', str(PARITY)])
+
+
 def test_rollback_trigger(csv_path):
     with tempfile.TemporaryDirectory() as td:
         bt = Path(td)/'bt.json'
@@ -116,6 +121,7 @@ def main():
     test_risk_governor(csv_path)
     test_calibration_loop()
     test_circuit_breaker_reconciliation_trigger()
+    test_replay_parity()
     test_rollback_trigger(csv_path)
     print('ACCEPTANCE_OK')
 
