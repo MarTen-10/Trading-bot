@@ -1,0 +1,47 @@
+{
+  "groups": [
+    {
+      "instrument": "BTCUSD",
+      "hour": 10,
+      "regime": "TREND_NORMAL",
+      "count": 2,
+      "p50": 1.498,
+      "p75": 1.747,
+      "p90": 1.8964
+    },
+    {
+      "instrument": "ETHUSD",
+      "hour": 11,
+      "regime": "CHOP_LOW_VOL",
+      "count": 1,
+      "p50": 3.0,
+      "p75": 3.0,
+      "p90": 3.0
+    },
+    {
+      "instrument": "ETHUSD",
+      "hour": 11,
+      "regime": "VOL_SHOCK",
+      "count": 1,
+      "p50": 5.0083,
+      "p75": 5.0083,
+      "p90": 5.0083
+    }
+  ],
+  "instrument_summary": {
+    "BTCUSD": {
+      "count": 2,
+      "p50": 1.498,
+      "p75": 1.747,
+      "p90": 1.8964
+    },
+    "ETHUSD": {
+      "count": 2,
+      "p50": 4.0042,
+      "p75": 4.5063,
+      "p90": 4.8075
+    }
+  },
+  "generated_at": "2026-02-26T02:42:04.180191+00:00",
+  "source": "/home/marten/.openclaw/workspace/horus/tests/sample_fills.csv"
+}

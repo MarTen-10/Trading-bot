@@ -6,6 +6,7 @@ BASE = Path('/home/marten/.openclaw/workspace/horus')
 BT = BASE/'backtester'/'universal_backtester.py'
 MC = BASE/'backtester'/'monte_carlo_calibrated.py'
 GE = BASE/'backtester'/'gate_engine.py'
+CAL = BASE/'backtester'/'calibration_loop.py'
 POL = BASE/'config'/'promotion_rollback_policy.json'
 
 
@@ -53,6 +54,40 @@ def test_risk_governor(csv_path):
             raise AssertionError(f'risk_governor_failed:violations={len(bad)} sample={bad[0]}')
 
 
+def test_calibration_loop():
+    with tempfile.TemporaryDirectory() as td:
+        out = Path(td)/'cal.json'
+        fills = BASE/'tests'/'sample_fills.csv'
+        run(['python3', str(CAL), '--fills-csv', str(fills), '--out-json', str(out)])
+        j = load(out)
+        if 'instrument_summary' not in j or 'BTCUSD' not in j['instrument_summary']:
+            raise AssertionError('calibration_failed:missing_instrument_summary')
+        if j['instrument_summary']['BTCUSD']['p75'] is None:
+            raise AssertionError('calibration_failed:missing_percentiles')
+
+
+def test_circuit_breaker_reconciliation_trigger():
+    import importlib.util
+    mod_path = BASE/'runtime'/'circuit_breakers.py'
+    spec = importlib.util.spec_from_file_location('cb', mod_path)
+    cb = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(cb)
+
+    snap = cb.RuntimeSnapshot(
+        stale_seconds=0,
+        latency_p95_ms=100,
+        spread_bps=5,
+        daily_median_spread_bps=5,
+        spread_shock_minutes=0,
+        reject_count_10m=0,
+        fill_mismatch_polls=2,
+        realized_r_day=0,
+    )
+    events = cb.evaluate(snap)
+    if not any(e.get('trigger') == 'fill_mismatch' for e in events):
+        raise AssertionError('circuit_breaker_failed:fill_mismatch_not_triggered')
+
+
 def test_rollback_trigger(csv_path):
     with tempfile.TemporaryDirectory() as td:
         bt = Path(td)/'bt.json'
@@ -79,6 +114,8 @@ def main():
 
     test_deterministic(csv_path)
     test_risk_governor(csv_path)
+    test_calibration_loop()
+    test_circuit_breaker_reconciliation_trigger()
     test_rollback_trigger(csv_path)
     print('ACCEPTANCE_OK')
 
