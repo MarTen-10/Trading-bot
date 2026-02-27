@@ -55,8 +55,8 @@ def test_max_open_exposure_2r_blocks_third_entry():
     d2 = e.process_event(ev('ETHUSD', 2))
     assert len(d1.intents) == 1
     assert len(d2.intents) == 1
-    e.on_entry_filled(d1.intents[0], event_sequence_id=1, entry_fill_px=1.5)
-    e.on_entry_filled(d2.intents[0], event_sequence_id=2, entry_fill_px=1.5)
+    e.on_entry_filled(d1.intents[0], entry_fill_px=1.5)
+    e.on_entry_filled(d2.intents[0], entry_fill_px=1.5)
     d3 = e.process_event(ev('SOLUSD', 3))
     assert len(d3.intents) == 0
     assert d3.veto_reason == 'RISK_EXPOSURE_CAP'

@@ -1,7 +1,26 @@
 import hashlib
 from dataclasses import dataclass, field
+from datetime import datetime, timedelta
 
 from horus.core.events import CandleEvent, OrderIntent, EngineDecision
+
+
+def _parse_tf_delta(tf: str) -> timedelta:
+    tf = (tf or '').strip().lower()
+    if tf.endswith('m'):
+        return timedelta(minutes=int(tf[:-1]))
+    if tf.endswith('h'):
+        return timedelta(hours=int(tf[:-1]))
+    if tf.endswith('d'):
+        return timedelta(days=int(tf[:-1]))
+    # safe default for runtime
+    return timedelta(minutes=5)
+
+
+def _to_dt(value: str | datetime) -> datetime:
+    if isinstance(value, datetime):
+        return value
+    return datetime.fromisoformat(str(value).replace('Z', '+00:00'))
 
 
 @dataclass
@@ -11,7 +30,6 @@ class Position:
     instrument: str
     side: str
     entry_ts: str
-    entry_sequence_id: int
     entry_price: float
     risk_r: float
     qty: float
@@ -46,7 +64,12 @@ class Engine:
         if not pos or pos.status != 'OPEN':
             return []
 
-        candles_since_entry = max(0, int(event.sequence_id - pos.entry_sequence_id))
+        entry_dt = _to_dt(pos.entry_ts)
+        elapsed = event.timestamp - entry_dt
+        tf_delta = _parse_tf_delta(event.timeframe)
+        if elapsed.total_seconds() < 0:
+            return []
+        candles_since_entry = int(elapsed // tf_delta)
         if candles_since_entry < int(self.state.exit_after_candles):
             return []
 
@@ -72,7 +95,7 @@ class Engine:
             )
         ]
 
-    def on_entry_filled(self, intent: OrderIntent, event_sequence_id: int, entry_fill_px: float):
+    def on_entry_filled(self, intent: OrderIntent, entry_fill_px: float):
         self.state.open_exposure_r = float(self.state.open_exposure_r) + 1.0
         self.state.positions[intent.instrument] = Position(
             position_id=intent.position_id or intent.intent_id,
@@ -80,7 +103,6 @@ class Engine:
             instrument=intent.instrument,
             side=intent.side,
             entry_ts=intent.event_ts,
-            entry_sequence_id=int(event_sequence_id),
             entry_price=float(entry_fill_px),
             risk_r=1.0,
             qty=float(intent.qty),

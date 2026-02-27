@@ -87,7 +87,7 @@ def load_runtime_config():
     return cfg
 
 
-def _insert_entry_trade(intent, fill, event_sequence_id):
+def _insert_entry_trade(intent, fill):
     from horus.runtime import dbio as _dbio
 
     def _write(con):
@@ -97,9 +97,9 @@ def _insert_entry_trade(intent, fill, event_sequence_id):
                 INSERT INTO trades(
                   trade_id, signal_id, instrument, status, side,
                   entry_timestamp, entry_price, qty, risk_r,
-                  entry_sequence_id, stop_price, take_price,
+                  stop_price, take_price,
                   realized_r, realized_pnl, mfe_r, mae_r, exit_reason
-                ) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
+                ) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
                 ON CONFLICT(trade_id) DO UPDATE SET
                   status=EXCLUDED.status,
                   side=EXCLUDED.side,
@@ -107,7 +107,6 @@ def _insert_entry_trade(intent, fill, event_sequence_id):
                   entry_price=EXCLUDED.entry_price,
                   qty=EXCLUDED.qty,
                   risk_r=EXCLUDED.risk_r,
-                  entry_sequence_id=EXCLUDED.entry_sequence_id,
                   stop_price=EXCLUDED.stop_price,
                   take_price=EXCLUDED.take_price
                 """,
@@ -121,7 +120,6 @@ def _insert_entry_trade(intent, fill, event_sequence_id):
                     float(fill.fill_px),
                     float(fill.fill_qty),
                     1.0,
-                    int(event_sequence_id),
                     float(intent.stop_px),
                     None,
                     None,
@@ -297,8 +295,8 @@ def main():
                         dbio.insert_signal(intent.signal_id, intent.event_ts, intent.instrument, 'breakout_v2', 'taken', '')
                     order, fill = place_order(intent)
                     if intent.intent_type == 'ENTRY':
-                        engine.on_entry_filled(intent, event.sequence_id, fill.fill_px)
-                        _insert_entry_trade(intent, fill, event.sequence_id)
+                        engine.on_entry_filled(intent, fill.fill_px)
+                        _insert_entry_trade(intent, fill)
                         log('INFO', 'ENTRY_FILLED', signal=intent.signal_id, position_id=intent.position_id, order=order['order_id'], fill_px=round(fill.fill_px, 8), qty=round(fill.fill_qty, 8))
                     else:
                         engine.on_exit_filled(intent, fill.fill_px, intent.event_ts, intent.exit_reason or 'time_exit')

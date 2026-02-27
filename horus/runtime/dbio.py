@@ -77,7 +77,7 @@ def fetch_open_trades():
             cur.execute(
                 """
                 SELECT trade_id, signal_id, instrument, side, entry_timestamp, entry_price, qty, risk_r,
-                       entry_sequence_id, stop_price, take_price
+                       stop_price, take_price
                 FROM trades
                 WHERE COALESCE(status, CASE WHEN exit_timestamp IS NULL THEN 'OPEN' ELSE 'CLOSED' END)='OPEN'
                 ORDER BY entry_timestamp ASC

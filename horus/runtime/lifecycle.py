@@ -19,7 +19,6 @@ def bootstrap_engine_from_db(engine, dbio):
             instrument=instrument,
             side=r.get('side') or 'buy',
             entry_ts=(r.get('entry_timestamp').isoformat() if hasattr(r.get('entry_timestamp'), 'isoformat') else str(r.get('entry_timestamp'))),
-            entry_sequence_id=int(r.get('entry_sequence_id') or 0),
             entry_price=float(r.get('entry_price') or 0.0),
             risk_r=risk_r,
             qty=float(r.get('qty') or 0.0),

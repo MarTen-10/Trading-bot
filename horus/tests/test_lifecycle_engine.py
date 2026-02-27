@@ -50,11 +50,10 @@ class FakeDB:
             'signal_id': 's-open-1',
             'instrument': 'BTCUSD',
             'side': 'buy',
-            'entry_timestamp': datetime(2026, 1, 1, tzinfo=UTC),
+            'entry_timestamp': datetime(2026, 1, 1, 0, 0, tzinfo=UTC),
             'entry_price': 100.0,
             'qty': 1.0,
             'risk_r': 1.0,
-            'entry_sequence_id': 10,
             'stop_price': 99.0,
             'take_price': None,
         }]
@@ -72,7 +71,7 @@ def test_position_persists_until_exit_rule_fires():
     d1 = e.process_event(ev(1, t0))
     assert len(d1.intents) == 1
     assert d1.intents[0].intent_type == 'ENTRY'
-    e.on_entry_filled(d1.intents[0], event_sequence_id=1, entry_fill_px=1.5)
+    e.on_entry_filled(d1.intents[0], entry_fill_px=1.5)
     assert e.state.open_exposure_r == 1.0
 
     d2 = e.process_event(ev(2, t0 + timedelta(minutes=5)))
@@ -92,7 +91,7 @@ def test_exposure_increases_on_entry_and_decreases_on_exit():
 
     t0 = datetime(2026, 1, 1, tzinfo=UTC)
     d1 = e.process_event(ev(1, t0))
-    e.on_entry_filled(d1.intents[0], event_sequence_id=1, entry_fill_px=1.5)
+    e.on_entry_filled(d1.intents[0], entry_fill_px=1.5)
     assert e.state.open_exposure_r == pytest.approx(1.0)
 
     d2 = e.process_event(ev(2, t0 + timedelta(minutes=5)))
@@ -108,3 +107,18 @@ def test_restart_reconstruction_from_db_rows():
     assert out['open_exposure_r'] == pytest.approx(1.0)
     assert e.state.open_exposure_r == pytest.approx(1.0)
     assert 'BTCUSD' in e.state.positions
+
+
+def test_restart_deterministic_exit_uses_timestamps_not_sequence():
+    # Bootstrap an OPEN position from DB-like row at 00:00
+    e = Engine(strategy=ScriptedStrategy(), risk=AllowRisk(), gate=AllowGate(), dbio=NullDB(), logger=lambda *a, **k: None)
+    e.state.exit_after_candles = 6
+    bootstrap_engine_from_db(e, FakeDB())
+
+    # Simulate post-restart stream where sequence_id restarts at 1.
+    # Exit should still trigger only after 30 minutes elapsed from entry timestamp.
+    early = e.process_event(ev(1, datetime(2026, 1, 1, 0, 25, tzinfo=UTC)))
+    assert not any(i.intent_type == 'EXIT' for i in early.intents)
+
+    due = e.process_event(ev(2, datetime(2026, 1, 1, 0, 30, tzinfo=UTC)))
+    assert any(i.intent_type == 'EXIT' for i in due.intents)
