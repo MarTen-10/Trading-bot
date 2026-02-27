@@ -3,6 +3,9 @@ from datetime import datetime, timezone
 import json
 from pathlib import Path
 import time
+import tempfile
+import fcntl
+import os
 
 
 @dataclass
@@ -41,7 +44,20 @@ class BudgetController:
 
     def _save_daily(self):
         self.state_path.parent.mkdir(parents=True, exist_ok=True)
-        self.state_path.write_text(json.dumps(self._daily))
+        lock_path = self.state_path.with_suffix('.lock')
+        with lock_path.open('w') as lk:
+            fcntl.flock(lk.fileno(), fcntl.LOCK_EX)
+            fd, tmp = tempfile.mkstemp(prefix='anubis_l0_daily_', dir=str(self.state_path.parent))
+            try:
+                with open(fd, 'w', encoding='utf-8') as f:
+                    f.write(json.dumps(self._daily))
+                    f.flush()
+                    os.fsync(f.fileno())
+                Path(tmp).replace(self.state_path)
+            finally:
+                if Path(tmp).exists():
+                    Path(tmp).unlink(missing_ok=True)
+            fcntl.flock(lk.fileno(), fcntl.LOCK_UN)
 
     def check_or_raise(self, context: str = ""):
         elapsed = time.time() - self.started_at
