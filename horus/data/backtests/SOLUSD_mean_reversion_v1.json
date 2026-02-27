@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-02-27T13:50:35.061494+00:00",
+  "generated_at": "2026-02-27T14:20:35.628302+00:00",
   "strategy": "mean_reversion_v1",
   "entry_type": "zscore_revert",
   "costs": {

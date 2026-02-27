@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-02-27T13:50:34.935714+00:00",
+  "generated_at": "2026-02-27T14:20:35.510497+00:00",
   "strategy": "mean_reversion_crypto_v1",
   "entry_type": "zscore_revert",
   "costs": {
@@ -8,28 +8,28 @@
   },
   "summary": {
     "trades": 23,
-    "win_rate": 0.1739,
-    "avg_r": -0.8003,
-    "expectancy_r": -0.8003,
-    "profit_factor": 0.1303,
-    "max_dd_r": -18.4061,
+    "win_rate": 0.2174,
+    "avg_r": -0.7577,
+    "expectancy_r": -0.7577,
+    "profit_factor": 0.1741,
+    "max_dd_r": -18.3422,
     "stop_rate": 0.7826,
-    "target_rate": 0.1739,
-    "time_exit_rate": 0.0435
+    "target_rate": 0.2174,
+    "time_exit_rate": 0.0
   },
   "trades": [
     {
       "trade_id": 1,
-      "entry_ts": "2026-02-26T10:45:00+00:00",
+      "entry_ts": "2026-02-26T10:50:00+00:00",
       "exit_ts": "2026-02-26T11:15:00+00:00",
-      "bars_held": 6,
-      "entry": 2066.259398,
-      "exit": 2059.756121,
+      "bars_held": 5,
+      "entry": 2063.818301,
+      "exit": 2057.262601,
       "reason": "stop",
       "regime": "chop",
       "fee_bps": 1.5,
       "slippage_bps": 3.0,
-      "r": -1.166304
+      "r": -1.164523
     },
     {
       "trade_id": 2,
@@ -307,15 +307,15 @@
     {
       "trade_id": 23,
       "entry_ts": "2026-02-27T13:40:00+00:00",
-      "exit_ts": "2026-02-27T13:45:00+00:00",
-      "bars_held": 1,
+      "exit_ts": "2026-02-27T13:50:00+00:00",
+      "bars_held": 2,
       "entry": 1955.459561,
-      "exit": 1954.989859,
-      "reason": "time",
+      "exit": 1962.382944,
+      "reason": "target",
       "regime": "chop",
       "fee_bps": 1.5,
       "slippage_bps": 3.0,
-      "r": -0.062118
+      "r": 0.91562
     }
   ]
 }

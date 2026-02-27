@@ -1,6 +1,6 @@
 # Horus Crypto Paper Suite
 
-Generated: 2026-02-27T13:50:36.523588+00:00
+Generated: 2026-02-27T14:20:37.156320+00:00
 
 ## Results
 - BTCUSD | breakout_v1 | PF 0 | ExpR 0 | MaxDD 0 | Trades 0 | FAIL
@@ -10,11 +10,11 @@ Generated: 2026-02-27T13:50:36.523588+00:00
 - ETHUSD | breakout_v1 | PF 0 | ExpR 0 | MaxDD 0 | Trades 0 | FAIL
 - ETHUSD | mean_reversion_v1 | PF 0 | ExpR 0 | MaxDD 0 | Trades 0 | FAIL
 - ETHUSD | breakout_crypto_v1 | PF 2.1708 | ExpR 0.4291 | MaxDD -1.0995 | Trades 3 | PASS
-- ETHUSD | mean_reversion_crypto_v1 | PF 0.1303 | ExpR -0.8003 | MaxDD -18.4061 | Trades 23 | FAIL
+- ETHUSD | mean_reversion_crypto_v1 | PF 0.1741 | ExpR -0.7577 | MaxDD -18.3422 | Trades 23 | FAIL
 - SOLUSD | breakout_v1 | PF 0 | ExpR 0 | MaxDD 0 | Trades 0 | FAIL
 - SOLUSD | mean_reversion_v1 | PF 0 | ExpR 0 | MaxDD 0 | Trades 0 | FAIL
 - SOLUSD | breakout_crypto_v1 | PF 0.184 | ExpR -0.7571 | MaxDD -4.5429 | Trades 6 | FAIL
-- SOLUSD | mean_reversion_crypto_v1 | PF 0.206 | ExpR -0.698 | MaxDD -11.8656 | Trades 17 | FAIL
+- SOLUSD | mean_reversion_crypto_v1 | PF 0.206 | ExpR -0.698 | MaxDD -11.8665 | Trades 17 | FAIL
 
 ## What is working
 - ETHUSD breakout_crypto_v1 passes current gate.

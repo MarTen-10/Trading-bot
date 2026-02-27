@@ -292,3 +292,6 @@
 {"logged_at": "2026-02-27T13:50:36.611956+00:00", "symbol": "BTCUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
 {"logged_at": "2026-02-27T13:50:36.611956+00:00", "symbol": "ETHUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
 {"logged_at": "2026-02-27T13:50:36.611956+00:00", "symbol": "SOLUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T14:20:37.261725+00:00", "symbol": "BTCUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T14:20:37.261725+00:00", "symbol": "ETHUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T14:20:37.261725+00:00", "symbol": "SOLUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}

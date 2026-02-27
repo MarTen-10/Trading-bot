@@ -1,10 +1,10 @@
 {
   "signals_generated": 1933,
   "signals_vetoed": 1594,
-  "orders_sent": 676,
-  "fills": 676,
-  "avg_latency_ms": 6.78555177514793,
-  "_latency_samples": 676,
+  "orders_sent": 677,
+  "fills": 677,
+  "avg_latency_ms": 6.779032496307239,
+  "_latency_samples": 677,
   "current_regime": "UNKNOWN",
   "current_drawdown_R": 0.0
 }

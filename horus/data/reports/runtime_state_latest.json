@@ -4,8 +4,8 @@
   "disable_flags": {},
   "realized_r_day": 0.0,
   "positions": {
-    "open_positions": 1
+    "open_positions": 0
   },
-  "last_reconcile_ts": "2026-02-27T14:14:57.813807+00:00",
-  "open_exposure_r": 1.0
+  "last_reconcile_ts": "2026-02-27T14:29:58.435806+00:00",
+  "open_exposure_r": 0.0
 }
