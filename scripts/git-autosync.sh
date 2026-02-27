@@ -4,6 +4,7 @@ set -euo pipefail
 REPO="/home/marten/.openclaw/workspace"
 LOG_DIR="$REPO/logs"
 LOCK_FILE="/tmp/anubis-git-autosync.lock"
+INCLUDE_FILE="$REPO/scripts/autosync-include.txt"
 mkdir -p "$LOG_DIR"
 
 exec 9>"$LOCK_FILE"
@@ -14,20 +15,24 @@ fi
 
 cd "$REPO"
 
-# Keep noisy build/runtime artifacts out of autosync commits when possible
-if [ -f .gitignore ]; then
-  :
+# Stage only curated source paths to avoid runtime-noise commits.
+if [[ -f "$INCLUDE_FILE" ]]; then
+  while IFS= read -r path; do
+    [[ -z "$path" ]] && continue
+    [[ "$path" =~ ^# ]] && continue
+    git add -A -- "$path" 2>/dev/null || true
+  done < "$INCLUDE_FILE"
+else
+  git add -A
 fi
 
-git add -A
-
 if git diff --cached --quiet; then
-  echo "[$(date -u +%Y-%m-%dT%H:%M:%SZ)] no changes" >> "$LOG_DIR/git-autosync.log"
+  echo "[$(date -u +%Y-%m-%dT%H:%M:%SZ)] no curated changes" >> "$LOG_DIR/git-autosync.log"
   exit 0
 fi
 
 branch="$(git rev-parse --abbrev-ref HEAD)"
-msg="chore(autosync): snapshot $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+msg="chore(autosync): curated snapshot $(date -u +%Y-%m-%dT%H:%M:%SZ)"
 
 git commit -m "$msg" >/dev/null 2>&1 || {
   echo "[$(date -u +%Y-%m-%dT%H:%M:%SZ)] commit failed" >> "$LOG_DIR/git-autosync.log"
