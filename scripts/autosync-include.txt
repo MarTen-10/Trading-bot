@@ -11,6 +11,8 @@ checklists/
 plans/
 scripts/
 skills/
+artifacts/
+runtime/
 horus/core/
 horus/runtime/
 horus/tests/
