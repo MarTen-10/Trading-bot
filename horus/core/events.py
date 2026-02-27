@@ -27,6 +27,9 @@ class OrderIntent:
     qty: float
     risk_dollars: float
     event_ts: str
+    intent_type: str = 'ENTRY'  # ENTRY | EXIT
+    position_id: str = ''
+    exit_reason: str = ''
 
 
 @dataclass

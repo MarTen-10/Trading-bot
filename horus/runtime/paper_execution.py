@@ -5,6 +5,7 @@ from pathlib import Path
 
 CAL = Path('/home/marten/.openclaw/workspace/horus/data/reports/calibration_report_latest.json')
 
+
 @dataclass
 class Fill:
     order_id: str
@@ -42,11 +43,10 @@ def place_order(intent) -> tuple[dict, Fill]:
     sl_bps = _p75_slippage(instrument)
     fee_bps = 1.0
 
-    # buy adds cost, sell subtracts
     bps = (sl_bps + fee_bps) / 10000.0
     fill_px = px * (1 + bps) if side == 'buy' else px * (1 - bps)
 
-    order_id = _det_id('order', intent.signal_id, intent.event_ts)
+    order_id = _det_id('order', intent.intent_type, intent.intent_id, intent.signal_id, intent.event_ts)
     fill_id = _det_id('fill', order_id)
 
     from horus.runtime import dbio
@@ -64,4 +64,4 @@ def place_order(intent) -> tuple[dict, Fill]:
     dbio.with_conn(_write)
 
     fill = Fill(order_id=order_id, fill_px=fill_px, fill_qty=qty, slippage_bps=sl_bps)
-    return ({'order_id': order_id, 'status': 'filled'}, fill)
+    return ({'order_id': order_id, 'status': 'filled', 'intent_type': intent.intent_type}, fill)

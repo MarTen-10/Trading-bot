@@ -19,6 +19,7 @@ from horus.core.events import CandleEvent
 from horus.runtime.reconciliation import run_check
 from horus.runtime.circuit_breakers import RuntimeSnapshot, evaluate
 from horus.runtime import dbio
+from horus.runtime.lifecycle import bootstrap_engine_from_db
 
 BASE = Path('/home/marten/.openclaw/workspace/horus')
 STATE = BASE / 'data/reports/runtime_state_latest.json'
@@ -60,6 +61,7 @@ def load_state():
             'realized_r_day': 0.0,
             'positions': {'open_positions': 0},
             'last_reconcile_ts': None,
+            'open_exposure_r': 0.0,
         }
     return json.loads(STATE.read_text())
 
@@ -78,12 +80,112 @@ def load_runtime_config():
         'poll_seconds': int(os.getenv('HORUS_PAPER_LOOP_SECONDS', '300')),
         'resource_warn_rss_mb': int(os.getenv('HORUS_SOFT_RSS_WARN_MB', '500')),
         'cpu_log_seconds': int(os.getenv('HORUS_CPU_LOG_SECONDS', '60')),
+        'exit_after_candles': int(os.getenv('HORUS_EXIT_AFTER_CANDLES', '6')),
     }
     log('INFO', 'STARTUP_CONFIG', config=cfg)
     return cfg
 
 
+def _insert_entry_trade(intent, fill, event_sequence_id):
+    from horus.runtime import dbio as _dbio
+
+    def _write(con):
+        with con.cursor() as cur:
+            cur.execute(
+                """
+                INSERT INTO trades(
+                  trade_id, signal_id, instrument, status, side,
+                  entry_timestamp, entry_price, qty, risk_r,
+                  entry_sequence_id, stop_price, take_price,
+                  realized_r, realized_pnl, mfe_r, mae_r, exit_reason
+                ) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
+                ON CONFLICT(trade_id) DO UPDATE SET
+                  status=EXCLUDED.status,
+                  side=EXCLUDED.side,
+                  entry_timestamp=EXCLUDED.entry_timestamp,
+                  entry_price=EXCLUDED.entry_price,
+                  qty=EXCLUDED.qty,
+                  risk_r=EXCLUDED.risk_r,
+                  entry_sequence_id=EXCLUDED.entry_sequence_id,
+                  stop_price=EXCLUDED.stop_price,
+                  take_price=EXCLUDED.take_price
+                """,
+                (
+                    intent.position_id or intent.intent_id,
+                    intent.signal_id,
+                    intent.instrument,
+                    'OPEN',
+                    intent.side,
+                    intent.event_ts,
+                    float(fill.fill_px),
+                    float(fill.fill_qty),
+                    1.0,
+                    int(event_sequence_id),
+                    float(intent.stop_px),
+                    None,
+                    None,
+                    None,
+                    None,
+                    None,
+                    None,
+                ),
+            )
+
+    _dbio.with_conn(_write)
+
+
+def _close_trade(intent, fill):
+    from horus.runtime import dbio as _dbio
+
+    def _write(con):
+        with con.cursor() as cur:
+            cur.execute(
+                "SELECT entry_price, qty, side, risk_r FROM trades WHERE trade_id=%s LIMIT 1",
+                (intent.position_id,),
+            )
+            row = cur.fetchone()
+            if row:
+                entry_price, qty, side, risk_r = row
+                entry_price = float(entry_price or 0.0)
+                qty = float(qty or intent.qty or 0.0)
+                side = side or 'buy'
+                risk_r = float(risk_r or 1.0)
+                pnl = (float(fill.fill_px) - entry_price) * qty if side == 'buy' else (entry_price - float(fill.fill_px)) * qty
+                realized_r = (pnl / max(1e-9, abs(risk_r)))
+            else:
+                pnl = 0.0
+                realized_r = 0.0
+
+            cur.execute(
+                """
+                UPDATE trades
+                SET status='CLOSED',
+                    exit_timestamp=%s,
+                    exit_price=%s,
+                    exit_reason=%s,
+                    realized_pnl=%s,
+                    realized_r=%s,
+                    mfe_r=COALESCE(mfe_r, %s),
+                    mae_r=COALESCE(mae_r, %s)
+                WHERE trade_id=%s
+                """,
+                (
+                    intent.event_ts,
+                    float(fill.fill_px),
+                    intent.exit_reason or 'time_exit',
+                    float(pnl),
+                    float(realized_r),
+                    float(realized_r),
+                    -1.0,
+                    intent.position_id,
+                ),
+            )
+
+    _dbio.with_conn(_write)
+
+
 def main():
+    dbio.ensure_schema_extensions()
     cfg = load_runtime_config()
     universe = [x.strip().replace('USDT', 'USD') for x in os.getenv('HORUS_UNIVERSE', 'BTCUSDT,ETHUSDT,SOLUSDT').split(',') if x.strip()]
     stream = MarketStream(universe)
@@ -94,7 +196,12 @@ def main():
 
     engine = Engine(strategy=strategy, risk=risk, gate=gate_adapter, dbio=dbio, logger=log)
     engine.state.safe_mode = bool(state.get('safe_mode', False))
-    engine.state.open_exposure_r = float(state.get('open_exposure_r', 0.0))
+    engine.state.exit_after_candles = int(cfg['exit_after_candles'])
+
+    # DB is canonical for open positions/exposure on restart
+    restored = bootstrap_engine_from_db(engine, dbio)
+    state['positions'] = {'open_positions': restored.get('open_positions', 0)}
+    state['open_exposure_r'] = restored.get('open_exposure_r', 0.0)
 
     poll_seconds = cfg['poll_seconds']
     last_reconcile = 0.0
@@ -181,23 +288,20 @@ def main():
                     metrics.signals_vetoed += 1
                     if decision.signal:
                         dbio.insert_signal(decision.signal['signal_id'], decision.signal['ts'], decision.signal['instrument'], 'breakout_v2', 'vetoed', decision.veto_reason)
-                    continue
 
                 for intent in decision.intents:
-                    dbio.insert_signal(intent.signal_id, intent.event_ts, intent.instrument, 'breakout_v2', 'taken', '')
+                    if intent.intent_type == 'ENTRY':
+                        dbio.insert_signal(intent.signal_id, intent.event_ts, intent.instrument, 'breakout_v2', 'taken', '')
                     order, fill = place_order(intent)
-                    log('INFO', 'ORDER_FILLED', signal=intent.signal_id, order=order['order_id'], fill_px=round(fill.fill_px, 8), qty=round(fill.fill_qty, 8))
+                    if intent.intent_type == 'ENTRY':
+                        _insert_entry_trade(intent, fill, event.sequence_id)
+                        log('INFO', 'ENTRY_FILLED', signal=intent.signal_id, position_id=intent.position_id, order=order['order_id'], fill_px=round(fill.fill_px, 8), qty=round(fill.fill_qty, 8))
+                    else:
+                        _close_trade(intent, fill)
+                        log('INFO', 'EXIT_FILLED', signal=intent.signal_id, position_id=intent.position_id, order=order['order_id'], fill_px=round(fill.fill_px, 8), qty=round(fill.fill_qty, 8), reason=intent.exit_reason or 'time_exit')
                     metrics.orders_sent += 1
                     metrics.fills += 1
                     metrics.add_latency(stream.metrics.get('feed_latency_ms', 0.0))
-
-                    def _insert_trade(con):
-                        with con.cursor() as cur:
-                            cur.execute(
-                                "INSERT INTO trades(trade_id, signal_id, entry_timestamp, exit_timestamp, realized_r, realized_pnl, mfe_r, mae_r, exit_reason) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s) ON CONFLICT(trade_id) DO UPDATE SET realized_r=EXCLUDED.realized_r,realized_pnl=EXCLUDED.realized_pnl",
-                                (order['order_id'], intent.signal_id, intent.event_ts, intent.event_ts, 2.5, fill.fill_qty * (fill.fill_px - intent.entry_px), 2.5, -1.0, 'paper_instant')
-                            )
-                    dbio.with_conn(_insert_trade)
 
             if time.time() - last_reconcile >= 30:
                 rec = run_check()
@@ -216,7 +320,8 @@ def main():
                 log(level, 'RESOURCE_METRICS', rss_mb=round(rss_mb, 2), cpu_percent=cpu)
                 last_cpu_log = time.time()
 
-            state['open_exposure_r'] = engine.state.open_exposure_r
+            state['open_exposure_r'] = float(engine.state.open_exposure_r)
+            state['positions'] = {'open_positions': len(engine.state.positions)}
             metrics.save()
             save_state(state)
 

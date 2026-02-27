@@ -3,7 +3,7 @@ from datetime import datetime, UTC
 import pytest
 
 from horus.core.engine import Engine
-from horus.core.events import CandleEvent, OrderIntent
+from horus.core.events import CandleEvent
 from horus.runtime.paper_execution import place_order
 
 
@@ -44,16 +44,16 @@ class DB:
         self.events.append(args)
 
 
-def ev(seq=1):
-    return CandleEvent('BTCUSD', '5m', datetime(2026, 1, 1, tzinfo=UTC), 1, 2, 0.5, 1.5, 10, seq)
+def ev(instr='BTCUSD', seq=1):
+    return CandleEvent(instr, '5m', datetime(2026, 1, 1, tzinfo=UTC), 1, 2, 0.5, 1.5, 10, seq)
 
 
 def test_max_open_exposure_2r_blocks_third_entry():
     db = DB()
     e = Engine(strategy=S(), risk=R(), gate=G(), dbio=db, logger=lambda *a, **k: None)
-    d1 = e.process_event(ev(1))
-    d2 = e.process_event(ev(2))
-    d3 = e.process_event(ev(3))
+    d1 = e.process_event(ev('BTCUSD', 1))
+    d2 = e.process_event(ev('ETHUSD', 2))
+    d3 = e.process_event(ev('SOLUSD', 3))
     assert len(d1.intents) == 1
     assert len(d2.intents) == 1
     assert len(d3.intents) == 0
@@ -65,7 +65,7 @@ def test_safe_mode_hard_gate_zero_order_intents():
     db = DB()
     e = Engine(strategy=S(), risk=R(), gate=G(), dbio=db, logger=lambda *a, **k: None)
     e.state.safe_mode = True
-    d = e.process_event(ev(1))
+    d = e.process_event(ev('BTCUSD', 1))
     assert d.signal is not None
     assert len(d.intents) == 0
     assert d.veto_reason == 'SAFE_MODE_ACTIVE'

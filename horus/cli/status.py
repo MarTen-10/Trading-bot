@@ -55,13 +55,18 @@ def main() -> None:
     load_dotenv(BASE / ".env", override=False)
 
     state = _read_state()
+    engine_exposure = float(state.get("open_exposure_r", 0.0) or 0.0)
+
     output = {
         "timestamp_utc": _utc_now_iso(),
         "service_running": _service_running(),
         "signals_last_1h": 0,
         "orders_last_1h": 0,
         "fills_last_1h": 0,
-        "open_exposure_r": float(state.get("open_exposure_r", 0.0) or 0.0),
+        "open_exposure_r": engine_exposure,
+        "open_exposure_r_engine": engine_exposure,
+        "open_exposure_r_db": 0.0,
+        "exposure_drift": False,
         "safe_mode": bool(state.get("safe_mode", False)),
         "governance_blocks_last_1h": 0,
         "breaker_active": False,
@@ -83,7 +88,7 @@ def main() -> None:
             _safe_count(cur, "SELECT COUNT(*) FROM signals WHERE timestamp >= NOW() - INTERVAL '1 hour'")
         )
         output["orders_last_1h"] = int(
-            _safe_count(cur, "SELECT COUNT(*) FROM orders WHERE timestamp >= NOW() - INTERVAL '1 hour'")
+            _safe_count(cur, "SELECT COUNT(*) FROM orders WHERE sent_at >= NOW() - INTERVAL '1 hour'")
         )
         output["fills_last_1h"] = int(
             _safe_count(cur, "SELECT COUNT(*) FROM fills WHERE timestamp >= NOW() - INTERVAL '1 hour'")
@@ -94,6 +99,17 @@ def main() -> None:
                 "SELECT COUNT(*) FROM governance_events WHERE action='BLOCK' AND timestamp >= NOW() - INTERVAL '1 hour'",
             )
         )
+
+        db_exposure = float(
+            _safe_count(
+                cur,
+                "SELECT COALESCE(SUM(risk_r),0) FROM trades WHERE COALESCE(status, CASE WHEN exit_timestamp IS NULL THEN 'OPEN' ELSE 'CLOSED' END)='OPEN'",
+                default=0.0,
+            )
+        )
+        output["open_exposure_r_db"] = db_exposure
+        output["open_exposure_r"] = engine_exposure
+        output["exposure_drift"] = abs(db_exposure - engine_exposure) > 1e-6
 
         recent_safe = int(
             _safe_count(
