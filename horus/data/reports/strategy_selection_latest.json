@@ -1,14 +1,12 @@
 {
-  "generated_at": "2026-02-26T03:20:34.182500+00:00",
-  "source_report": "crypto_suite_20260226_032034.json",
+  "generated_at": "2026-02-27T13:50:36.568508+00:00",
+  "source_report": "crypto_suite_20260227_135036.json",
   "registry": {
     "coins": {
       "BTCUSD": {
         "enabled": true,
         "default": "breakout_crypto_v1",
-        "allowed": [
-          "breakout_crypto_v1"
-        ],
+        "allowed": [],
         "blocked": [
           "breakout_v1",
           "mean_reversion_v1",
@@ -18,9 +16,7 @@
       "ETHUSD": {
         "enabled": true,
         "default": "breakout_crypto_v1",
-        "allowed": [
-          "breakout_crypto_v1"
-        ],
+        "allowed": [],
         "blocked": [
           "breakout_v1",
           "mean_reversion_v1",
@@ -31,9 +27,7 @@
       "SOLUSD": {
         "enabled": true,
         "default": "breakout_crypto_v1",
-        "allowed": [
-          "breakout_crypto_v1"
-        ],
+        "allowed": [],
         "blocked": [
           "breakout_v1",
           "mean_reversion_v1",

@@ -85,3 +85,210 @@
 {"logged_at": "2026-02-26T03:20:34.217169+00:00", "symbol": "BTCUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
 {"logged_at": "2026-02-26T03:20:34.217169+00:00", "symbol": "ETHUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
 {"logged_at": "2026-02-26T03:20:34.217169+00:00", "symbol": "SOLUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T03:50:34.375023+00:00", "symbol": "BTCUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T03:50:34.375023+00:00", "symbol": "ETHUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T03:50:34.375023+00:00", "symbol": "SOLUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T04:20:36.388453+00:00", "symbol": "BTCUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T04:20:36.388453+00:00", "symbol": "ETHUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T04:20:36.388453+00:00", "symbol": "SOLUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T04:50:38.006245+00:00", "symbol": "BTCUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T04:50:38.006245+00:00", "symbol": "ETHUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T04:50:38.006245+00:00", "symbol": "SOLUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-26T05:20:35.226456+00:00", "symbol": "BTCUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T05:20:35.226456+00:00", "symbol": "ETHUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T05:20:35.226456+00:00", "symbol": "SOLUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-26T05:50:34.321808+00:00", "symbol": "BTCUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T05:50:34.321808+00:00", "symbol": "ETHUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T05:50:34.321808+00:00", "symbol": "SOLUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-26T06:20:38.184941+00:00", "symbol": "BTCUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T06:20:38.184941+00:00", "symbol": "ETHUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T06:20:38.184941+00:00", "symbol": "SOLUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-26T06:50:35.659855+00:00", "symbol": "BTCUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T06:50:35.659855+00:00", "symbol": "ETHUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T06:50:35.659855+00:00", "symbol": "SOLUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-26T07:20:36.257802+00:00", "symbol": "BTCUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T07:20:36.257802+00:00", "symbol": "ETHUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T07:20:36.257802+00:00", "symbol": "SOLUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-26T07:50:37.147296+00:00", "symbol": "BTCUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T07:50:37.147296+00:00", "symbol": "ETHUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T07:50:37.147296+00:00", "symbol": "SOLUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-26T08:20:35.747628+00:00", "symbol": "BTCUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T08:20:35.747628+00:00", "symbol": "ETHUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T08:20:35.747628+00:00", "symbol": "SOLUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-26T08:50:40.768830+00:00", "symbol": "BTCUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T08:50:40.768830+00:00", "symbol": "ETHUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T08:50:40.768830+00:00", "symbol": "SOLUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-26T09:20:35.368140+00:00", "symbol": "BTCUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T09:20:35.368140+00:00", "symbol": "ETHUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T09:20:35.368140+00:00", "symbol": "SOLUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-26T09:50:43.730386+00:00", "symbol": "BTCUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T09:50:43.730386+00:00", "symbol": "ETHUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T09:50:43.730386+00:00", "symbol": "SOLUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-26T10:20:35.320227+00:00", "symbol": "BTCUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T10:20:35.320227+00:00", "symbol": "ETHUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T10:20:35.320227+00:00", "symbol": "SOLUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-26T10:50:36.352573+00:00", "symbol": "BTCUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T10:50:36.352573+00:00", "symbol": "ETHUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T10:50:36.352573+00:00", "symbol": "SOLUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T11:20:38.344106+00:00", "symbol": "BTCUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T11:20:38.344106+00:00", "symbol": "ETHUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T11:20:38.344106+00:00", "symbol": "SOLUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T11:50:36.098316+00:00", "symbol": "BTCUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T11:50:36.098316+00:00", "symbol": "ETHUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T11:50:36.098316+00:00", "symbol": "SOLUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T12:20:38.968073+00:00", "symbol": "BTCUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T12:20:38.968073+00:00", "symbol": "ETHUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T12:20:38.968073+00:00", "symbol": "SOLUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T12:50:35.839353+00:00", "symbol": "BTCUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T12:50:35.839353+00:00", "symbol": "ETHUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T12:50:35.839353+00:00", "symbol": "SOLUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T13:20:39.698611+00:00", "symbol": "BTCUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T13:20:39.698611+00:00", "symbol": "ETHUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T13:20:39.698611+00:00", "symbol": "SOLUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T13:50:43.341523+00:00", "symbol": "BTCUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T13:50:43.341523+00:00", "symbol": "ETHUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T13:50:43.341523+00:00", "symbol": "SOLUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T14:20:36.123115+00:00", "symbol": "BTCUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T14:20:36.123115+00:00", "symbol": "ETHUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T14:20:36.123115+00:00", "symbol": "SOLUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T14:50:38.966515+00:00", "symbol": "BTCUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T14:50:38.966515+00:00", "symbol": "ETHUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T14:50:38.966515+00:00", "symbol": "SOLUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T15:20:34.006668+00:00", "symbol": "BTCUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T15:20:34.006668+00:00", "symbol": "ETHUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T15:20:34.006668+00:00", "symbol": "SOLUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T15:50:36.611137+00:00", "symbol": "BTCUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T15:50:36.611137+00:00", "symbol": "ETHUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T15:50:36.611137+00:00", "symbol": "SOLUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T16:21:03.682573+00:00", "symbol": "BTCUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T16:21:03.682573+00:00", "symbol": "ETHUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T16:21:03.682573+00:00", "symbol": "SOLUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T16:50:39.379101+00:00", "symbol": "BTCUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T16:50:39.379101+00:00", "symbol": "ETHUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T16:50:39.379101+00:00", "symbol": "SOLUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T17:20:37.688764+00:00", "symbol": "BTCUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T17:20:37.688764+00:00", "symbol": "ETHUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T17:20:37.688764+00:00", "symbol": "SOLUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T17:50:37.874260+00:00", "symbol": "BTCUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T17:50:37.874260+00:00", "symbol": "ETHUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T17:50:37.874260+00:00", "symbol": "SOLUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T18:20:37.359784+00:00", "symbol": "BTCUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T18:20:37.359784+00:00", "symbol": "SOLUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T18:20:37.359784+00:00", "symbol": "ETHUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-26T18:50:39.645694+00:00", "symbol": "BTCUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T18:50:39.645694+00:00", "symbol": "ETHUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T18:50:39.645694+00:00", "symbol": "SOLUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T19:20:37.719337+00:00", "symbol": "ETHUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T19:20:37.719337+00:00", "symbol": "SOLUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T19:20:37.719337+00:00", "symbol": "BTCUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-26T19:50:35.666924+00:00", "symbol": "SOLUSD", "setup": "breakout_crypto_v1", "confidence": 0.65, "risk": "0.5%", "status": "candidate", "mode": "paper"}
+{"logged_at": "2026-02-26T19:50:35.666924+00:00", "symbol": "BTCUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-26T19:50:35.666924+00:00", "symbol": "ETHUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-26T20:20:35.574129+00:00", "symbol": "BTCUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-26T20:20:35.574129+00:00", "symbol": "ETHUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-26T20:20:35.574129+00:00", "symbol": "SOLUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-26T20:50:38.829358+00:00", "symbol": "BTCUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-26T20:50:38.829358+00:00", "symbol": "ETHUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-26T20:50:38.829358+00:00", "symbol": "SOLUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-26T21:20:36.547687+00:00", "symbol": "BTCUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-26T21:20:36.547687+00:00", "symbol": "ETHUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-26T21:20:36.547687+00:00", "symbol": "SOLUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-26T21:50:40.133402+00:00", "symbol": "BTCUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-26T21:50:40.133402+00:00", "symbol": "ETHUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-26T21:50:40.133402+00:00", "symbol": "SOLUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-26T22:20:33.177333+00:00", "symbol": "BTCUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-26T22:20:33.177333+00:00", "symbol": "ETHUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-26T22:20:33.177333+00:00", "symbol": "SOLUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-26T22:50:37.979198+00:00", "symbol": "BTCUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-26T22:50:37.979198+00:00", "symbol": "ETHUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-26T22:50:37.979198+00:00", "symbol": "SOLUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-26T23:20:40.819084+00:00", "symbol": "BTCUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-26T23:20:40.819084+00:00", "symbol": "ETHUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-26T23:20:40.819084+00:00", "symbol": "SOLUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-26T23:50:35.519723+00:00", "symbol": "BTCUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-26T23:50:35.519723+00:00", "symbol": "ETHUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-26T23:50:35.519723+00:00", "symbol": "SOLUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T00:20:36.404033+00:00", "symbol": "BTCUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T00:20:36.404033+00:00", "symbol": "ETHUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T00:20:36.404033+00:00", "symbol": "SOLUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T00:50:34.489440+00:00", "symbol": "BTCUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T00:50:34.489440+00:00", "symbol": "ETHUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T00:50:34.489440+00:00", "symbol": "SOLUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T01:20:36.952969+00:00", "symbol": "BTCUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T01:20:36.952969+00:00", "symbol": "ETHUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T01:20:36.952969+00:00", "symbol": "SOLUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T01:50:36.084172+00:00", "symbol": "BTCUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T01:50:36.084172+00:00", "symbol": "ETHUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T01:50:36.084172+00:00", "symbol": "SOLUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T02:20:35.445345+00:00", "symbol": "BTCUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T02:20:35.445345+00:00", "symbol": "ETHUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T02:20:35.445345+00:00", "symbol": "SOLUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T02:50:36.248483+00:00", "symbol": "BTCUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T02:50:36.248483+00:00", "symbol": "ETHUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T02:50:36.248483+00:00", "symbol": "SOLUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T03:20:34.907065+00:00", "symbol": "BTCUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T03:20:34.907065+00:00", "symbol": "ETHUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T03:20:34.907065+00:00", "symbol": "SOLUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T03:50:34.881656+00:00", "symbol": "BTCUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T03:50:34.881656+00:00", "symbol": "ETHUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T03:50:34.881656+00:00", "symbol": "SOLUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T04:20:34.682226+00:00", "symbol": "BTCUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T04:20:34.682226+00:00", "symbol": "ETHUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T04:20:34.682226+00:00", "symbol": "SOLUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T04:50:34.072159+00:00", "symbol": "BTCUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T04:50:34.072159+00:00", "symbol": "ETHUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T04:50:34.072159+00:00", "symbol": "SOLUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T05:20:38.095807+00:00", "symbol": "BTCUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T05:20:38.095807+00:00", "symbol": "ETHUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T05:20:38.095807+00:00", "symbol": "SOLUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T05:50:35.555188+00:00", "symbol": "BTCUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T05:50:35.555188+00:00", "symbol": "ETHUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T05:50:35.555188+00:00", "symbol": "SOLUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T06:20:38.427703+00:00", "symbol": "BTCUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T06:20:38.427703+00:00", "symbol": "ETHUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T06:20:38.427703+00:00", "symbol": "SOLUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T06:50:37.061933+00:00", "symbol": "BTCUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T06:50:37.061933+00:00", "symbol": "ETHUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T06:50:37.061933+00:00", "symbol": "SOLUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T07:20:39.331122+00:00", "symbol": "BTCUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T07:20:39.331122+00:00", "symbol": "ETHUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T07:20:39.331122+00:00", "symbol": "SOLUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T07:50:38.895495+00:00", "symbol": "BTCUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T07:50:38.895495+00:00", "symbol": "ETHUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T07:50:38.895495+00:00", "symbol": "SOLUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T08:20:35.918786+00:00", "symbol": "BTCUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T08:20:35.918786+00:00", "symbol": "ETHUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T08:20:35.918786+00:00", "symbol": "SOLUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T08:50:42.452195+00:00", "symbol": "BTCUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T08:50:42.452195+00:00", "symbol": "ETHUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T08:50:42.452195+00:00", "symbol": "SOLUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T09:20:36.521712+00:00", "symbol": "BTCUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T09:20:36.521712+00:00", "symbol": "ETHUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T09:20:36.521712+00:00", "symbol": "SOLUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T09:50:35.326422+00:00", "symbol": "BTCUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T09:50:35.326422+00:00", "symbol": "ETHUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T09:50:35.326422+00:00", "symbol": "SOLUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T10:20:39.220548+00:00", "symbol": "BTCUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T10:20:39.220548+00:00", "symbol": "ETHUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T10:20:39.220548+00:00", "symbol": "SOLUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T10:50:37.896038+00:00", "symbol": "BTCUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T10:50:37.896038+00:00", "symbol": "ETHUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T10:50:37.896038+00:00", "symbol": "SOLUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T11:20:35.571696+00:00", "symbol": "BTCUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T11:20:35.571696+00:00", "symbol": "ETHUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T11:20:35.571696+00:00", "symbol": "SOLUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T11:50:38.732118+00:00", "symbol": "BTCUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T11:50:38.732118+00:00", "symbol": "ETHUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T11:50:38.732118+00:00", "symbol": "SOLUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T12:20:39.537339+00:00", "symbol": "BTCUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T12:20:39.537339+00:00", "symbol": "ETHUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T12:20:39.537339+00:00", "symbol": "SOLUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T12:50:37.682697+00:00", "symbol": "BTCUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T12:50:37.682697+00:00", "symbol": "ETHUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T12:50:37.682697+00:00", "symbol": "SOLUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T13:20:36.827382+00:00", "symbol": "BTCUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T13:20:36.827382+00:00", "symbol": "ETHUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T13:20:36.827382+00:00", "symbol": "SOLUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T13:50:36.611956+00:00", "symbol": "BTCUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T13:50:36.611956+00:00", "symbol": "ETHUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}
+{"logged_at": "2026-02-27T13:50:36.611956+00:00", "symbol": "SOLUSD", "status": "skipped", "reason": "no strategy passed promotion gate"}

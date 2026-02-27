@@ -1,0 +1,27 @@
+{
+  "generated_at": "2026-02-26T18:20:37.359784+00:00",
+  "signals": [
+    {
+      "symbol": "BTCUSD",
+      "setup": "breakout_crypto_v1",
+      "confidence": 0.65,
+      "risk": "0.5%",
+      "status": "candidate",
+      "mode": "paper"
+    },
+    {
+      "symbol": "SOLUSD",
+      "setup": "breakout_crypto_v1",
+      "confidence": 0.65,
+      "risk": "0.5%",
+      "status": "candidate",
+      "mode": "paper"
+    }
+  ],
+  "skipped": [
+    {
+      "symbol": "ETHUSD",
+      "reason": "no strategy passed promotion gate"
+    }
+  ]
+}

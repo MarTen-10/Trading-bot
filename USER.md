@@ -41,6 +41,7 @@ _Learn about the person you're helping. Update this as you go._
 ### Communication + execution preferences
 - Default response length: short (medium only for complexity)
 - Format: bullets + brief structured sections
+- Speed-first mode: prioritize fastest path by default; expand planning/detail only for big/complex projects
 - Execute immediately when reversible and clear
 - Ask only when ambiguity blocks correctness
 - Best-guess execution unless risk/security/finance involved

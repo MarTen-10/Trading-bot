@@ -1,7 +1,31 @@
+# Python
 __pycache__/
 *.pyc
+.pytest_cache/
+
+# Local envs / tooling
+.venv/
+.venv_local/
+horus/.venv_local/
+.clawhub/
+.tools/
+
+# Runtime/log outputs
+logs/
 horus/logs/
 horus/cron_logs/
-horus/data/signals/signals_livefeed_*.json
-horus/data/reports/crypto_suite_*.json
+
+# Large/generated runtime data (keep curated artifacts only)
+horus/data/raw/crypto/*.csv
+horus/data/journal/*.jsonl
+horus/data/reports/runtime_*.json
+horus/data/reports/nightly_*.json
 horus/data/reports/daily_*.json
+horus/data/reports/universe_*.json
+horus/data/reports/crypto_suite_*.json
+
+# Legacy local db
+horus/data/horus.db
+
+# temp
+tmp/

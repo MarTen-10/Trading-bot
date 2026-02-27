@@ -38,3 +38,14 @@ Skills are shared. Your setup is yours. Keeping them apart means you can update 
 ---
 
 Add whatever helps you do your job. This is your cheat sheet.
+
+## Marten environment notes
+
+### Network / SSH
+
+- Tailscale IP (host): `100.74.225.60`
+- Security target: SSH over Tailnet (avoid public SSH exposure when hardening is applied)
+
+### Ops preference
+
+- Marten prefers concise, actionable summaries after tasks are completed.

@@ -1,10 +1,11 @@
 {
-  "safe_mode": true,
+  "safe_mode": false,
   "active_model_id": "rule_based_v2",
   "disable_flags": {},
   "realized_r_day": 0.0,
   "positions": {
-    "open_positions": 0
+    "open_positions": 1
   },
-  "last_reconcile_ts": "2026-02-26T03:45:46.010540+00:00"
+  "last_reconcile_ts": "2026-02-27T14:14:57.813807+00:00",
+  "open_exposure_r": 1.0
 }

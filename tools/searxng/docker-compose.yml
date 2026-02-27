@@ -1,0 +1,23 @@
+services:
+  redis:
+    image: docker.io/valkey/valkey:8-alpine
+    container_name: searxng-redis
+    restart: unless-stopped
+    command: valkey-server --save "" --appendonly no
+
+  searxng:
+    image: docker.io/searxng/searxng:latest
+    container_name: searxng
+    restart: unless-stopped
+    depends_on:
+      - redis
+    ports:
+      - "127.0.0.1:18080:8080"
+    environment:
+      - BASE_URL=http://127.0.0.1:18080/
+      - INSTANCE_NAME=Anubis Local Search
+      - SEARXNG_REDIS_URL=redis://redis:6379/0
+      - UWSGI_WORKERS=2
+      - UWSGI_THREADS=2
+    volumes:
+      - ./searxng:/etc/searxng:rw

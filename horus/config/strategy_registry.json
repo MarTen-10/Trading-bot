@@ -3,9 +3,7 @@
     "BTCUSD": {
       "enabled": true,
       "default": "breakout_crypto_v1",
-      "allowed": [
-        "breakout_crypto_v1"
-      ],
+      "allowed": [],
       "blocked": [
         "breakout_v1",
         "mean_reversion_v1",
@@ -15,9 +13,7 @@
     "ETHUSD": {
       "enabled": true,
       "default": "breakout_crypto_v1",
-      "allowed": [
-        "breakout_crypto_v1"
-      ],
+      "allowed": [],
       "blocked": [
         "breakout_v1",
         "mean_reversion_v1",
@@ -28,9 +24,7 @@
     "SOLUSD": {
       "enabled": true,
       "default": "breakout_crypto_v1",
-      "allowed": [
-        "breakout_crypto_v1"
-      ],
+      "allowed": [],
       "blocked": [
         "breakout_v1",
         "mean_reversion_v1",

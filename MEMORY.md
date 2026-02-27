@@ -15,6 +15,9 @@
 ## Infrastructure preferences
 - Security direction confirmed: prefer SSH access via Tailnet path (Tailscale IP noted during security review).
 - Pending follow-up: apply SSH Tailnet-only hardening later (deferred by Marten on 2026-02-26; remind before next hardening pass).
+- Pending follow-up: add Horus as an OpenClaw agent profile later (for Agents tab visibility/control) while keeping autonomous runtime service unchanged.
+- Pending follow-up: reconnect Marten Laptop OpenClaw node bridge after current infra soak (SSH can stay, node link can be re-enabled post-soak).
+- Pending follow-up: set up Hermes as distributed local operator after soak: Hermes-Laptop + Hermes-Desktop (same role, two device instances) with Anubis orchestrating.
 - Marten asked for concise completion summaries after execution.
 
 ## Working style + preferences

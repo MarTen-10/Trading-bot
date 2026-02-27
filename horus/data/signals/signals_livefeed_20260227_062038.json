@@ -1,0 +1,18 @@
+{
+  "generated_at": "2026-02-27T06:20:38.427703+00:00",
+  "signals": [],
+  "skipped": [
+    {
+      "symbol": "BTCUSD",
+      "reason": "no strategy passed promotion gate"
+    },
+    {
+      "symbol": "ETHUSD",
+      "reason": "no strategy passed promotion gate"
+    },
+    {
+      "symbol": "SOLUSD",
+      "reason": "no strategy passed promotion gate"
+    }
+  ]
+}
