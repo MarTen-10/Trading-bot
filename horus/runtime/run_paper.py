@@ -297,9 +297,11 @@ def main():
                         dbio.insert_signal(intent.signal_id, intent.event_ts, intent.instrument, 'breakout_v2', 'taken', '')
                     order, fill = place_order(intent)
                     if intent.intent_type == 'ENTRY':
+                        engine.on_entry_filled(intent, event.sequence_id, fill.fill_px)
                         _insert_entry_trade(intent, fill, event.sequence_id)
                         log('INFO', 'ENTRY_FILLED', signal=intent.signal_id, position_id=intent.position_id, order=order['order_id'], fill_px=round(fill.fill_px, 8), qty=round(fill.fill_qty, 8))
                     else:
+                        engine.on_exit_filled(intent, fill.fill_px, intent.event_ts, intent.exit_reason or 'time_exit')
                         _close_trade(intent, fill)
                         log('INFO', 'EXIT_FILLED', signal=intent.signal_id, position_id=intent.position_id, order=order['order_id'], fill_px=round(fill.fill_px, 8), qty=round(fill.fill_qty, 8), reason=intent.exit_reason or 'time_exit')
                     metrics.orders_sent += 1

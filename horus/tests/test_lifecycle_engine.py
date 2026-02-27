@@ -72,6 +72,7 @@ def test_position_persists_until_exit_rule_fires():
     d1 = e.process_event(ev(1, t0))
     assert len(d1.intents) == 1
     assert d1.intents[0].intent_type == 'ENTRY'
+    e.on_entry_filled(d1.intents[0], event_sequence_id=1, entry_fill_px=1.5)
     assert e.state.open_exposure_r == 1.0
 
     d2 = e.process_event(ev(2, t0 + timedelta(minutes=5)))
@@ -79,7 +80,9 @@ def test_position_persists_until_exit_rule_fires():
     assert e.state.open_exposure_r == 1.0
 
     d3 = e.process_event(ev(3, t0 + timedelta(minutes=10)))
-    assert any(i.intent_type == 'EXIT' for i in d3.intents)
+    exits = [i for i in d3.intents if i.intent_type == 'EXIT']
+    assert exits
+    e.on_exit_filled(exits[0], exit_fill_px=1.6, exit_ts=(t0 + timedelta(minutes=10)).isoformat(), exit_reason='time_exit')
     assert e.state.open_exposure_r == 0.0
 
 
@@ -88,10 +91,13 @@ def test_exposure_increases_on_entry_and_decreases_on_exit():
     e.state.exit_after_candles = 1
 
     t0 = datetime(2026, 1, 1, tzinfo=UTC)
-    e.process_event(ev(1, t0))
+    d1 = e.process_event(ev(1, t0))
+    e.on_entry_filled(d1.intents[0], event_sequence_id=1, entry_fill_px=1.5)
     assert e.state.open_exposure_r == pytest.approx(1.0)
 
-    e.process_event(ev(2, t0 + timedelta(minutes=5)))
+    d2 = e.process_event(ev(2, t0 + timedelta(minutes=5)))
+    exits = [i for i in d2.intents if i.intent_type == 'EXIT']
+    e.on_exit_filled(exits[0], exit_fill_px=1.4, exit_ts=(t0 + timedelta(minutes=5)).isoformat(), exit_reason='time_exit')
     assert e.state.open_exposure_r == pytest.approx(0.0)
 
 

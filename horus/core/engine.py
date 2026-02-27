@@ -17,7 +17,7 @@ class Position:
     qty: float
     stop_price: float
     take_price: float | None
-    status: str = 'OPEN'
+    status: str = 'OPEN'  # OPEN | EXIT_PENDING | CLOSED
     exit_ts: str | None = None
     exit_price: float | None = None
     exit_reason: str | None = None
@@ -53,50 +53,93 @@ class Engine:
         side = 'sell' if pos.side == 'buy' else 'buy'
         payload = f"{pos.position_id}|{event.instrument}|{event.timestamp.isoformat()}|{event.sequence_id}|exit"
         intent_id = hashlib.sha256(payload.encode()).hexdigest()[:32]
-        exit_intent = OrderIntent(
-            intent_id=intent_id,
-            signal_id=pos.signal_id,
-            instrument=event.instrument,
-            side=side,
-            entry_px=float(event.close),
-            stop_px=float(pos.stop_price),
-            qty=float(pos.qty),
-            risk_dollars=float(pos.risk_r),
-            event_ts=event.timestamp.isoformat(),
-            intent_type='EXIT',
-            position_id=pos.position_id,
-            exit_reason='time_exit',
+        pos.status = 'EXIT_PENDING'
+
+        return [
+            OrderIntent(
+                intent_id=intent_id,
+                signal_id=pos.signal_id,
+                instrument=event.instrument,
+                side=side,
+                entry_px=float(event.close),
+                stop_px=float(pos.stop_price),
+                qty=float(pos.qty),
+                risk_dollars=float(pos.risk_r),
+                event_ts=event.timestamp.isoformat(),
+                intent_type='EXIT',
+                position_id=pos.position_id,
+                exit_reason='time_exit',
+            )
+        ]
+
+    def on_entry_filled(self, intent: OrderIntent, event_sequence_id: int, entry_fill_px: float):
+        self.state.open_exposure_r = float(self.state.open_exposure_r) + 1.0
+        self.state.positions[intent.instrument] = Position(
+            position_id=intent.position_id or intent.intent_id,
+            signal_id=intent.signal_id,
+            instrument=intent.instrument,
+            side=intent.side,
+            entry_ts=intent.event_ts,
+            entry_sequence_id=int(event_sequence_id),
+            entry_price=float(entry_fill_px),
+            risk_r=1.0,
+            qty=float(intent.qty),
+            stop_price=float(intent.stop_px),
+            take_price=None,
+            status='OPEN',
         )
 
-        # deterministic state transition on exit intent creation
+    def on_exit_filled(self, intent: OrderIntent, exit_fill_px: float, exit_ts: str, exit_reason: str):
+        pos = self.state.positions.get(intent.instrument)
+        before_positions_count = len(self.state.positions)
+        if not pos:
+            return
         pos.status = 'CLOSED'
-        pos.exit_ts = event.timestamp.isoformat()
-        pos.exit_price = float(event.close)
-        pos.exit_reason = 'time_exit'
+        pos.exit_ts = exit_ts
+        pos.exit_price = float(exit_fill_px)
+        pos.exit_reason = exit_reason
         self.state.open_exposure_r = max(0.0, float(self.state.open_exposure_r) - float(pos.risk_r))
-        self.state.positions.pop(event.instrument, None)
-
-        return [exit_intent]
+        self.state.positions.pop(intent.instrument, None)
+        after_positions_count = len(self.state.positions)
+        self.logger(
+            'INFO',
+            'POSITION_CLOSED_STATE_UPDATE',
+            instrument=intent.instrument,
+            position_id=pos.position_id,
+            before_positions_count=before_positions_count,
+            after_positions_count=after_positions_count,
+        )
 
     def process_event(self, event: CandleEvent) -> EngineDecision:
         intents: list[OrderIntent] = []
-
-        # exits are evaluated every candle, independent of new entry signals
         intents.extend(self._exit_intent_if_due(event))
 
         signal = self.strategy.generate(event)
         if not signal:
             return EngineDecision(signal=None, intents=intents)
 
-        # SAFE hard gate before any entry intent
         if self.state.safe_mode:
             self.dbio.insert_governance('SAFE_BLOCK_ENTRY', signal['instrument'], 'breakout_v2', 'BLOCK', 'SAFE_MODE_ACTIVE', {'signal_id': signal['signal_id']})
             self.logger('WARNING', 'SAFE_BLOCK_ENTRY', signal=signal['signal_id'], reason='SAFE_MODE_ACTIVE')
             return EngineDecision(signal=signal, intents=intents, veto_reason='SAFE_MODE_ACTIVE')
 
-        if signal['instrument'] in self.state.positions:
+        existing = self.state.positions.get(signal['instrument'])
+        if existing and existing.status in ('OPEN', 'EXIT_PENDING'):
+            db_open_trades_count = None
+            try:
+                if hasattr(self.dbio, 'fetch_open_trades'):
+                    db_open_trades_count = len(self.dbio.fetch_open_trades() or [])
+            except Exception:
+                db_open_trades_count = None
             self.dbio.insert_governance('POSITION_EXISTS', signal['instrument'], 'breakout_v2', 'BLOCK', 'POSITION_ALREADY_OPEN', {'signal_id': signal['signal_id']})
-            self.logger('WARNING', 'POSITION_EXISTS', signal=signal['signal_id'], reason='POSITION_ALREADY_OPEN')
+            self.logger(
+                'WARNING',
+                'POSITION_ALREADY_OPEN_BLOCK',
+                instrument=signal['instrument'],
+                signal=signal['signal_id'],
+                engine_positions_count=len(self.state.positions),
+                db_open_trades_count=db_open_trades_count,
+            )
             return EngineDecision(signal=signal, intents=intents, veto_reason='POSITION_ALREADY_OPEN')
 
         allowed, reason, gate_meta = self.gate.allow(signal)
@@ -136,22 +179,6 @@ class Engine:
             event_ts=signal['ts'],
             intent_type='ENTRY',
             position_id=intent_id,
-        )
-
-        # deterministic position/open exposure state update on entry intent
-        self.state.open_exposure_r = projected_r
-        self.state.positions[event.instrument] = Position(
-            position_id=intent_id,
-            signal_id=signal['signal_id'],
-            instrument=event.instrument,
-            side=signal['side'],
-            entry_ts=signal['ts'],
-            entry_sequence_id=event.sequence_id,
-            entry_price=float(signal['entry_px']),
-            risk_r=1.0,
-            qty=float(qty),
-            stop_price=float(signal['stop_px']),
-            take_price=None,
         )
 
         intents.append(entry_intent)
