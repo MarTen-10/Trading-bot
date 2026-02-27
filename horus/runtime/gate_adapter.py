@@ -19,7 +19,8 @@ def current_regime(instrument='BTCUSD'):
 def allow(signal: dict):
     regime = current_regime(signal['instrument'])
     required_regime = os.getenv('HORUS_REQUIRED_REGIME', 'TREND_NORMAL')
-    if regime != required_regime:
+    bypass_regime = os.getenv('HORUS_BYPASS_REGIME_GATE', '0') in ('1', 'true', 'TRUE', 'yes', 'YES')
+    if (not bypass_regime) and regime != required_regime:
         return False, 'regime_block', {'regime': regime, 'required_regime': required_regime}
 
     if GATE.exists():
@@ -34,7 +35,8 @@ def allow(signal: dict):
             'promotion_status': g.get('promotion_status'),
             'disable_status': g.get('disable_status'),
             'rolling_expectancy': g.get('rolling_expectancy', {}).get('latest'),
-            'regime': regime
+            'regime': regime,
+            'regime_bypass': bypass_regime,
         }
 
-    return False, 'gate_missing', {'regime': regime}
+    return False, 'gate_missing', {'regime': regime, 'regime_bypass': bypass_regime}

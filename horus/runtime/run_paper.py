@@ -81,6 +81,7 @@ def load_runtime_config():
         'resource_warn_rss_mb': int(os.getenv('HORUS_SOFT_RSS_WARN_MB', '500')),
         'cpu_log_seconds': int(os.getenv('HORUS_CPU_LOG_SECONDS', '60')),
         'exit_after_candles': int(os.getenv('HORUS_EXIT_AFTER_CANDLES', '6')),
+        'bypass_regime_gate': os.getenv('HORUS_BYPASS_REGIME_GATE', '0') in ('1', 'true', 'TRUE', 'yes', 'YES'),
     }
     log('INFO', 'STARTUP_CONFIG', config=cfg)
     return cfg
@@ -187,6 +188,8 @@ def _close_trade(intent, fill):
 def main():
     dbio.ensure_schema_extensions()
     cfg = load_runtime_config()
+    if cfg.get('bypass_regime_gate'):
+        dbio.insert_governance('CONFIG', 'ALL', 'runtime', 'INFO', 'BYPASS_REGIME_GATE_ENABLED', {'value': True})
     universe = [x.strip().replace('USDT', 'USD') for x in os.getenv('HORUS_UNIVERSE', 'BTCUSDT,ETHUSDT,SOLUSDT').split(',') if x.strip()]
     stream = MarketStream(universe)
     strategy = StrategyEngine()
