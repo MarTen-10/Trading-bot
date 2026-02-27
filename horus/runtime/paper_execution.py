@@ -53,6 +53,15 @@ def place_order(intent) -> tuple[dict, Fill]:
 
     def _write(con):
         with con.cursor() as cur:
+            # Invariant guard: ensure parent signal row exists before orders FK insert.
+            cur.execute(
+                """
+                INSERT INTO signals(signal_id, timestamp, instrument, strategy, decision, veto_reason)
+                VALUES(%s,%s,%s,%s,%s,%s)
+                ON CONFLICT(signal_id) DO NOTHING
+                """,
+                (intent.signal_id, intent.event_ts, intent.instrument, 'breakout_v2', 'taken', ''),
+            )
             cur.execute(
                 "INSERT INTO orders(order_id, signal_id, status, sent_at, ack_at) VALUES(%s,%s,%s,%s,%s) ON CONFLICT(order_id) DO UPDATE SET status=EXCLUDED.status,sent_at=EXCLUDED.sent_at,ack_at=EXCLUDED.ack_at",
                 (order_id, intent.signal_id, 'filled', intent.event_ts, intent.event_ts)
