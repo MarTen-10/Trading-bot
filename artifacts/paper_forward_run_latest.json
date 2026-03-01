@@ -1,34 +1,12 @@
 {
-  "start_utc": "2026-03-01T05:48:06.910913+00:00",
-  "end_utc": "2026-03-01T05:48:06.911354+00:00",
-  "router_first": {
-    "decision": "ALLOW",
-    "reason": "routed",
-    "details": {
-      "ok": true,
-      "status_code": 200,
-      "kwargs": {
-        "symbol": "BTC-PERP",
-        "side": "BUY",
-        "size": "0.1",
-        "idempotency_key": "00000000-0000-0000-0000-000000000001"
-      }
-    }
-  },
-  "router_duplicate": {
-    "decision": "DENY",
-    "reason": "duplicate_open_trade",
-    "details": {
-      "trade_id": "00000000-0000-0000-0000-000000000001",
-      "action": "no_resend"
-    }
-  },
-  "trades_opened": 1,
-  "trades_closed": 1,
-  "realized_pnl": 187.88001600000095,
-  "equity": 10187.880016000001,
-  "deny_count": 0,
-  "deny_reasons": [],
-  "execution_log_count": 1,
-  "equity_curve_points": 3
+  "start_utc": "2026-03-01T11:49:56.841075+00:00",
+  "end_utc": "2026-03-01T11:50:34.054666+00:00",
+  "start_equity": 500.0,
+  "end_equity": 499.338593874856,
+  "max_drawdown": 0.6614061251440262,
+  "total_trades": 1,
+  "total_denies": 0,
+  "router_denies_by_reason": {},
+  "risk_events_count": null,
+  "crash_count": 0
 }

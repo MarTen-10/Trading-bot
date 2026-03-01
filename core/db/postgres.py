@@ -113,3 +113,35 @@ class PostgresDB:
                     },
                 )
                 return cur.rowcount == 1
+
+    def update_trade_close(self, trade_id: str, *, exit_price: float, pnl: float, fees: float, slippage: float, status: str = "CLOSED") -> None:
+        with self.connection() as con:
+            with con.cursor() as cur:
+                cur.execute(
+                    """
+                    UPDATE trades
+                    SET status=%s, exit_timestamp=NOW(), pnl=%s, fees=COALESCE(fees,0)+%s, slippage=COALESCE(slippage,0)+%s
+                    WHERE trade_id=%s
+                    """,
+                    (status, pnl, fees, slippage, trade_id),
+                )
+
+    def fetch_open_trades(self) -> list[dict[str, Any]]:
+        with self.connection() as con:
+            with con.cursor(cursor_factory=RealDictCursor) as cur:
+                cur.execute(
+                    "SELECT trade_id::text as trade_id, side, size::float8 as size, entry_price::float8 as entry_price, stop_price::float8 as stop_price, target_price::float8 as target_price, risk_ticket_hash FROM trades WHERE status='OPEN' ORDER BY entry_timestamp"
+                )
+                return [dict(r) for r in cur.fetchall()]
+
+    def insert_candle(self, candle: dict[str, Any]) -> None:
+        with self.connection() as con:
+            with con.cursor() as cur:
+                cur.execute(
+                    """
+                    INSERT INTO candles(symbol,timeframe,timestamp,open,high,low,close,volume,source)
+                    VALUES(%(symbol)s,%(timeframe)s,%(timestamp)s,%(open)s,%(high)s,%(low)s,%(close)s,%(volume)s,%(source)s)
+                    ON CONFLICT(symbol,timeframe,timestamp) DO NOTHING
+                    """,
+                    candle,
+                )
