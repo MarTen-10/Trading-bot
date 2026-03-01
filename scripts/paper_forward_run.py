@@ -9,6 +9,7 @@ import sys
 import time
 import uuid
 from collections import Counter
+from dataclasses import dataclass
 from datetime import UTC, datetime, timedelta
 from pathlib import Path
 
@@ -51,10 +52,30 @@ class FakeAdapter:
         return {"ok": True, "status_code": 200, "kwargs": kwargs}
 
 
-def fetch_price(symbol="BTC-USD") -> float:
-    r = requests.get(f"https://api.exchange.coinbase.com/products/{symbol}/ticker", timeout=10)
-    j = r.json()
-    return float(j["price"])
+@dataclass
+class MarketDataSource:
+    mode: str = "perp_public"  # perp_public | spot_public | static_file
+    symbol: str = "BTC-USDT-SWAP"
+    static_file: str | None = None
+
+
+def fetch_price(source: MarketDataSource) -> float:
+    if source.mode == "perp_public":
+        # Public perpetual feed (OKX swap)
+        r = requests.get(f"https://www.okx.com/api/v5/market/ticker?instId={source.symbol}", timeout=10)
+        j = r.json()
+        return float(j["data"][0]["last"])
+    if source.mode == "spot_public":
+        # Coinbase public spot ticker
+        r = requests.get(f"https://api.exchange.coinbase.com/products/{source.symbol}/ticker", timeout=10)
+        j = r.json()
+        return float(j["price"])
+    if source.mode == "static_file":
+        if not source.static_file:
+            raise RuntimeError("static_file mode requires --static-file")
+        rows = Path(source.static_file).read_text().strip().splitlines()
+        return float(rows[-1].split(",")[-1])
+    raise RuntimeError(f"unknown data source: {source.mode}")
 
 
 def build_ticket(validator: RiskValidator, trade_id: str, entry: float, stop: float, allowed_risk: float = 5.0):
@@ -82,7 +103,14 @@ def max_drawdown(curve: list[dict]) -> float:
     return mdd
 
 
-def run_continuous(duration_hours: float = 24.0, poll_seconds: int = 30, simulate_kill_once: bool = False):
+def run_continuous(
+    duration_hours: float = 24.0,
+    poll_seconds: int = 30,
+    simulate_kill_once: bool = False,
+    data_source: str = "perp_public",
+    market_symbol: str = "BTC-USDT-SWAP",
+    static_file: str | None = None,
+):
     db = PostgresDB()
     writer = RuntimeWriter(db)
     validator = RiskValidator(writer, "paper-secret")
@@ -100,6 +128,8 @@ def run_continuous(duration_hours: float = 24.0, poll_seconds: int = 30, simulat
             }
         )
 
+    source = MarketDataSource(mode=data_source, symbol=market_symbol, static_file=static_file)
+
     start = datetime.now(UTC)
     end_target = start + timedelta(hours=duration_hours)
     denies = Counter()
@@ -109,10 +139,10 @@ def run_continuous(duration_hours: float = 24.0, poll_seconds: int = 30, simulat
 
     while datetime.now(UTC) < end_target and not RUN_STATE["stop"]:
         try:
-            price = fetch_price("BTC-USD")
+            price = fetch_price(source)
             ts = datetime.now(UTC)
             candle = {
-                "symbol": "BTC-USD", "timeframe": "1m", "timestamp": ts.replace(second=0, microsecond=0),
+                "symbol": source.symbol, "timeframe": "1m", "timestamp": ts.replace(second=0, microsecond=0),
                 "open": price, "high": price, "low": price, "close": price, "volume": random.uniform(0.1, 1.5), "source": "coinbase_public"
             }
             db.insert_candle(candle)
@@ -165,6 +195,8 @@ def run_continuous(duration_hours: float = 24.0, poll_seconds: int = 30, simulat
             time.sleep(min(poll_seconds, 10))
 
     report = {
+        "data_source": source.mode,
+        "market_symbol": source.symbol,
         "start_utc": start.isoformat(),
         "end_utc": datetime.now(UTC).isoformat(),
         "start_equity": 500.0,
@@ -188,15 +220,25 @@ def main():
     parser.add_argument("--duration-hours", type=float, default=24.0)
     parser.add_argument("--poll-seconds", type=int, default=30)
     parser.add_argument("--simulate-kill-once", action="store_true")
+    parser.add_argument("--data-source", choices=["perp_public", "spot_public", "static_file"], default="perp_public")
+    parser.add_argument("--market-symbol", default="BTC-USDT-SWAP")
+    parser.add_argument("--static-file", default=None)
     args = parser.parse_args()
 
     signal.signal(signal.SIGTERM, on_term)
     signal.signal(signal.SIGINT, on_term)
 
     if args.continuous:
-        run_continuous(args.duration_hours, args.poll_seconds, args.simulate_kill_once)
+        run_continuous(
+            args.duration_hours,
+            args.poll_seconds,
+            args.simulate_kill_once,
+            args.data_source,
+            args.market_symbol,
+            args.static_file,
+        )
     else:
-        run_continuous(0.01, 1, False)
+        run_continuous(0.01, 1, False, args.data_source, args.market_symbol, args.static_file)
 
 
 if __name__ == "__main__":
