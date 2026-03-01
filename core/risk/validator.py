@@ -47,7 +47,19 @@ class RiskValidator:
                 {"missing_fields": sorted(list(missing))},
             )
 
+        if float(risk_ticket["allowed_size"]) <= 0:
+            return self._deny("invalid_allowed_size", {"allowed_size": risk_ticket["allowed_size"]})
+        if float(risk_ticket["allowed_risk_amount"]) <= 0:
+            return self._deny("invalid_allowed_risk_amount", {"allowed_risk_amount": risk_ticket["allowed_risk_amount"]})
+        if float(risk_ticket["stop_price"]) <= 0:
+            return self._deny("invalid_stop_price", {"stop_price": risk_ticket["stop_price"]})
+        if float(risk_ticket["max_slippage"]) < 0:
+            return self._deny("invalid_max_slippage", {"max_slippage": risk_ticket["max_slippage"]})
+
         provided_hash = str(risk_ticket.get("signature_hash", ""))
+        if len(provided_hash) != 64 or any(c not in "0123456789abcdef" for c in provided_hash.lower()):
+            return self._deny("invalid_signature_format", {"signature_hash": provided_hash})
+
         expected_hash = self.compute_signature_hash(risk_ticket)
         if not hmac.compare_digest(provided_hash, expected_hash):
             return self._deny(

@@ -64,17 +64,52 @@ class PostgresDB:
                 cur.execute(
                     """
                     INSERT INTO trades(
-                        id, strategy_version, side, entry_price, stop_price, target_price,
+                        id, trade_id, strategy_version, side, entry_price, stop_price, target_price,
                         size, status, risk_ticket_hash, entry_timestamp, exit_timestamp,
                         pnl, fees, slippage, regime_snapshot
                     ) VALUES (
-                        %(id)s, %(strategy_version)s, %(side)s, %(entry_price)s, %(stop_price)s, %(target_price)s,
+                        %(id)s, %(trade_id)s, %(strategy_version)s, %(side)s, %(entry_price)s, %(stop_price)s, %(target_price)s,
                         %(size)s, %(status)s, %(risk_ticket_hash)s, %(entry_timestamp)s, %(exit_timestamp)s,
                         %(pnl)s, %(fees)s, %(slippage)s, %(regime_snapshot)s::jsonb
                     )
                     """,
                     {
                         **trade,
+                        "trade_id": trade.get("trade_id", trade["id"]),
                         "regime_snapshot": json.dumps(trade.get("regime_snapshot", {})),
                     },
                 )
+
+    def get_trade_by_trade_id(self, trade_id: str) -> dict[str, Any] | None:
+        with self.connection() as con:
+            with con.cursor(cursor_factory=RealDictCursor) as cur:
+                cur.execute(
+                    "SELECT trade_id::text as trade_id, status, risk_ticket_hash, entry_timestamp, exit_timestamp FROM trades WHERE trade_id=%s",
+                    (trade_id,),
+                )
+                row = cur.fetchone()
+                return dict(row) if row else None
+
+    def create_open_trade_if_absent(self, trade: dict[str, Any]) -> bool:
+        with self.connection() as con:
+            with con.cursor() as cur:
+                cur.execute(
+                    """
+                    INSERT INTO trades(
+                        id, trade_id, strategy_version, side, entry_price, stop_price, target_price,
+                        size, status, risk_ticket_hash, entry_timestamp, exit_timestamp,
+                        pnl, fees, slippage, regime_snapshot
+                    ) VALUES (
+                        %(id)s, %(trade_id)s, %(strategy_version)s, %(side)s, %(entry_price)s, %(stop_price)s, %(target_price)s,
+                        %(size)s, %(status)s, %(risk_ticket_hash)s, %(entry_timestamp)s, %(exit_timestamp)s,
+                        %(pnl)s, %(fees)s, %(slippage)s, %(regime_snapshot)s::jsonb
+                    )
+                    ON CONFLICT (trade_id) DO NOTHING
+                    """,
+                    {
+                        **trade,
+                        "trade_id": trade.get("trade_id", trade["id"]),
+                        "regime_snapshot": json.dumps(trade.get("regime_snapshot", {})),
+                    },
+                )
+                return cur.rowcount == 1
