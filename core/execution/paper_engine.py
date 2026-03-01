@@ -14,6 +14,7 @@ class PaperPosition:
     entry_price: float
     stop_price: float
     target_price: float
+    allowed_risk_amount: float
     fee_paid: float
     slippage_paid: float
     opened_at: datetime
@@ -23,8 +24,11 @@ class PaperPosition:
 class PaperEngine:
     fee_bps: float = 4.0
     slippage_bps: float = 2.0
-    starting_equity: float = 10_000.0
+    starting_equity: float = 500.0
     mode: str = "paper"
+    risk_tolerance: float = 0.5  # dollars
+    db_writer: Any | None = None
+
     equity: float = field(init=False)
     realized_pnl: float = field(default=0.0, init=False)
     equity_curve: list[dict[str, Any]] = field(default_factory=list, init=False)
@@ -34,22 +38,27 @@ class PaperEngine:
         self.equity = self.starting_equity
         self._record_equity("boot")
 
-    def open_trade(
+    def open_trade_from_risk_ticket(
         self,
         *,
-        trade_id: str,
+        risk_ticket: dict[str, Any],
         symbol: str,
         side: str,
-        size: float,
-        mid_price: float,
-        stop_price: float,
+        entry_mid_price: float,
         target_price: float,
     ) -> dict[str, Any]:
         self._ensure_paper_mode()
+        trade_id = str(risk_ticket["trade_id"])
+        size = float(risk_ticket["allowed_size"])
+        stop_price = float(risk_ticket["stop_price"])
+        allowed_risk_amount = float(risk_ticket["allowed_risk_amount"])
 
-        fill_price, slippage = self._fill_price(mid_price, side, size)
+        if size <= 0 or allowed_risk_amount <= 0:
+            return self._raise_and_log("invalid_risk_ticket_amounts", risk_ticket)
+
+        fill_price, slippage_entry = self._fill_price(entry_mid_price, side, size)
         entry_notional = fill_price * size
-        fees = self._fees(entry_notional)
+        entry_fees = self._fees(entry_notional)
 
         position = PaperPosition(
             trade_id=trade_id,
@@ -59,21 +68,26 @@ class PaperEngine:
             entry_price=fill_price,
             stop_price=stop_price,
             target_price=target_price,
-            fee_paid=fees,
-            slippage_paid=slippage,
+            allowed_risk_amount=allowed_risk_amount,
+            fee_paid=entry_fees,
+            slippage_paid=slippage_entry,
             opened_at=datetime.now(UTC),
         )
         self.open_positions[trade_id] = position
-        self.realized_pnl -= fees
-        self.equity -= fees
+
+        # upfront transaction cost
+        self.realized_pnl -= entry_fees
+        self.equity -= entry_fees
         self._record_equity("open_trade")
 
         return {
             "trade_id": trade_id,
             "status": "OPEN",
             "fill_price": fill_price,
-            "fees": fees,
-            "slippage": slippage,
+            "size": size,
+            "allowed_risk_amount": allowed_risk_amount,
+            "fees": entry_fees,
+            "slippage": slippage_entry,
             "mode": self.mode,
         }
 
@@ -93,7 +107,7 @@ class PaperEngine:
         self._ensure_paper_mode()
         pos = self.open_positions.pop(trade_id)
         exit_side = "SELL" if pos.side in {"BUY", "LONG"} else "BUY"
-        exit_fill, slippage = self._fill_price(exit_mid, exit_side, pos.size)
+        exit_fill, slippage_exit = self._fill_price(exit_mid, exit_side, pos.size)
 
         entry_notional = pos.entry_price * pos.size
         exit_notional = exit_fill * pos.size
@@ -106,19 +120,43 @@ class PaperEngine:
         self.equity += net_pnl
         self._record_equity(f"close_{reason.lower()}")
 
-        return {
+        result = {
             "trade_id": trade_id,
             "status": "CLOSED",
             "reason": reason,
             "entry_price": pos.entry_price,
             "exit_price": exit_fill,
+            "size": pos.size,
+            "allowed_risk_amount": pos.allowed_risk_amount,
             "gross_pnl": gross_pnl,
             "net_pnl": net_pnl,
             "fees": pos.fee_paid + exit_fees,
-            "slippage": pos.slippage_paid + slippage,
+            "slippage": pos.slippage_paid + slippage_exit,
             "closed_at": datetime.now(UTC).isoformat(),
             "mode": self.mode,
         }
+
+        if reason == "STOP":
+            # Simulated stop loss should match allowed_risk_amount within tolerance (plus spread/slippage effects)
+            simulated_loss = abs(min(net_pnl, 0.0))
+            if abs(simulated_loss - pos.allowed_risk_amount) > self.risk_tolerance:
+                payload = {
+                    "reason": "risk_amount_mismatch",
+                    "trade_id": trade_id,
+                    "allowed_risk_amount": pos.allowed_risk_amount,
+                    "simulated_loss": simulated_loss,
+                    "tolerance": self.risk_tolerance,
+                }
+                if self.db_writer is not None:
+                    self.db_writer.insert_risk_event("DENY", payload)
+                raise RuntimeError(f"Risk mismatch at STOP: {payload}")
+
+        return result
+
+    def _raise_and_log(self, reason: str, payload: dict[str, Any]):
+        if self.db_writer is not None:
+            self.db_writer.insert_risk_event("DENY", {"reason": reason, **payload})
+        raise RuntimeError(reason)
 
     def _ensure_paper_mode(self) -> None:
         if self.mode != "paper":
