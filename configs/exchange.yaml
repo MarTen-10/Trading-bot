@@ -1,0 +1,10 @@
+exchange: coinbase
+primary_api_surface: advanced_trade_perpetuals
+fallback_api_surface: derivatives_rest
+requires_portfolio_uuid: true
+symbols:
+  - BTC-PERP-INTX
+order_types:
+  - market
+  - limit
+margin_mode: isolated

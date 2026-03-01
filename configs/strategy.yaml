@@ -1,0 +1,12 @@
+strategy_id: breakout_30m_v1
+regime:
+  bias_timeframe: 1h
+  ema_period: 200
+  atr_percentile_min: 40
+entry:
+  timeframe: 30m
+  breakout_lookback: 20
+  require_volume_spike: true
+risk:
+  stop_atr_mult: 1.0
+  target_atr_mult: 2.0
