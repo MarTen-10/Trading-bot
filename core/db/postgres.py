@@ -145,3 +145,26 @@ class PostgresDB:
                     """,
                     candle,
                 )
+
+    def fetch_candles(self, symbol: str, timeframe: str, limit: int = 5000) -> list[dict[str, Any]]:
+        with self.connection() as con:
+            with con.cursor(cursor_factory=RealDictCursor) as cur:
+                cur.execute(
+                    """
+                    SELECT symbol,timeframe,timestamp,open::float8 as open,high::float8 as high,low::float8 as low,close::float8 as close,volume::float8 as volume,source
+                    FROM candles
+                    WHERE symbol=%s AND timeframe=%s
+                    ORDER BY timestamp DESC
+                    LIMIT %s
+                    """,
+                    (symbol, timeframe, limit),
+                )
+                rows = [dict(r) for r in cur.fetchall()]
+                rows.reverse()
+                return rows
+
+    def latest_candle_ts(self, symbol: str, timeframe: str) -> Any:
+        with self.connection() as con:
+            with con.cursor() as cur:
+                cur.execute("SELECT MAX(timestamp) FROM candles WHERE symbol=%s AND timeframe=%s", (symbol, timeframe))
+                return cur.fetchone()[0]

@@ -3,12 +3,10 @@ from __future__ import annotations
 
 import argparse
 import json
-import random
 import signal
 import sys
 import time
 import uuid
-from collections import Counter
 from dataclasses import dataclass
 from datetime import UTC, datetime, timedelta
 from pathlib import Path
@@ -17,20 +15,32 @@ import requests
 
 sys.path.append(str(Path(__file__).resolve().parents[1]))
 
+from core.data.aggregator import Candle, aggregate_1m_to_1h, aggregate_1m_to_30m, atr, ema
 from core.db.postgres import PostgresDB
 from core.execution.paper_engine import PaperEngine
 from core.execution.router import HorusRouter
 from core.risk.validator import RiskValidator
 
-
-RUN_STATE = {"stop": False}
-
-
-def on_term(*_):
-    RUN_STATE["stop"] = True
+RUN = {"stop": False}
 
 
-class RuntimeWriter:
+def _stop(*_):
+    RUN["stop"] = True
+
+
+@dataclass
+class MarketState:
+    watermark: datetime
+    candles_30m: list[Candle]
+    candles_1h: list[Candle]
+    atr14_30m: float
+    ema200_1h: float
+    regime_label: str
+    trade_allowed: bool
+    risk_multiplier: float
+
+
+class Writer:
     def __init__(self, db: PostgresDB):
         self.db = db
 
@@ -52,193 +62,136 @@ class FakeAdapter:
         return {"ok": True, "status_code": 200, "kwargs": kwargs}
 
 
-@dataclass
-class MarketDataSource:
-    mode: str = "perp_public"  # perp_public | spot_public | static_file
-    symbol: str = "BTC-USDT-SWAP"
-    static_file: str | None = None
+def fetch_perp_price(inst_id="BTC-USDT-SWAP") -> float:
+    r = requests.get(f"https://www.okx.com/api/v5/market/ticker?instId={inst_id}", timeout=10)
+    r.raise_for_status()
+    return float(r.json()["data"][0]["last"])
 
 
-def fetch_price(source: MarketDataSource) -> float:
-    if source.mode == "perp_public":
-        # Public perpetual feed (OKX swap)
-        r = requests.get(f"https://www.okx.com/api/v5/market/ticker?instId={source.symbol}", timeout=10)
-        j = r.json()
-        return float(j["data"][0]["last"])
-    if source.mode == "spot_public":
-        # Coinbase public spot ticker
-        r = requests.get(f"https://api.exchange.coinbase.com/products/{source.symbol}/ticker", timeout=10)
-        j = r.json()
-        return float(j["price"])
-    if source.mode == "static_file":
-        if not source.static_file:
-            raise RuntimeError("static_file mode requires --static-file")
-        rows = Path(source.static_file).read_text().strip().splitlines()
-        return float(rows[-1].split(",")[-1])
-    raise RuntimeError(f"unknown data source: {source.mode}")
-
-
-def build_ticket(validator: RiskValidator, trade_id: str, entry: float, stop: float, allowed_risk: float = 5.0):
-    size = allowed_risk / abs(entry - stop)
-    ticket = {
-        "trade_id": trade_id,
-        "allowed_size": round(size, 8),
-        "allowed_risk_amount": allowed_risk,
-        "stop_price": round(stop, 2),
-        "max_slippage": 1.0,
-        "expiry_timestamp": (datetime.now(UTC) + timedelta(minutes=30)).isoformat(),
-    }
-    ticket["signature_hash"] = validator.compute_signature_hash(ticket)
-    return ticket
-
-
-def max_drawdown(curve: list[dict]) -> float:
-    peak = -1e18
-    mdd = 0.0
-    for p in curve:
-        eq = float(p["equity"])
-        peak = max(peak, eq)
-        dd = (peak - eq)
-        mdd = max(mdd, dd)
-    return mdd
-
-
-def run_continuous(
-    duration_hours: float = 24.0,
-    poll_seconds: int = 30,
-    simulate_kill_once: bool = False,
-    data_source: str = "perp_public",
-    market_symbol: str = "BTC-USDT-SWAP",
-    static_file: str | None = None,
-):
-    db = PostgresDB()
-    writer = RuntimeWriter(db)
-    validator = RiskValidator(writer, "paper-secret")
-    router = HorusRouter(validator, FakeAdapter(), db_writer=writer)
-    engine = PaperEngine(starting_equity=500.0, fee_bps=4.0, slippage_bps=2.0, risk_tolerance=1.0, db_writer=writer)
-
-    # Recovery bootstrap: reconstruct open trades from DB
-    recovered = db.fetch_open_trades()
-    for t in recovered:
-        engine.open_positions[t["trade_id"]] = engine.open_positions.get(t["trade_id"]) or type(
-            "Recovered", (), {
-                "trade_id": t["trade_id"], "symbol": "BTC-PERP", "side": t["side"], "size": float(t["size"]),
-                "entry_price": float(t["entry_price"]), "stop_price": float(t["stop_price"]), "target_price": float(t["target_price"]),
-                "allowed_risk_amount": 5.0, "fee_paid": 0.0, "slippage_paid": 0.0, "opened_at": datetime.now(UTC)
-            }
+def to_candles(rows: list[dict]) -> list[Candle]:
+    return [
+        Candle(
+            symbol=r["symbol"], timeframe=r["timeframe"], timestamp=r["timestamp"],
+            open=float(r["open"]), high=float(r["high"]), low=float(r["low"]), close=float(r["close"]), volume=float(r["volume"]), source=r.get("source", "db")
         )
+        for r in rows
+    ]
 
-    source = MarketDataSource(mode=data_source, symbol=market_symbol, static_file=static_file)
 
+def build_market_state(db: PostgresDB, symbol: str) -> MarketState | None:
+    c1m = to_candles(db.fetch_candles(symbol, "1m", 15000))
+    c30 = aggregate_1m_to_30m(c1m)
+    c1h = aggregate_1m_to_1h(c1m)
+
+    if len(c1h) < 200 or len(c30) < 50:
+        return None
+
+    atr14 = atr(c30, period=14)[-1]
+    ema200 = ema([x.close for x in c1h], period=200)[-1]
+    slope = ema([x.close for x in c1h], period=200)[-1] - ema([x.close for x in c1h], period=200)[-2]
+    regime = "TREND_UP" if slope > 0 else "TREND_DOWN"
+
+    return MarketState(
+        watermark=c30[-1].timestamp,
+        candles_30m=c30,
+        candles_1h=c1h,
+        atr14_30m=atr14,
+        ema200_1h=ema200,
+        regime_label=regime,
+        trade_allowed=True,
+        risk_multiplier=1.0,
+    )
+
+
+def generate_intent(ms: MarketState):
+    # 30m breakout over previous 20 closed bars (excluding latest for threshold)
+    lookback = ms.candles_30m[-21:-1]
+    latest = ms.candles_30m[-1]
+    hh = max(c.high for c in lookback)
+    if latest.close <= hh:
+        return None
+    side = "BUY" if latest.close > ms.ema200_1h else None
+    if not side:
+        return None
+    stop = latest.close - (1.5 * ms.atr14_30m)
+    return {"side": side, "entry": latest.close, "stop": stop, "target": latest.close + (2.0 * ms.atr14_30m)}
+
+
+def run(args):
+    db = PostgresDB()
+    writer = Writer(db)
+    risk = RiskValidator(writer, "paper-secret")
+    router = HorusRouter(risk, FakeAdapter(), db_writer=writer)
+    engine = PaperEngine(starting_equity=500.0, fee_bps=4.0, slippage_bps=2.0, db_writer=writer)
+
+    symbol = args.market_symbol
+    last_eval = None
     start = datetime.now(UTC)
-    end_target = start + timedelta(hours=duration_hours)
-    denies = Counter()
-    total_trades = 0
-    crashes = 0
-    killed = False
+    end = start.timestamp() + (args.duration_hours * 3600)
 
-    while datetime.now(UTC) < end_target and not RUN_STATE["stop"]:
-        try:
-            price = fetch_price(source)
-            ts = datetime.now(UTC)
-            candle = {
-                "symbol": source.symbol, "timeframe": "1m", "timestamp": ts.replace(second=0, microsecond=0),
-                "open": price, "high": price, "low": price, "close": price, "volume": random.uniform(0.1, 1.5), "source": "coinbase_public"
-            }
-            db.insert_candle(candle)
+    while time.time() < end and not RUN["stop"]:
+        now_min = datetime.now(UTC).replace(second=0, microsecond=0)
+        if db.latest_candle_ts(symbol, "1m") is None or now_min > db.latest_candle_ts(symbol, "1m"):
+            px = fetch_perp_price(symbol)
+            db.insert_candle({"symbol": symbol, "timeframe": "1m", "timestamp": now_min, "open": px, "high": px, "low": px, "close": px, "volume": 0.0, "source": "live_poll"})
 
-            # open one trade if none open
-            if not engine.open_positions:
-                stop = price - 500.0
-                target = price + 1000.0
-                tid = str(uuid.uuid4())
-                ticket = build_ticket(validator, tid, price, stop, allowed_risk=5.0)
-                decision = router.route_market_order(risk_ticket=ticket, symbol="BTC-PERP", side="BUY", size=str(ticket["allowed_size"]))
-                if decision.decision == "ALLOW":
-                    opened = engine.open_trade_from_risk_ticket(
-                        risk_ticket=ticket, symbol="BTC-PERP", side="BUY", entry_mid_price=price, target_price=target
-                    )
-                    # Router already persists OPEN trade row via create_open_trade_if_absent.
-                    # Only track count here.
-                    total_trades += 1
-                else:
-                    denies[decision.reason] += 1
+        ms = build_market_state(db, symbol)
+        if ms is None:
+            writer.insert_execution_log("insufficient_context", {"need_h1": 200, "need_30m": 50})
+            time.sleep(args.poll_seconds)
+            continue
 
-            closed = engine.on_price_tick("BTC-PERP", price)
-            for c in closed:
-                db.update_trade_close(
-                    c["trade_id"],
-                    exit_price=float(c["exit_price"]),
-                    pnl=float(c["net_pnl"]),
-                    fees=float(c["fees"]),
-                    slippage=float(c["slippage"]),
-                )
+        if last_eval == ms.watermark:
+            time.sleep(args.poll_seconds)
+            continue
+        last_eval = ms.watermark
 
-            db.insert_execution_log("paper.tick", {"price": price, "equity": engine.equity, "open_positions": len(engine.open_positions)})
+        writer.insert_execution_log("evaluation", {"watermark": ms.watermark.isoformat(), "regime": ms.regime_label, "atr14_30m": ms.atr14_30m, "ema200_1h": ms.ema200_1h})
+        intent = generate_intent(ms) if ms.trade_allowed else None
+        if not intent:
+            writer.insert_execution_log("no_intent", {"watermark": ms.watermark.isoformat()})
+            continue
 
-            if simulate_kill_once and (not killed) and total_trades >= 1 and engine.open_positions:
-                killed = True
-                db.insert_execution_log("paper.simulated_kill", {"at": datetime.now(UTC).isoformat()})
-                raise KeyboardInterrupt("simulated kill mid-trade")
+        allowed_risk = 5.0 * ms.risk_multiplier
+        size = allowed_risk / max(1e-9, abs(intent["entry"] - intent["stop"]))
+        ticket = {
+            "trade_id": str(uuid.uuid4()),
+            "allowed_size": size,
+            "allowed_risk_amount": allowed_risk,
+            "stop_price": intent["stop"],
+            "max_slippage": 1.0,
+            "expiry_timestamp": (datetime.now(UTC) + timedelta(minutes=30)).isoformat(),
+        }
+        ticket["signature_hash"] = risk.compute_signature_hash(ticket)
 
-            if engine.equity < 0:
-                db.insert_risk_event("DENY", {"reason": "negative_equity", "equity": engine.equity})
-                break
+        if args.dry_run_audit:
+            writer.insert_execution_log("dryrun_intent", {"ticket": ticket, "intent": intent, "regime": ms.regime_label})
+            continue
 
-            time.sleep(poll_seconds)
-        except KeyboardInterrupt:
-            crashes += 1
-            break
-        except Exception as e:
-            crashes += 1
-            db.insert_execution_log("paper.error", {"error": str(e)})
-            time.sleep(min(poll_seconds, 10))
+        d = router.route_market_order(risk_ticket=ticket, symbol="BTC-PERP", side=intent["side"], size=str(size))
+        if d.decision != "ALLOW":
+            writer.insert_execution_log("deny", {"reason": d.reason})
+            continue
 
-    report = {
-        "data_source": source.mode,
-        "market_symbol": source.symbol,
-        "start_utc": start.isoformat(),
-        "end_utc": datetime.now(UTC).isoformat(),
-        "start_equity": 500.0,
-        "end_equity": engine.equity,
-        "max_drawdown": max_drawdown(engine.equity_curve),
-        "total_trades": total_trades,
-        "total_denies": sum(denies.values()),
-        "router_denies_by_reason": dict(denies),
-        "risk_events_count": None,
-        "crash_count": crashes,
-    }
-    out = Path("artifacts/paper_forward_run_latest.json")
-    out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps(report, indent=2))
-    print(json.dumps(report, indent=2))
+        engine.open_trade_from_risk_ticket(risk_ticket=ticket, symbol="BTC-PERP", side=intent["side"], entry_mid_price=float(intent["entry"]), target_price=float(intent["target"]))
+        closed = engine.on_price_tick("BTC-PERP", float(intent["target"]))
+        for c in closed:
+            db.update_trade_close(c["trade_id"], exit_price=float(c["exit_price"]), pnl=float(c["net_pnl"]), fees=float(c["fees"]), slippage=float(c["slippage"]))
+
+    print(json.dumps({"status": "done", "dry_run_audit": args.dry_run_audit, "start": start.isoformat(), "end": datetime.now(UTC).isoformat(), "equity": engine.equity}, indent=2))
 
 
 def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--continuous", action="store_true")
-    parser.add_argument("--duration-hours", type=float, default=24.0)
-    parser.add_argument("--poll-seconds", type=int, default=30)
-    parser.add_argument("--simulate-kill-once", action="store_true")
-    parser.add_argument("--data-source", choices=["perp_public", "spot_public", "static_file"], default="perp_public")
-    parser.add_argument("--market-symbol", default="BTC-USDT-SWAP")
-    parser.add_argument("--static-file", default=None)
-    args = parser.parse_args()
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--duration-hours", type=float, default=2.0)
+    ap.add_argument("--poll-seconds", type=int, default=20)
+    ap.add_argument("--market-symbol", default="BTC-USDT-SWAP")
+    ap.add_argument("--dry-run-audit", action="store_true")
+    args = ap.parse_args()
 
-    signal.signal(signal.SIGTERM, on_term)
-    signal.signal(signal.SIGINT, on_term)
-
-    if args.continuous:
-        run_continuous(
-            args.duration_hours,
-            args.poll_seconds,
-            args.simulate_kill_once,
-            args.data_source,
-            args.market_symbol,
-            args.static_file,
-        )
-    else:
-        run_continuous(0.01, 1, False, args.data_source, args.market_symbol, args.static_file)
+    signal.signal(signal.SIGTERM, _stop)
+    signal.signal(signal.SIGINT, _stop)
+    run(args)
 
 
 if __name__ == "__main__":
