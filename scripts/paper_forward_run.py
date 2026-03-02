@@ -108,13 +108,22 @@ def generate_intent(ms: MarketState):
     lookback = ms.candles_30m[-21:-1]
     latest = ms.candles_30m[-1]
     hh = max(c.high for c in lookback)
-    if latest.close <= hh:
+    ll = min(c.low for c in lookback)
+
+    volume_avg = sum(c.volume for c in lookback) / len(lookback)
+    volume_filter_pass = latest.volume >= (0.8 * volume_avg)
+    if not volume_filter_pass:
         return None
-    side = "BUY" if latest.close > ms.ema200_1h else None
-    if not side:
-        return None
-    stop = latest.close - (1.5 * ms.atr14_30m)
-    return {"side": side, "entry": latest.close, "stop": stop, "target": latest.close + (2.0 * ms.atr14_30m)}
+
+    if ms.regime_label == "TREND_UP" and latest.close > hh and latest.close > ms.ema200_1h:
+        stop = latest.close - (1.5 * ms.atr14_30m)
+        return {"side": "BUY", "entry": latest.close, "stop": stop, "target": latest.close + (2.0 * ms.atr14_30m)}
+
+    if ms.regime_label == "TREND_DOWN" and latest.close < ll and latest.close < ms.ema200_1h:
+        stop = latest.close + (1.5 * ms.atr14_30m)
+        return {"side": "SELL", "entry": latest.close, "stop": stop, "target": latest.close - (2.0 * ms.atr14_30m)}
+
+    return None
 
 
 def run(args):
