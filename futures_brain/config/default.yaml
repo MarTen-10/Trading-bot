@@ -1,0 +1,13 @@
+runtime:
+  mode: paper
+  exchange: bybit
+  symbol: BTCUSDT
+  timeframe: 5m
+  kill_switch: false
+  confirm_live: false
+
+risk:
+  per_trade_risk_pct: 0.5
+  max_daily_loss_pct: 3.0
+  max_leverage: 5.0
+  max_position_notional: 20000
