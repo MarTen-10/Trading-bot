@@ -26,6 +26,33 @@ cp .env.example .env
 python scripts/run_once.py
 ```
 
+## TradingView webhook bridge
+Start listener:
+```bash
+python scripts/run_webhook.py
+```
+
+Webhook endpoint:
+- `http://<host>:8090/webhook/tradingview`
+
+TradingView alert JSON (example):
+```json
+{
+  "secret": "replace-with-long-random-secret",
+  "symbol": "BTCUSDT",
+  "side": "buy",
+  "timeframe": "5m",
+  "price": 50000,
+  "strategy_id": "ema-cross-v1",
+  "exchange": "bybit"
+}
+```
+
+Notes:
+- Keep runtime in `paper` for tests.
+- Duplicates are blocked for 90s by default.
+- Secret must match `TV_WEBHOOK_SECRET` (or `config/default.yaml`).
+
 ## Next
 1. Wire Bybit auth keys in `.env`
 2. Replace strategy logic in `brain/strategy.py`

@@ -11,3 +11,9 @@ risk:
   max_daily_loss_pct: 3.0
   max_leverage: 5.0
   max_position_notional: 20000
+
+webhook:
+  host: 0.0.0.0
+  port: 8090
+  secret: change-me
+  dedupe_window_sec: 90

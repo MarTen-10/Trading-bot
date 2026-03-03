@@ -22,3 +22,15 @@ class PositionIntent:
     take_profit: float
     leverage: float
     symbol: str
+
+
+@dataclass
+class TradingViewAlert:
+    secret: str
+    symbol: str
+    side: Literal["buy", "sell", "flat"]
+    timeframe: str = "5m"
+    price: float | None = None
+    strategy_id: str = "tv-default"
+    exchange: str | None = None
+    leverage: float | None = None
